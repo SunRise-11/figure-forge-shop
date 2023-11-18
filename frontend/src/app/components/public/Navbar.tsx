@@ -10,16 +10,16 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="flex items-center flex-wrap bg-black p-3 max-w-screen-xl mx-auto">
+    <nav className="flex items-center flex-wrap bg-background p-3 max-w-screen-2xl mx-auto">
       <Link href="/">
         <p className="inline-flex items-center p-2 mr-4 ">
-          <span className="text-xl text-white font-bold uppercase tracking-wide">
+          <span className="text-xl text-text font-bold uppercase tracking-wide">
             Figure Forge
           </span>
         </p>
       </Link>
       <button
-        className=" inline-flex p-3 hover:bg-green-600 rounded lg:hidden text-white ml-auto hover:text-white outline-none hover:bg-purple"
+        className=" inline-flex p-3 rounded lg:hidden text-text ml-auto hover:text-white outline-none hover:bg-primary"
         onClick={handleClick}
       >
         <svg
@@ -43,23 +43,23 @@ export const Navbar = () => {
         }   w-full lg:inline-flex lg:flex-grow lg:w-auto`}
       >
         <div className="lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start  flex flex-col lg:h-auto gap-4">
-          <Link href="/">
-            <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-metal font-bold items-center justify-center hover:text-purple ">
+          <Link href="/" onClick={handleClick}>
+            <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text font-bold items-center justify-center hover:text-purple active:text-primary">
               Home
             </p>
           </Link>
-          <Link href="/shop">
+          <Link href="/shop" onClick={handleClick}>
             <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-metal font-bold items-center justify-center hover:text-purple">
               Shop
             </p>
           </Link>
-          <Link href="/about">
+          <Link href="/about" onClick={handleClick}>
             <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-metal font-bold items-center justify-center hover:text-purple">
               About us
             </p>
           </Link>
-          <Link href="/sell-figure">
-            <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white bg-purple font-bold items-center justify-center transition ease-in-out delay-350 hover:bg-midnight hover:transition-all">
+          <Link href="/sell-figure" onClick={handleClick}>
+            <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text bg-primary font-bold items-center justify-center transition ease-in-out delay-350 hover:text-accent hover:transition-all">
               Sell Figure
             </p>
           </Link>
