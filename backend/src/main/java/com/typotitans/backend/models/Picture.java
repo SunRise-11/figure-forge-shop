@@ -9,7 +9,8 @@ public class Picture {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
-    private String url;
+    @Lob
+    private byte[] image;
 
     @ManyToOne
     private Figure figure;
@@ -17,12 +18,28 @@ public class Picture {
     public Picture() {
     }
 
-    public Picture(String url, Figure figure) {
-        this.url = url;
+    public Picture(byte[] image, Figure figure) {
+        this.image = image;
         this.figure = figure;
     }
 
     public String getId() {
         return id;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+    public Figure getFigure() {
+        return figure;
+    }
+
+    public void setFigure(Figure figure) {
+        this.figure = figure;
     }
 }
