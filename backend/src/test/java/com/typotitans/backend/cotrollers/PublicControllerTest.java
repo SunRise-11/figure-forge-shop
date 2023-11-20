@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.typotitans.backend.controllers.PublicController;
 import com.typotitans.backend.dtos.FigureDto;
 import com.typotitans.backend.models.Figure;
+import com.typotitans.backend.models.FigureBuilder;
 import com.typotitans.backend.services.FigureService;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,8 +20,7 @@ import java.util.List;
 
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -37,25 +37,49 @@ class PublicControllerTest {
     @Autowired
     private MockMvc mvc;
 
-    private final FigureDto MOCK_DTO = new FigureDto("Peter Pan", "Neverland", "Cpt. Hook", 0, 0, 0,
-            0, null, 0, null);
-    private final Figure MOCK_FIGURE_DTO = new Figure("Peter Pan", "Neverland", "Cpt. Hook", 0, 0,
-            0, 0, 0, null);
+    private final FigureDto MOCK_DTO = new FigureDto("Peter Pan", "Boy who never grows up",null, "Cpt. Hook",0,"Neverand",0,0,0,0);
+    private final Figure MOCK_FIGURE_DTO = new FigureBuilder()
+            .setName("Peter Pan")
+            .setBrand("Cpt. Hook")
+            .setDescription(null)
+            .setPrice(1337)
+            .createFigure();
 
+    private final Figure MOCK_FIGURE_1 = new FigureBuilder()
+            .setName("Minato Namikaze")
+            .setBrand("Tsume")
+            .setOrigin("Sweden")
+            .setDescription(
+                    "Minato is the creator of the Rasengan technique, intended to protect Kushina.")
+            .setHeight(36)
+            .setLength(32)
+            .setWidth(18)
+            .setWeight(700)
+            .setPictures(null)
+            .setPrice(374.18)
+            .createFigure();
 
-    private final Figure MOCK_FIGURE_1 = new Figure("Minato Namikaze", "Sweden", "Tsume", 374.18,
-            18, 41, 36, 700,
-            "Minato is the creator of the Rasengan technique, intended to protect Kushina.");
-    private final Figure MOCK_FIGURE_2 = new Figure("Lord Voldemort", "Luxenbourg", "Tsume", 399.00,
-            18, 36, 32, null,
-            "This statue represents Lord Voldermort in the final battle agains Harry Potter.");
+    private final Figure MOCK_FIGURE_2 = new FigureBuilder()
+            .setName("Lord Voldemort")
+            .setBrand("Tsume")
+            .setOrigin("Luxenbourg")
+            .setDescription(
+                    "This statue represents Lord Voldermort in the final battle agains Harry Potter.")
+            .setHeight(36)
+            .setLength(32)
+            .setWidth(18)
+            .setWeight(700)
+            .setPictures(null)
+            .setPrice(399)
+            .createFigure();
+
     private final List<Figure> MOCK_FIGURE_LIST = Arrays.asList(
             MOCK_FIGURE_1,
             MOCK_FIGURE_2
     );
 
     @BeforeEach
-    void setUp() throws Exception {
+    void setUp() {
         when(figureService.getAllFigures()).thenReturn(MOCK_FIGURE_LIST);
         when(figureService.getFigure(anyString())).thenReturn(MOCK_FIGURE_1);
         when(figureService.addFigure(MOCK_DTO)).thenReturn(MOCK_FIGURE_DTO);
