@@ -20,7 +20,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return ( 
+  return (
     <html lang="en" className=" mx-auto max-w-screen-2xl">
       <UserProvider>
         <body className={poppins.className}>
@@ -29,6 +29,6 @@ export default function RootLayout({
           <Footer />
         </body>
       </UserProvider>
-     </html>
+    </html>
   );
 }

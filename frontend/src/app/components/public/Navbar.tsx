@@ -68,7 +68,7 @@ export const Navbar = () => {
               Admin
             </p>
           </Link>
-          <Link href="/dashboard" onClick={handleClick}>
+          <Link href="/admin/dashboard" onClick={handleClick}>
             <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-metal font-bold items-center justify-center hover:text-purple">
               dashboard
             </p>
