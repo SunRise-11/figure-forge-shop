@@ -8,7 +8,7 @@ export default withPageAuthRequired(
       <>
         <div>Hello {user.name}</div>
         <h2>Email : {user.email}</h2>
-        <h2>Roles : {user.roles}</h2>
+        <h2>Rolesa : {user.roles}</h2>
         <a href="/api/auth/logout">Logout</a>
       </>
     );
