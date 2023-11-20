@@ -21,5 +21,6 @@ module.exports = {
         hostname: "daweebstop.com",
       },
     ],
+    domains: ['i.etsystatic.com'],
   },
 };
