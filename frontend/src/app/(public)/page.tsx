@@ -1,17 +1,14 @@
 "use client";
-import { useState } from "react";
-import axios from "axios";
 import Link from "next/link";
 import Image from "next/image";
-import HeroImage from "../../../public/wink-studio-luffy-nika-lightning-resin-statue003.jpg";
 import CarouselHomePage from "../components/public/Carousel";
 
 export default function HomePage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex min-h-screen flex-col items-center justify-between p-24 p-3 ">
       <CarouselHomePage />
-      <div className="bg-black w-full h-100 flex flex-row justify-between my-10 mt-20">
-        <div className="flex flex-col py-4 gap-10">
+      <div className="bg-black flex flex-col sm:flex-row justify-between items-center my-10 mt-20">
+        <div className="flex flex-col sm:items-start sm:justify-center py-4 gap-10">
           <Link href="/sell-figure">
             <h1 className=" text-2xl font-bold underline">
               WHY SELLING WITH US
@@ -36,7 +33,7 @@ export default function HomePage() {
           alt="Hero Image"
         />
       </div>
-      <div className="bg-metal w-full h-100 flex flex-row justify-between my-10">
+      <div className="bg-black flex flex-col sm:flex-row justify-between items-center my-10 mt-20">
         <Image
           className=" brightness-75"
           src="https://tsumeart-1d733.kxcdn.com/web/image/167936-9f6cb5f6/naruto_montage_intro%20%281%29.png"
@@ -44,7 +41,7 @@ export default function HomePage() {
           height={400}
           alt="Hero Image"
         />
-        <div className="flex flex-col py-4 justify-around">
+        <div className="flex flex-col sm:items-start sm:justify-center py-4 gap-10">
           <h1 className=" text-2xl font-bold text-midnight">ABOUT US</h1>
           <p className="text-midnight">
             Welcome to Figure Forge, the ultimate destination for collectors and
@@ -61,7 +58,6 @@ export default function HomePage() {
           </Link>
         </div>
       </div>
-      <h1></h1>
     </main>
   );
 }
