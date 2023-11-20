@@ -440,7 +440,7 @@ const Catalog = () => {
       <div className="flex flex-wrap w-full">
         {displayedToys.map((toy, index) => (
           <div
-            className="w-full sm:w-1/1 md:w-1/3 lg:w-1/3 pw-10"
+            className="flex w-full sm:w-1/1 md:w-1/3 lg:w-1/3 pw-10 justify-center items-center"
             key={toy.id.toString()}
           >
             <Card toy={toy} />
