@@ -11,7 +11,7 @@ public class Figure {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
-    private String name;
+   private String name;
     private String origin;
     private String brand;
     private int width;
@@ -21,6 +21,9 @@ public class Figure {
     private String description;
     private double price;
     private int rating;
+
+    @ManyToOne
+    Seller seller;
 
     @OneToMany(
             mappedBy = "figure",
@@ -32,7 +35,7 @@ public class Figure {
 
     public Figure(String name, String origin, String brand,double price, int width, int length, int height,
                   int weight, String description,
-                  List<Picture> pictures) {
+                  List<Picture> pictures, Seller seller) {
         this.name = name;
         this.origin = origin;
         this.brand = brand;
@@ -43,6 +46,7 @@ public class Figure {
         this.description = description;
         this.price = price;
         this.pictures = pictures;
+        this.seller = seller;
     }
 
     public String getId() {
@@ -135,5 +139,13 @@ public class Figure {
 
     public void setPictures(List<Picture> pictures) {
         this.pictures = pictures;
+    }
+
+    public Seller getSeller() {
+        return seller;
+    }
+
+    public void setSeller(Seller seller) {
+        this.seller = seller;
     }
 }
