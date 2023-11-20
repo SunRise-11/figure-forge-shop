@@ -9,7 +9,6 @@ const AdminPage = () => {
           Login
         </p>
       </Link>
-      {/* <a href="/api/auth/login">Login</a> */}
     </main>
   );
 };

@@ -1,8 +1,13 @@
 import { withPageAuthRequired, getSession } from "@auth0/nextjs-auth0";
+import { redirect } from "next/navigation";
 
 export default withPageAuthRequired(
   async function Profile() {
-    const { user } = await getSession();
+    const session = await getSession();
+    if (!session || !session.user) {
+      redirect("/admin");
+    }
+    const user = session!.user;
 
     return (
       <>
