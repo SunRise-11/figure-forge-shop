@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
-import axios from "axios";
-import Home from "./home/home";
+import axios from "axios"; 
 import Link from "next/link";
 import Image from "next/image"; 
 import HeroImage from "../../../public/wink-studio-luffy-nika-lightning-resin-statue003.jpg";

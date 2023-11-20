@@ -58,7 +58,7 @@ const AboutPage = () => {
           </h2>
           <p>
             A three-star rating for an action figure implies that it meets the
-            basic expectations of an average collector. It's a decent figure
+            basic expectations of an average collector. It is a decent figure
             with acceptable quality and design, providing a satisfactory
             representation of the character.
           </p>
