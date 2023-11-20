@@ -10,7 +10,7 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="flex items-center flex-wrap bg-background p-3 max-w-screen-2xl mx-auto">
+    <nav className="flex items-center flex-wrap bg-background p-3 ">
       <Link href="/">
         <p className="inline-flex items-center p-2 mr-4 ">
           <span className="text-xl text-text font-bold uppercase tracking-wide">

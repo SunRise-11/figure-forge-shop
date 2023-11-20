@@ -1,22 +1,11 @@
 import React from "react";
-import Image from "next/image";
-import Banner from "../components/public/Banner";
-import Rating from "../../../public/rating.jpg";
+import Banner from "../components/public/Banner"; 
 
 
 const AboutPage = () => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-between mx-auto w-full max-w-screen-xl">
-      <div className="w-full relative">
-        <Image
-          className=" brightness-90"
-          src="https://daweebstop.com/cdn/shop/files/IMG_0171_c8d72572-d4b5-42b3-a240-b9bc2cc2aca9.jpg?v=1661460103"
-          width={1600}
-          height={900}
-          alt="Hero Image"
-        />
-      </div>
-      <Banner name="ABOUT US" />
+    <div className="flex min-h-screen flex-col items-center justify-between ">
+      <Banner name="ABOUT US" imageSource="https://daweebstop.com/cdn/shop/files/IMG_0171_c8d72572-d4b5-42b3-a240-b9bc2cc2aca9.jpg?v=1661460103" />
       <div className="my-10">
         <p>
           At Figure Forge, our story is a tapestry woven with threads of passion
@@ -77,7 +66,6 @@ const AboutPage = () => {
             limited functionality.
           </p>
         </div>
-         
       </div>
     </div>
   );

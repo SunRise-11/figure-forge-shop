@@ -21,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className=" mx-auto max-w-screen-2xl">
       <body className={poppins.className}>
         <Navbar />
         {children}
