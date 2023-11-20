@@ -31,16 +31,15 @@ public class Figure {
     }
 
     public Figure(String name, String origin, String brand, Double price, Integer width,
-                  Integer diameter, Integer height, String description, String detail,
-                  Integer length, Integer weight) {
+                  Integer height, Integer length,Integer weight, String description) {
         this.name = name;
         this.origin = origin;
         this.brand = brand;
         this.price = price;
         this.width = width;
         this.height = height;
-        this.description = description;
         this.length = length;
+        this.description = description;
         this.weight = weight;
     }
 
