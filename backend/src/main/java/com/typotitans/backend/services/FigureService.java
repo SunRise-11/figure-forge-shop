@@ -18,7 +18,7 @@ public class FigureService {
 
     private Figure convertDtoToEntity(FigureDto dto) {
         return new Figure(dto.name(), dto.origin(), dto.brand(), dto.price(), dto.width(),
-                dto.length(), dto.height(), dto.weight(), dto.description(), dto.pictures());
+                dto.length(), dto.height(), dto.weight(), dto.description(), dto.pictures(), dto.seller());
     }
 
 
