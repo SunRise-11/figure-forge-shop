@@ -30,8 +30,8 @@ public class Figure {
     public Figure() {
     }
 
-    public Figure(String name, String origin, String brand, int width, int length, int height,
-                  int weight, String description, double price, int rating,
+    public Figure(String name, String origin, String brand,double price, int width, int length, int height,
+                  int weight, String description,
                   List<Picture> pictures) {
         this.name = name;
         this.origin = origin;
@@ -42,7 +42,6 @@ public class Figure {
         this.weight = weight;
         this.description = description;
         this.price = price;
-        this.rating = rating;
         this.pictures = pictures;
     }
 

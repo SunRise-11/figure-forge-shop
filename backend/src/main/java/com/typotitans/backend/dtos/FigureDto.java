@@ -6,14 +6,14 @@ import java.util.List;
 
 public record FigureDto(
         String name,
-        String origin,
+        String description,
+        List<Picture> pictures,
         String brand,
         double price,
+        String origin,
         int width,
         int height,
         int length,
-        String description,
-        int weight,
-        List<Picture> pictures
+        int weight
 ) {
 }
