@@ -14,13 +14,13 @@ public class Figure {
     private String name;
     private String origin;
     private String brand;
-    private Integer width;
-    private Integer length;
-    private Integer height;
-    private Integer weight;
+    private int width;
+    private int length;
+    private int height;
+    private int weight;
     private String description;
-    private Double price;
-    private Integer rating;
+    private double price;
+    private int rating;
 
     @OneToMany(
             mappedBy = "figure",
@@ -30,17 +30,20 @@ public class Figure {
     public Figure() {
     }
 
-    public Figure(String name, String origin, String brand, Double price, Integer width,
-                  Integer height, Integer length,Integer weight, String description) {
+    public Figure(String name, String origin, String brand, int width, int length, int height,
+                  int weight, String description, double price, int rating,
+                  List<Picture> pictures) {
         this.name = name;
         this.origin = origin;
         this.brand = brand;
-        this.price = price;
         this.width = width;
-        this.height = height;
         this.length = length;
-        this.description = description;
+        this.height = height;
         this.weight = weight;
+        this.description = description;
+        this.price = price;
+        this.rating = rating;
+        this.pictures = pictures;
     }
 
     public String getId() {
@@ -71,35 +74,35 @@ public class Figure {
         this.brand = brand;
     }
 
-    public Integer getWidth() {
+    public int getWidth() {
         return width;
     }
 
-    public void setWidth(Integer width) {
+    public void setWidth(int width) {
         this.width = width;
     }
 
-    public Integer getLength() {
+    public int getLength() {
         return length;
     }
 
-    public void setLength(Integer length) {
+    public void setLength(int length) {
         this.length = length;
     }
 
-    public Integer getHeight() {
+    public int getHeight() {
         return height;
     }
 
-    public void setHeight(Integer height) {
+    public void setHeight(int height) {
         this.height = height;
     }
 
-    public Integer getWeight() {
+    public int getWeight() {
         return weight;
     }
 
-    public void setWeight(Integer weight) {
+    public void setWeight(int weight) {
         this.weight = weight;
     }
 
@@ -111,19 +114,19 @@ public class Figure {
         this.description = description;
     }
 
-    public Double getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
-    public Integer getRating() {
+    public int getRating() {
         return rating;
     }
 
-    public void setRating(Integer rating) {
+    public void setRating(int rating) {
         this.rating = rating;
     }
 
