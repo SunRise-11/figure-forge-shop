@@ -48,9 +48,14 @@ export const Navbar = () => {
               Home
             </p>
           </Link>
-          <Link href="/shop" onClick={handleClick}>
+          <Link href="/figures" onClick={handleClick}>
             <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-metal font-bold items-center justify-center hover:text-purple">
               Shop
+            </p>
+          </Link>
+          <Link href="/figures/detail" onClick={handleClick}>
+            <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-metal font-bold items-center justify-center hover:text-purple">
+              Detail
             </p>
           </Link>
           <Link href="/about" onClick={handleClick}>
