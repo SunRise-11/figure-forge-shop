@@ -1,9 +1,9 @@
-type Seller = {
+export type Seller = {
     name: string;
     email: string;
 };
 
-type Figure = {
+export type Figure = {
   name: string;
   origin: string;
   brand: string;
