@@ -12,7 +12,7 @@ public class FigureBuilder {
     private int height;
     private int weight;
     private String description;
-    private List<Picture> pictures;
+    private Seller seller;
 
     public FigureBuilder setName(String name) {
         this.name = name;
@@ -59,13 +59,12 @@ public class FigureBuilder {
         return this;
     }
 
-    public FigureBuilder setPictures(List<Picture> pictures) {
-        this.pictures = pictures;
+    public FigureBuilder setSeller(Seller seller) {
+        this.seller = seller;
         return this;
     }
 
     public Figure createFigure() {
-        return new Figure(name, origin, brand, price, width, length, height, weight, description,
-                pictures);
+        return new Figure(name, origin, brand, price, width, length, height, weight, description, seller);
     }
 }
