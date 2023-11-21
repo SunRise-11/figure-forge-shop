@@ -1,7 +1,9 @@
-import React from "react";
+import { SellFigureForm } from '@/app/components/public/SellFigureForm';
+import React from 'react';
 
 const SellFigurePage = () => {
-  return <div>SellFigurePage</div>;
+  return <SellFigureForm />;
 };
+
 
 export default SellFigurePage;
