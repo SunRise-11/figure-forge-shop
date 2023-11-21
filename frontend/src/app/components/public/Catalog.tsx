@@ -1,7 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Card from "./Card";
 import Pagination from "./Pagination";
+import { FiguresContext } from "@/app/contexts/figures.context";
 
 export type Toy = {
   id: Number;
@@ -423,7 +424,8 @@ const toysArray = [
 ];
 
 const Catalog = () => {
-  const [toys, setToys] = useState<Toy[]>(toysArray);
+  const {toys} = useContext(FiguresContext)
+  // const [toys, setToys] = useState<Toy[]>(toysArray);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const elementsPerPage: number = 9;
 

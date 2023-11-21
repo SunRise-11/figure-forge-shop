@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "../components/public/Navbar";
 import Footer from "../components/public/Footer";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
+import { FiguresProvider } from "../contexts/figures.context";
 
 const poppins = Poppins({
   weight: ["400", "700"],
@@ -23,11 +24,13 @@ export default function RootLayout({
   return (
     <html lang="en" className=" mx-auto max-w-screen-2xl">
       <UserProvider>
+        <FiguresProvider>
         <body className={poppins.className}>
           <Navbar />
           {children}
           <Footer />
         </body>
+        </FiguresProvider>
       </UserProvider>
     </html>
   );
