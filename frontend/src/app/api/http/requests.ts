@@ -1,3 +1,5 @@
+import { Figure } from "@/types";
+
 const API_URI = "http://localhost:8080/public/figures";
 
 export const httpGetAllFigures = async () => {
@@ -5,7 +7,7 @@ export const httpGetAllFigures = async () => {
     return response.json();
 }
 
-export const httpPostFigure = async (figure:any) => {
+export const httpPostFigure = async (figure:Figure) => {
     return await fetch(API_URI, {
         method: "POST",
         headers: {
