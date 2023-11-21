@@ -1,3 +1,4 @@
+'use client';
 import { httpPostFigure } from '@/app/api/http/requests';
 import { Figure } from '@/types';
 import React from 'react';
