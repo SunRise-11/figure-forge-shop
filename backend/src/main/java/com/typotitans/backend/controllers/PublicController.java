@@ -48,15 +48,20 @@ public class PublicController {
         return ResponseEntity.ok(figure);
     }
 
-    @PostMapping
-    ResponseEntity<FigureDto> createFigure(@RequestPart(value = "pictures") MultipartFile[] pictures,
-                                        @RequestPart(value = "figureDetails") String figureDetails,
-                                        HttpServletRequest req) throws JsonProcessingException {
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<ResponseDto> createFigure(
+            @RequestParam("pictures") MultipartFile[] pictures,
+            @RequestParam("figureDetails") String figureDetails,
+            HttpServletRequest req) throws JsonProcessingException {
         FigureDto dto = objectMapper.readValue(figureDetails, FigureDto.class);
 
-        var figure = figureService.addFigure(dto, pictures);
+        Figure figure = figureService.addFigure(dto, pictures);
+        URI location = URI.create(req.getRequestURI() + "/" + figure.getId());
 
-        URI location = URI.create(req.getRequestURI() + "/" + figure.id());
-        return ResponseEntity.created(location).body(figure);
+        ResponseDto response = new ResponseDto(objectMapper.convertValue(figure, FigureDto.class),
+                figure.getPictures());
+
+        return ResponseEntity.created(location).body(response);
     }
+
 }
