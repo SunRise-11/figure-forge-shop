@@ -54,11 +54,7 @@ export const Navbar = () => {
             <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-metal font-bold items-center justify-center hover:text-purple">
               Shop
             </p>
-<<<<<<< HEAD
-          </Link>
-=======
           </Link> 
->>>>>>> c558618 (The admin access changes were reverted)
           <Link href="/about" onClick={handleClick}>
             <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-metal font-bold items-center justify-center hover:text-purple">
               About us

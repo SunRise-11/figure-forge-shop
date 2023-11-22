@@ -17,15 +17,11 @@ export default function AdminLayout({
   return (
     <html lang="en">
       <UserProvider>
-<<<<<<< HEAD
         <body className={poppins.className}>
           <Topbar />
           <Sidebar />
           {children}
         </body>
-=======
-        <body className={poppins.className}>{children}</body>
->>>>>>> c558618 (The admin access changes were reverted)
       </UserProvider>
     </html>
   );
