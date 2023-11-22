@@ -27,8 +27,8 @@ public class FigureServiceTest {
     @Mock
     FigureRepository repo;
 
-    private final FigureDto MOCK_DTO = new FigureDto("Peter Pan", "Boy who never grows up", null,
-            "Cpt. Hook", 0, "Neverland", 0, 0, 0, 0);
+    private final FigureDto MOCK_DTO = new FigureDto("1", "Peter Pan", "Boy who never grows up",
+            "Cpt. Hook", 0, "Neverland", 0, 0, 0, 0, null);
     private final Figure MOCK_FIGURE_DTO = new FigureBuilder()
             .setName("Peter Pan")
             .setBrand("Cpt. Hook")
@@ -47,7 +47,6 @@ public class FigureServiceTest {
             .setLength(32)
             .setWidth(18)
             .setWeight(700)
-            .setPictures(null)
             .setPrice(374.18)
             .createFigure();
 
@@ -61,7 +60,6 @@ public class FigureServiceTest {
             .setLength(32)
             .setWidth(18)
             .setWeight(700)
-            .setPictures(null)
             .setPrice(399)
             .createFigure();
 
@@ -89,7 +87,7 @@ public class FigureServiceTest {
     @Test
     void shouldAddFigure() {
 
-        Figure figure = service.addFigure(MOCK_DTO);
+        Figure figure = service.addFigure(MOCK_DTO, null);
         assertEquals(MOCK_FIGURE_DTO.getName(), figure.getName());
         assertEquals(MOCK_FIGURE_DTO.getDescription(), figure.getDescription());
         assertEquals(MOCK_FIGURE_DTO.getOrigin(), figure.getOrigin());
