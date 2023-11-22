@@ -1,9 +1,11 @@
 "use client";
+import { useUser } from "@auth0/nextjs-auth0/client";
 import Link from "next/link";
 import { useState } from "react";
 
 export const Navbar = () => {
   const [active, setActive] = useState(false);
+  const { user } = useUser();
 
   const handleClick = () => {
     setActive(!active);
@@ -53,31 +55,43 @@ export const Navbar = () => {
               Shop
             </p>
           </Link>
-          <Link href="/figures/detail" onClick={handleClick}>
-            <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-metal font-bold items-center justify-center hover:text-purple">
-              Detail
-            </p>
-          </Link>
           <Link href="/about" onClick={handleClick}>
             <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-metal font-bold items-center justify-center hover:text-purple">
               About us
             </p>
           </Link>
-          <Link href="/sell-figure" onClick={handleClick}>
-            <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text bg-primary font-bold items-center justify-center transition ease-in-out delay-350 hover:text-accent hover:transition-all">
-              Sell Figure
-            </p>
-          </Link>
-          <Link href="/admin" onClick={handleClick}>
-            <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-metal font-bold items-center justify-center hover:text-purple">
-              Admin
-            </p>
-          </Link>
-          <Link href="/admin/dashboard" onClick={handleClick}>
-            <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-metal font-bold items-center justify-center hover:text-purple">
-              dashboard
-            </p>
-          </Link>
+          {user && user.role == "admin" ? (
+            <Link href="/admin/dashboard" onClick={handleClick}>
+              <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text bg-primary font-bold items-center justify-center transition ease-in-out delay-350 hover:text-accent hover:transition-all">
+                dashboard
+              </p>
+            </Link>
+          ) : user && user.role == "seller" ? (
+            <Link href="/sell-figure" onClick={handleClick}>
+              <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text bg-primary font-bold items-center justify-center transition ease-in-out delay-350 hover:text-accent hover:transition-all">
+                Sell Figure
+              </p>
+            </Link>
+          ) : (
+            <Link href="" onClick={handleClick}>
+              <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text bg-primary font-bold items-center justify-center transition ease-in-out delay-350 hover:text-accent hover:transition-all">
+                Profile
+              </p>
+            </Link>
+          )}
+          {user ? (
+            <Link href="/api/auth/logout" onClick={handleClick}>
+              <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text bg-primary font-bold items-center justify-center transition ease-in-out delay-350 hover:text-accent hover:transition-all">
+                Logout
+              </p>
+            </Link>
+          ) : (
+            <Link href="/api/auth/login" onClick={handleClick}>
+              <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text bg-primary font-bold items-center justify-center transition ease-in-out delay-350 hover:text-accent hover:transition-all">
+                Login
+              </p>
+            </Link>
+          )}
         </div>
       </div>
     </nav>
