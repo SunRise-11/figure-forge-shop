@@ -210,7 +210,7 @@ const toysArray: Toy[] = [
     diameter: 40,
     height: 170,
     rating: 3,
-    status: "posted",
+    status: "sold",
     description: "beautiful",
     conditions: "conditions",
     pictures: [
@@ -227,7 +227,7 @@ const toysArray: Toy[] = [
     diameter: 40,
     height: 170,
     rating: 3,
-    status: "posted",
+    status: "sold",
     description: "beautiful",
     conditions: "conditions",
     pictures: [
@@ -244,7 +244,7 @@ const toysArray: Toy[] = [
     diameter: 40,
     height: 170,
     rating: 3,
-    status: "posted",
+    status: "sold",
     description: "beautiful",
     conditions: "conditions",
     pictures: [
