@@ -54,7 +54,7 @@ export const Navbar = () => {
             <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-metal font-bold items-center justify-center hover:text-purple">
               Shop
             </p>
-          </Link> 
+          </Link>
           <Link href="/about" onClick={handleClick}>
             <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-metal font-bold items-center justify-center hover:text-purple">
               About us
@@ -62,13 +62,13 @@ export const Navbar = () => {
           </Link>
           {user && user.role == "admin" ? (
             <Link href="/dashboard" onClick={handleClick}>
-              <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text bg-primary font-bold items-center justify-center transition ease-in-out delay-350 hover:text-accent hover:transition-all">
+              <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-metal font-bold items-center justify-center hover:text-purple">
                 Dashboard
               </p>
             </Link>
           ) : user && user.role == "seller" ? (
             <Link href="/sell-figure" onClick={handleClick}>
-              <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text bg-primary font-bold items-center justify-center transition ease-in-out delay-350 hover:text-accent hover:transition-all">
+              <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-metal font-bold items-center justify-center hover:text-purple">
                 Sell Figure
               </p>
             </Link>
@@ -77,7 +77,7 @@ export const Navbar = () => {
           )}
           {user && user.role == "admin" ? (
             <Link href="/sell-figure" onClick={handleClick}>
-              <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text bg-primary font-bold items-center justify-center transition ease-in-out delay-350 hover:text-accent hover:transition-all">
+              <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-metal font-bold items-center justify-center hover:text-purple">
                 Sell Figure
               </p>
             </Link>
