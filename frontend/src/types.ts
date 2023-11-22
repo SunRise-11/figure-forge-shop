@@ -17,3 +17,17 @@ export type Figure = {
   seller: Seller;
   pictures: File[];
 };
+
+export type FigureDto = {
+  name: string;
+  origin: string;
+  brand: string;
+  width: number;
+  length: number;
+  height: number;
+  weight: number;
+  description: string;
+  price: number;
+  rating: number;
+  seller: Seller;
+}
