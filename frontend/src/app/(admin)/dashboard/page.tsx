@@ -1,22 +1,32 @@
+"use client";
+import Card from "@/app/components/admin/Card";
+import { FiguresContext } from "@/app/contexts/figures.context";
 import { withPageAuthRequired, getSession } from "@auth0/nextjs-auth0";
 import { redirect } from "next/navigation";
+import { useContext } from "react";
 
-export default withPageAuthRequired(
-  async function Profile() {
-    const session = await getSession();
-    if (!session || !session.user) {
-      redirect("/admin");
-    }
-    const user = session!.user;
+const Dashboard = () => {
+  // async function Profile() {
+  //   const session = await getSession();
+  //   if (!session || !session.user) {
+  //     redirect("/");
+  //   }
+  //   const user = session!.user;
 
-    return (
-      <>
-        <div>Hello {user.name}</div>
-        <h2>Email : {user.email}</h2>
-        <h2>Rolesa : {user.app_metadata}</h2>
-        <a href="/api/auth/logout">Logout</a>
-      </>
-    );
-  },
-  { returnTo: "/admin" }
-);
+  const { toys } = useContext(FiguresContext);
+  toys.forEach((toy) => console.log(toy));
+
+  return (
+    <div className=" relative">
+      <div className=" absolute top-16 left-[19rem] flex flex-row gap-10">
+        <Card title="Profit" />
+        <Card title="Posted" />
+        <Card title="Uncheck" />
+      </div>
+    </div>
+  );
+  // },
+  // { returnTo: "/" }
+};
+
+export default Dashboard;

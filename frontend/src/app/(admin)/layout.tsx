@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import Topbar from "../components/admin/Topbar";
 import { Sidebar } from "../components/admin/Sidebar";
+import { FiguresProvider } from "../contexts/figures.context";
 
 const poppins = Poppins({
   weight: ["400", "700"],
@@ -17,11 +18,13 @@ export default function AdminLayout({
   return (
     <html lang="en">
       <UserProvider>
-        <body className={poppins.className}>
-          <Topbar />
-          <Sidebar />
-          {children}
-        </body>
+        <FiguresProvider>
+          <body className={poppins.className}>
+            <Topbar />
+            <Sidebar />
+            {children}
+          </body>
+        </FiguresProvider>
       </UserProvider>
     </html>
   );
