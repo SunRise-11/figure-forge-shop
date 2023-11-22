@@ -14,7 +14,7 @@ type Props = {
 
 const CardComponent = ({ title }: Props) => {
   const { toys } = useContext(FiguresContext);
-  console.log(toys);
+  console.log(toys.length);
 
   return (
     <Card className="mt-6 w-[32rem]">

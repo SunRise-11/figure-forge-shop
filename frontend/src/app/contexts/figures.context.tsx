@@ -11,6 +11,7 @@ type Toy = {
   diameter: Number;
   height: Number;
   rating: number;
+  status: String;
   description: String;
   conditions: String;
   pictures: String[];
@@ -39,6 +40,7 @@ const toysArray: Toy[] = [
     diameter: 40,
     height: 170,
     rating: 3,
+    status: "uncheck",
     description: "beautiful",
     conditions: "conditions",
     pictures: [
@@ -55,6 +57,7 @@ const toysArray: Toy[] = [
     diameter: 40,
     height: 170,
     rating: 3,
+    status: "uncheck",
     description: "beautiful",
     conditions: "conditions",
     pictures: [
@@ -71,6 +74,7 @@ const toysArray: Toy[] = [
     diameter: 40,
     height: 170,
     rating: 3,
+    status: "uncheck",
     description: "beautiful",
     conditions: "conditions",
     pictures: [
@@ -87,6 +91,7 @@ const toysArray: Toy[] = [
     diameter: 40,
     height: 170,
     rating: 3,
+    status: "posted",
     description: "beautiful",
     conditions: "conditions",
     pictures: [
@@ -103,6 +108,7 @@ const toysArray: Toy[] = [
     diameter: 40,
     height: 170,
     rating: 3,
+    status: "posted",
     description: "beautiful",
     conditions: "conditions",
     pictures: [
@@ -119,6 +125,7 @@ const toysArray: Toy[] = [
     diameter: 40,
     height: 170,
     rating: 3,
+    status: "posted",
     description: "beautiful",
     conditions: "conditions",
     pictures: [
@@ -135,6 +142,7 @@ const toysArray: Toy[] = [
     diameter: 40,
     height: 170,
     rating: 3,
+    status: "posted",
     description: "beautiful",
     conditions: "conditions",
     pictures: [
@@ -151,6 +159,7 @@ const toysArray: Toy[] = [
     diameter: 40,
     height: 170,
     rating: 3,
+    status: "posted",
     description: "beautiful",
     conditions: "conditions",
     pictures: [
@@ -167,6 +176,7 @@ const toysArray: Toy[] = [
     diameter: 40,
     height: 170,
     rating: 3,
+    status: "posted",
     description: "beautiful",
     conditions: "conditions",
     pictures: [
@@ -183,6 +193,7 @@ const toysArray: Toy[] = [
     diameter: 40,
     height: 170,
     rating: 3,
+    status: "posted",
     description: "beautiful",
     conditions: "conditions",
     pictures: [
@@ -199,6 +210,7 @@ const toysArray: Toy[] = [
     diameter: 40,
     height: 170,
     rating: 3,
+    status: "posted",
     description: "beautiful",
     conditions: "conditions",
     pictures: [
@@ -215,6 +227,7 @@ const toysArray: Toy[] = [
     diameter: 40,
     height: 170,
     rating: 3,
+    status: "posted",
     description: "beautiful",
     conditions: "conditions",
     pictures: [
@@ -231,6 +244,7 @@ const toysArray: Toy[] = [
     diameter: 40,
     height: 170,
     rating: 3,
+    status: "posted",
     description: "beautiful",
     conditions: "conditions",
     pictures: [
@@ -247,6 +261,7 @@ const toysArray: Toy[] = [
     diameter: 40,
     height: 170,
     rating: 3,
+    status: "posted",
     description: "beautiful",
     conditions: "conditions",
     pictures: [
@@ -263,6 +278,7 @@ const toysArray: Toy[] = [
     diameter: 40,
     height: 170,
     rating: 3,
+    status: "posted",
     description: "beautiful",
     conditions: "conditions",
     pictures: [
@@ -279,6 +295,7 @@ const toysArray: Toy[] = [
     diameter: 40,
     height: 170,
     rating: 3,
+    status: "posted",
     description: "beautiful",
     conditions: "conditions",
     pictures: [
@@ -295,6 +312,7 @@ const toysArray: Toy[] = [
     diameter: 40,
     height: 170,
     rating: 3,
+    status: "posted",
     description: "beautiful",
     conditions: "conditions",
     pictures: [
@@ -311,6 +329,7 @@ const toysArray: Toy[] = [
     diameter: 40,
     height: 170,
     rating: 3,
+    status: "posted",
     description: "beautiful",
     conditions: "conditions",
     pictures: [
@@ -327,6 +346,7 @@ const toysArray: Toy[] = [
     diameter: 40,
     height: 170,
     rating: 3,
+    status: "posted",
     description: "beautiful",
     conditions: "conditions",
     pictures: [
@@ -343,6 +363,7 @@ const toysArray: Toy[] = [
     diameter: 40,
     height: 170,
     rating: 3,
+    status: "posted",
     description: "beautiful",
     conditions: "conditions",
     pictures: [
@@ -359,6 +380,7 @@ const toysArray: Toy[] = [
     diameter: 40,
     height: 170,
     rating: 3,
+    status: "posted",
     description: "beautiful",
     conditions: "conditions",
     pictures: [
@@ -375,6 +397,7 @@ const toysArray: Toy[] = [
   //   diameter: 40,
   //   height: 170,
   //   rating: 3,
+  // status: "posted",
   //    description: "beautiful",
   //  conditions: "conditions",
   //   detail: "nothing",
@@ -392,6 +415,7 @@ const toysArray: Toy[] = [
   //   diameter: 40,
   //   height: 170,
   //   rating: 3,
+  // status: "posted",
   //    description: "beautiful",
   //  conditions: "conditions",
   //   detail: "nothing",
@@ -409,6 +433,7 @@ const toysArray: Toy[] = [
   //   diameter: 40,
   //   height: 170,
   //   rating: 3,
+  // status: "posted",
   //    description: "beautiful",
   //  conditions: "conditions",
   //   detail: "nothing",
@@ -426,6 +451,7 @@ const toysArray: Toy[] = [
   //   diameter: 40,
   //   height: 170,
   //   rating: 3,
+  // status: "posted",
   //    description: "beautiful",
   //  conditions: "conditions",
   //   detail: "nothing",
