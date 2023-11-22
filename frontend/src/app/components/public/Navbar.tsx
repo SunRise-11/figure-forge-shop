@@ -73,11 +73,7 @@ export const Navbar = () => {
               </p>
             </Link>
           ) : (
-            <Link href="" onClick={handleClick}>
-              <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text bg-primary font-bold items-center justify-center transition ease-in-out delay-350 hover:text-accent hover:transition-all">
-                Profile
-              </p>
-            </Link>
+            <div></div>
           )}
           {user ? (
             <Link href="/api/auth/logout" onClick={handleClick}>
