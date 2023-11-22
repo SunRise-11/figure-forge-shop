@@ -15,9 +15,7 @@ import {
 import {
   PresentationChartBarIcon,
   ShoppingBagIcon,
-  UserCircleIcon,
-  Cog6ToothIcon,
-  InboxIcon,
+  HomeIcon,
   PowerIcon,
 } from "@heroicons/react/24/solid";
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
@@ -40,7 +38,7 @@ export function Sidebar() {
         <a href="/">
           <ListItem>
             <ListItemPrefix>
-              <PresentationChartBarIcon className="h-5 w-5" />
+              <HomeIcon className="h-5 w-5" />
             </ListItemPrefix>
             Home
           </ListItem>
