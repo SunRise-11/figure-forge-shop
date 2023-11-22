@@ -1,5 +1,6 @@
 package com.typotitans.backend.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -7,12 +8,15 @@ public class Picture {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @JsonIgnore
     private String id;
 
     @Lob
+    @Basic(fetch = FetchType.LAZY)
     private byte[] image;
 
     @ManyToOne
+    @JsonIgnore
     private Figure figure;
 
     public Picture() {
