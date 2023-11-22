@@ -1,3 +1,5 @@
+"use client";
+import Card from "@/app/components/admin/Card";
 import { withPageAuthRequired, getSession } from "@auth0/nextjs-auth0";
 import { redirect } from "next/navigation";
 
@@ -10,12 +12,13 @@ export default withPageAuthRequired(
     const user = session!.user;
 
     return (
-      <>
-        <div>Hello {user.name}</div>
-        <h2>Email : {user.email}</h2>
-        <h2>Rolesa : {user.app_metadata}</h2>
-        <a href="/api/auth/logout">Logout</a>
-      </>
+      <div className=" relative">
+        <div className=" absolute top-16 left-[19rem] flex flex-row gap-10">
+          <Card title="Profit" />
+          <Card title="Posted" />
+          <Card title="Uncheck" />
+        </div>
+      </div>
     );
   },
   { returnTo: "/admin" }
