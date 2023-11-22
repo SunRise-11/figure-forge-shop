@@ -28,6 +28,9 @@ const DetailPage = ({ params }: Props) => {
     return (
       <>
         <Carousel />
+        <div className="w-full h-20 bg-purple-900 text-white text-4xl flex justify-center items-center">
+          {data.name}
+        </div>
         <div className="flex flex-col sm:flex-row h-max mb-4 py-10">
           <div className="flex flex-col sm:items-start sm:justify-center py-4 gap-10 w-1/2">
             <legend className="text-lg font-semibold">Details</legend>

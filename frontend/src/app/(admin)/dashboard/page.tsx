@@ -6,13 +6,6 @@ import { redirect } from "next/navigation";
 import { useContext } from "react";
 
 const Dashboard = () => {
-  // async function Profile() {
-  //   const session = await getSession();
-  //   if (!session || !session.user) {
-  //     redirect("/");
-  //   }
-  //   const user = session!.user;
-
   return (
     <div className=" relative">
       <div className=" absolute top-16 left-[19rem] flex flex-row gap-10">
@@ -22,8 +15,6 @@ const Dashboard = () => {
       </div>
     </div>
   );
-  // },
-  // { returnTo: "/" }
 };
 
 export default Dashboard;

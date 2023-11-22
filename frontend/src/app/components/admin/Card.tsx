@@ -24,10 +24,10 @@ const CardComponent = ({ title }: Props) => {
   return (
     <Card className="mt-6 w-[32rem]">
       <CardBody>
-        <Typography variant="h5" color="blue-gray" className="mb-2">
+        <Typography variant="h2" color="blue-gray" className="mb-2">
           {title}
         </Typography>
-        <Typography variant="h1">
+        <Typography variant="h1" className="text-center">
           {title == "Profit"
             ? formatter.format(soldToys.reduce((s, a) => s + a.price, 0))
             : title == "Posted"
