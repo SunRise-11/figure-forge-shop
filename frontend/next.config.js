@@ -20,7 +20,11 @@ module.exports = {
         protocol: "https",
         hostname: "daweebstop.com",
       },
+      {
+        protocol: "https",
+        hostname: "onepiecetreasuregk.net",
+      },
     ],
-    domains: ['i.etsystatic.com'],
+    domains: ["i.etsystatic.com"],
   },
 };

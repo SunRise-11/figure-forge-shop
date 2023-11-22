@@ -17,6 +17,9 @@ public class PictureService {
     public PictureService(PictureRepository pictureRepository) {
         this.pictureRepository = pictureRepository;
     }
+    public List<Picture> getPictureByFigureId(String id) {
+        return pictureRepository.findAllByFigureId(id);
+    }
 
     public List<Picture> savePicturesAsBlobs(MultipartFile[] pictures, Figure figure) {
 

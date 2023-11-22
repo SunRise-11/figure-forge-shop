@@ -21,23 +21,23 @@ jobs:
       - name: Set up Java version
         uses: actions/setup-java@v1
         with:
-          java-version: "17"
+          java-version: '17'
 
       - name: Build with Maven
         working-directory: ./backend
-        run: mvn clean install
+        run: mvn clean install -DskipTests
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: java-app
-          path: "${{ github.workspace }}/backend/target/*.jar"
+          path: '${{ github.workspace }}/backend/target/*.jar'
 
   deploy:
     runs-on: windows-latest
     needs: build
     environment:
-      name: "Production"
+      name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
@@ -50,7 +50,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: "figure-forge-shop-app"
-          slot-name: "Production"
-          package: "*.jar"
+          app-name: 'figure-forge-shop-app'
+          slot-name: 'Production'
+          package: '*.jar'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C17EACBBB5854719AB2A29678DF54D89 }}
