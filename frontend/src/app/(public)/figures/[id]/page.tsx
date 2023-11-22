@@ -1,9 +1,9 @@
 "use client";
-import Banner from "@/app/components/public/Banner";
 import React, { useContext, useEffect, useState } from "react";
-import Rating from "@/app/components/public/Rating"; 
-import { FiguresContext } from "@/app/contexts/figures.context"; 
-import { Toy } from "@/app/components/public/Card";
+import Rating from "@/app/components/public/Rating";
+import { FiguresContext } from "@/app/contexts/figures.context";
+import { Toy } from "@/app/components/public/Card"; 
+import Carousel from "@/app/components/public/Carousel";
 
 type Props = {
   params: { id: Number };
@@ -11,9 +11,9 @@ type Props = {
 
 const DetailPage = ({ params }: Props) => {
   const [data, setData] = useState<Toy>();
-  const {toys} = useContext(FiguresContext)
+  const { toys } = useContext(FiguresContext);
   const fetchbackend = async () => {
-    const toy = toys.filter(toy=> toy.id == params.id);
+    const toy = toys.filter((toy) => toy.id == params.id);
     setData(toy[0]);
     // const response = await axios.get(
     //   "http://localhost:8080/public/figures" + params.id
@@ -27,10 +27,7 @@ const DetailPage = ({ params }: Props) => {
   if (data) {
     return (
       <>
-        <Banner
-          name={data.name}
-          imageSource="https://daweebstop.com/cdn/shop/files/IMG_0171_c8d72572-d4b5-42b3-a240-b9bc2cc2aca9.jpg?v=1661460103"
-        />
+        <Carousel />
         <div className="flex flex-col sm:flex-row h-max mb-4 py-10">
           <div className="flex flex-col sm:items-start sm:justify-center py-4 gap-10 w-1/2">
             <legend className="text-lg font-semibold">Details</legend>
@@ -148,7 +145,7 @@ const DetailPage = ({ params }: Props) => {
                   <input
                     className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                     id="inline-diameter"
-                    type="text" 
+                    type="text"
                     readOnly
                     value={data.diameter.toString()}
                   />
