@@ -1,6 +1,6 @@
 export type Seller = {
-    name: string;
-    email: string;
+  name: string;
+  email: string;
 };
 
 export type Figure = {
@@ -30,4 +30,4 @@ export type FigureDto = {
   price: number;
   rating: number;
   seller: Seller;
-}
+};
