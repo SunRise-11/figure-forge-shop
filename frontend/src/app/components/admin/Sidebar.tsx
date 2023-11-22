@@ -37,12 +37,22 @@ export function Sidebar() {
         </Typography>
       </div>
       <List>
-        <ListItem>
-          <ListItemPrefix>
-            <PresentationChartBarIcon className="h-5 w-5" />
-          </ListItemPrefix>
-          Dashboard
-        </ListItem>
+        <a href="/">
+          <ListItem>
+            <ListItemPrefix>
+              <PresentationChartBarIcon className="h-5 w-5" />
+            </ListItemPrefix>
+            Home
+          </ListItem>
+        </a>
+        <a href="/dashboard">
+          <ListItem>
+            <ListItemPrefix>
+              <PresentationChartBarIcon className="h-5 w-5" />
+            </ListItemPrefix>
+            Dashboard
+          </ListItem>
+        </a>
         <Accordion
           open={open === 2}
           icon={

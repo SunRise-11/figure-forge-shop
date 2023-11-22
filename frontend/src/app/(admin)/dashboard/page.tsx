@@ -13,9 +13,6 @@ const Dashboard = () => {
   //   }
   //   const user = session!.user;
 
-  const { toys } = useContext(FiguresContext);
-  toys.forEach((toy) => console.log(toy));
-
   return (
     <div className=" relative">
       <div className=" absolute top-16 left-[19rem] flex flex-row gap-10">
