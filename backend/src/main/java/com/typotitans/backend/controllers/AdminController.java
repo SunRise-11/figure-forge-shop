@@ -15,6 +15,11 @@ public class AdminController {
         this.figureService = figureService;
     }
 
+    @GetMapping
+    ResponseEntity<String> test () {
+        return ResponseEntity.ok("Test endpoint");
+    }
+
     @DeleteMapping("{id}")
     ResponseEntity<Void> deleteFigure(@PathVariable String id) {
         figureService.deleteFigure(id);
