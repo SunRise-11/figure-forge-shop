@@ -11,7 +11,7 @@ public class Figure {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
-   private String name;
+    private String name;
     private String origin;
     private String brand;
     private int width;
@@ -33,7 +33,8 @@ public class Figure {
     public Figure() {
     }
 
-    public Figure(String name, String origin, String brand,double price, int width, int length, int height,
+    public Figure(String name, String origin, String brand, double price, int width, int length,
+                  int height,
                   int weight, String description, Seller seller) {
         this.name = name;
         this.origin = origin;
