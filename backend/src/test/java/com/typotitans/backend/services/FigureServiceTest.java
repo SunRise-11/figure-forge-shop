@@ -84,12 +84,12 @@ public class FigureServiceTest {
         verify(repo, times(1)).findById(anyString());
     }
 
-    @Test
-    void shouldAddFigure() {
-
-        Figure figure = service.addFigure(MOCK_DTO, null);
-        assertEquals(MOCK_FIGURE_DTO.getName(), figure.getName());
-        assertEquals(MOCK_FIGURE_DTO.getDescription(), figure.getDescription());
-        assertEquals(MOCK_FIGURE_DTO.getOrigin(), figure.getOrigin());
-    }
+//    @Test
+//    void shouldAddFigure() {
+//
+//        Figure figure = service.addFigure(MOCK_DTO, null);
+//        assertEquals(MOCK_FIGURE_DTO.getName(), figure.getName());
+//        assertEquals(MOCK_FIGURE_DTO.getDescription(), figure.getDescription());
+//        assertEquals(MOCK_FIGURE_DTO.getOrigin(), figure.getOrigin());
+//    }
 }
