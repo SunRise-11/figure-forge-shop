@@ -21,6 +21,7 @@ import {
   PowerIcon,
 } from "@heroicons/react/24/solid";
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 
 export function Sidebar() {
   const [open, setOpen] = React.useState(0);
@@ -79,24 +80,30 @@ export function Sidebar() {
           </ListItem>
           <AccordionBody className="py-1">
             <List className="p-0">
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                Uncheck
-              </ListItem>
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                Posted
-              </ListItem>
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                Sold
-              </ListItem>
+              <a href="/dashboard/filteredfigures/uncheck">
+                <ListItem>
+                  <ListItemPrefix>
+                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                  </ListItemPrefix>
+                  Uncheck
+                </ListItem>
+              </a> 
+              <Link href="/dashboard/filteredfigures/posted">
+                <ListItem>
+                  <ListItemPrefix>
+                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                  </ListItemPrefix>
+                  Posted
+                </ListItem>
+              </Link>
+              <a href="/dashboard/filteredfigures/sold">
+                <ListItem>
+                  <ListItemPrefix>
+                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                  </ListItemPrefix>
+                  Sold
+                </ListItem>
+              </a>
             </List>
           </AccordionBody>
         </Accordion>

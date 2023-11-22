@@ -18,7 +18,7 @@ const AllFigures = () => {
   const displayedToys = toys.slice(startIndex, endIndex);
 
   return (
-    <div className="w-screen h-screen  items-center justify-center mt-0">
+    <div className="w-screen left-[19rem] h-screen items-center justify-center mt-0">
       <Card className="absolute right-0 w-full max-w-[calc(100vw-19rem)] h-max p-4 shadow-xl shadow-blue-gray-900/5 border-solid border-2">
         <Typography variant="h5" color="blue-gray" className=" my-auto ">
           All Figures
