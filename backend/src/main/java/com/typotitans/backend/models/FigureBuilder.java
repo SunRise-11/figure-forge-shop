@@ -1,7 +1,5 @@
 package com.typotitans.backend.models;
 
-import java.util.List;
-
 public class FigureBuilder {
     private String name;
     private String origin;
@@ -65,6 +63,7 @@ public class FigureBuilder {
     }
 
     public Figure createFigure() {
-        return new Figure(name, origin, brand, price, width, length, height, weight, description, seller);
+        return new Figure(name, origin, brand, price, width, length, height, weight, description,
+                seller);
     }
 }
