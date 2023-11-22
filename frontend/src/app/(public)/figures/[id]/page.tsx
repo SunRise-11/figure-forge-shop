@@ -3,7 +3,11 @@ import React from "react";
 import Image from "next/image";
 import Rating from "@/app/components/public/Rating";
 
-const DetailPage = () => {
+type Props = {
+  params: { id: string };
+};
+
+const DetailPage = ({ params }: Props) => {
   return (
     <>
       <Banner
@@ -129,7 +133,7 @@ const DetailPage = () => {
             </div>
           </div>
         </div>
-       </div>
+      </div>
       <div className="flex flex-col sm:flex-row h-max mb-4">
         <div className="flex flex-row flex-wrap -mx-3 mb-6 w-full">
           <div className="w-full px-3">
