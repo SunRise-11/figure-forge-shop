@@ -26,12 +26,12 @@ const Figures = ({ action, data }: Props) => {
     }
   }
   return (
-    <main className="w-3/4 absolute left-[19rem] h-screen flex items-center justify-center mt-10">
+    <div className="w-3/4 absolute top-0 left-[19rem] h-screen flex items-center justify-center ">
       <Card className="absolute right-0 w-full max-w-[calc(100vw-19rem)] h-max p-4 shadow-xl shadow-blue-gray-900/5 border-solid border-2">
         <Typography variant="h5" color="blue-gray" className=" my-auto ">
           {action} Figures
         </Typography>
-        <table className="w-full text-sm text-left text-black ">
+        <table className="w-full text-sm text-left text-black mt-10">
           <thead className="border text-xs text-black uppercase bg-slate-300 dark:bg-slate-300 dark:text-black">
             <tr>
               <th scope="col" className="border px-6 py-3">
@@ -67,7 +67,7 @@ const Figures = ({ action, data }: Props) => {
           </thead>
         </table>
       </Card>
-    </main>
+    </div>
   );
 };
 
