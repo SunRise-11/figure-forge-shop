@@ -2,44 +2,38 @@ package com.typotitans.backend.services;
 
 import com.typotitans.backend.dtos.FigureDto;
 import com.typotitans.backend.models.Figure;
-import com.typotitans.backend.models.Picture;
 import com.typotitans.backend.repositories.FigureRepository;
-import com.typotitans.backend.repositories.PictureRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
 public class FigureService {
     private final FigureRepository figureRepository;
-    private final PictureRepository pictureRepository;
+    private final PictureService pictureService;
 
-    public FigureService(FigureRepository figureRepository, PictureRepository pictureRepository) {
+    public FigureService(FigureRepository figureRepository, PictureService pictureService) {
         this.figureRepository = figureRepository;
-        this.pictureRepository = pictureRepository;
+        this.pictureService = pictureService;
     }
 
     private Figure convertDtoToEntity(FigureDto dto) {
         return new Figure(dto.name(), dto.origin(), dto.brand(), dto.price(), dto.width(),
                 dto.length(), dto.height(), dto.weight(), dto.description(), dto.seller());
-
-
     }
 
-    private Picture savePictureAsBlob(MultipartFile image, Figure figure) {
-        try {
-            Picture picture = new Picture(image.getBytes(),figure);
-            pictureRepository.save(picture);
-            return picture;
-            } catch (IOException exception) {
-            System.out.println("Could not save image");
-            return null;
-        }
-    }
+    private FigureDto convertEntityToDto(Figure figure) {
+        var pictureBlobs = figure.getPictures();
+        var pictures = pictureBlobs.stream().map(picture -> Base64.getEncoder().encodeToString(
+                picture.getImage())).toList();
 
+        return new FigureDto(figure.getId(), figure.getName(), figure.getDescription(), figure.getBrand(),
+                figure.getPrice(), figure.getOrigin(), figure.getWidth(), figure.getHeight(),
+                figure.getLength(), figure.getWeight(), figure.getSeller(),pictures);
+    }
 
     public List<Figure> getAllFigures() {
         return figureRepository.findAll();
@@ -50,12 +44,12 @@ public class FigureService {
                 () -> new NoSuchElementException("Figure not found"));
     }
 
-    public Figure addFigure(FigureDto request) {
+    public FigureDto addFigure(FigureDto request, MultipartFile[] pictures) {
         var figure = convertDtoToEntity(request);
-            request.pictures().stream().map(image -> savePictureAsBlob(image, figure));
         figureRepository.save(figure);
-
-        return figure;
+        var savedPictures = pictureService.savePicturesAsBlobs(pictures, figure);
+        figure.setPictures(savedPictures);
+        return convertEntityToDto(figure);
     }
 
     public void deleteFigure(String id) {
@@ -63,7 +57,7 @@ public class FigureService {
             var figure = getFigure(id);
             figureRepository.delete(figure);
         } catch (NoSuchElementException exception) {
-
+            System.out.println("Already deleted");
         }
     }
 
