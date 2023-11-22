@@ -4,6 +4,7 @@ import { FiguresContext } from "@/app/contexts/figures.context";
 import { withPageAuthRequired, getSession } from "@auth0/nextjs-auth0";
 import { redirect } from "next/navigation";
 import { useContext } from "react";
+import AllFigures from "../../components/admin/allfigures";
 
 const Dashboard = () => {
   // async function Profile() {
@@ -22,6 +23,9 @@ const Dashboard = () => {
         <Card title="Profit" />
         <Card title="Posted" />
         <Card title="Uncheck" />
+      </div>
+      <div className="absolute top-60 flex flex-row gap-10">
+        <AllFigures />
       </div>
     </div>
   );

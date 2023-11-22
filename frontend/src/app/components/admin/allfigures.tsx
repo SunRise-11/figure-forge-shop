@@ -18,12 +18,12 @@ const AllFigures = () => {
   const displayedToys = toys.slice(startIndex, endIndex);
 
   return (
-    <main className="w-screen h-screen bg-background flex items-center justify-center mt-0">
+    <div className="w-screen h-screen  items-center justify-center mt-0">
       <Card className="absolute right-0 w-full max-w-[calc(100vw-19rem)] h-max p-4 shadow-xl shadow-blue-gray-900/5 border-solid border-2">
-        <Typography variant="h5" color="blue-gray" className=" my-auto px-10">
+        <Typography variant="h5" color="blue-gray" className=" my-auto ">
           All Figures
         </Typography>
-        <table className="w-full text-sm text-left text-black ">
+        <table className="w-full text-sm text-left text-black px-15">
           <thead className="border text-xs text-black uppercase bg-slate-300 dark:bg-slate-300 dark:text-black">
             <tr>
               <th scope="col" className="border px-6 py-3">
@@ -43,7 +43,7 @@ const AllFigures = () => {
               return (
                 <tr>
                   <td className="border px-6 py-4">{toy.name}</td>
-                  <td className="border px-6 py-4">{toy.origin}</td>
+                  <td className="border px-6 py-4">{toy.status}</td>
                   <td className="border px-6 py-4">{toy.rating}</td>
                   <td className="border px-6 py-4">{toy.price.toString()}</td>
                 </tr>
@@ -52,7 +52,7 @@ const AllFigures = () => {
           </thead>
         </table>
       </Card>
-    </main>
+    </div>
   );
 };
 
