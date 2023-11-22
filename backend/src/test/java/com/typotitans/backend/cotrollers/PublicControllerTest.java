@@ -20,7 +20,8 @@ import java.util.List;
 
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -37,7 +38,8 @@ class PublicControllerTest {
     @Autowired
     private MockMvc mvc;
 
-    private final FigureDto MOCK_DTO = new FigureDto("Peter Pan", "Boy who never grows up",null, "Cpt. Hook",0,"Neverand",0,0,0,0);
+    private final FigureDto MOCK_DTO = new FigureDto("1", "Peter Pan", "Boy who never grows up",
+            "Cpt. Hook", 0, "Neverand", 0, 0, 0, 0, null);
     private final Figure MOCK_FIGURE_DTO = new FigureBuilder()
             .setName("Peter Pan")
             .setBrand("Cpt. Hook")
@@ -55,7 +57,6 @@ class PublicControllerTest {
             .setLength(32)
             .setWidth(18)
             .setWeight(700)
-            .setPictures(null)
             .setPrice(374.18)
             .createFigure();
 
@@ -69,7 +70,6 @@ class PublicControllerTest {
             .setLength(32)
             .setWidth(18)
             .setWeight(700)
-            .setPictures(null)
             .setPrice(399)
             .createFigure();
 
@@ -82,7 +82,7 @@ class PublicControllerTest {
     void setUp() {
         when(figureService.getAllFigures()).thenReturn(MOCK_FIGURE_LIST);
         when(figureService.getFigure(anyString())).thenReturn(MOCK_FIGURE_1);
-        when(figureService.addFigure(MOCK_DTO)).thenReturn(MOCK_FIGURE_DTO);
+        when(figureService.addFigure(MOCK_DTO, null)).thenReturn(MOCK_FIGURE_DTO);
     }
 
     @Test
