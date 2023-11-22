@@ -6,7 +6,7 @@ const AboutPage = () => {
     <div className="flex min-h-screen flex-col items-center justify-between ">
       <Banner
         name="ABOUT US"
-        imageSource="https://daweebstop.com/cdn/shop/files/IMG_0171_c8d72572-d4b5-42b3-a240-b9bc2cc2aca9.jpg?v=1661460103"
+        imageSource="https://onepiecetreasuregk.net/cdn/shop/collections/6bb4c691b68569b75fa51528eabbd39_2260x.jpg?v=1660340062"
       />
       <div className="my-10">
         <p>
