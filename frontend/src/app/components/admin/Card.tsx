@@ -14,13 +14,21 @@ type Props = {
 
 const CardComponent = ({ title }: Props) => {
   const { toys } = useContext(FiguresContext);
+  console.log(toys);
+
   return (
     <Card className="mt-6 w-[32rem]">
       <CardBody>
         <Typography variant="h5" color="blue-gray" className="mb-2">
           {title}
         </Typography>
-        <Typography variant="h1">$$$$$$</Typography>
+        <Typography variant="h1">
+          {title == "Profit"
+            ? toys.reduce((s, a) => s + a.price, 0)
+            : title == "Posted"
+            ? "This is posted"
+            : "this is uncheck"}
+        </Typography>
       </CardBody>
     </Card>
   );

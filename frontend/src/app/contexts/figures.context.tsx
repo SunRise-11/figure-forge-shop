@@ -6,10 +6,10 @@ type Toy = {
   name: String;
   origin: String;
   brand: String;
-  price: Number;
+  price: number;
   width: Number;
   diameter: Number;
-  height: Number; 
+  height: Number;
   rating: number;
   description: String;
   conditions: String;
@@ -40,7 +40,7 @@ const toysArray: Toy[] = [
     height: 170,
     rating: 3,
     description: "beautiful",
-    conditions: "conditions", 
+    conditions: "conditions",
     pictures: [
       "https://i.etsystatic.com/45624040/r/il/f51b82/5215193199/il_fullxfull.5215193199_3esv.jpg",
     ],
@@ -56,7 +56,7 @@ const toysArray: Toy[] = [
     height: 170,
     rating: 3,
     description: "beautiful",
-    conditions: "conditions", 
+    conditions: "conditions",
     pictures: [
       "https://i.etsystatic.com/45624040/r/il/f51b82/5215193199/il_fullxfull.5215193199_3esv.jpg",
     ],
@@ -72,7 +72,7 @@ const toysArray: Toy[] = [
     height: 170,
     rating: 3,
     description: "beautiful",
-    conditions: "conditions", 
+    conditions: "conditions",
     pictures: [
       "https://i.etsystatic.com/45624040/r/il/f51b82/5215193199/il_fullxfull.5215193199_3esv.jpg",
     ],
@@ -88,7 +88,7 @@ const toysArray: Toy[] = [
     height: 170,
     rating: 3,
     description: "beautiful",
-    conditions: "conditions", 
+    conditions: "conditions",
     pictures: [
       "https://i.etsystatic.com/45624040/r/il/f51b82/5215193199/il_fullxfull.5215193199_3esv.jpg",
     ],
@@ -120,7 +120,7 @@ const toysArray: Toy[] = [
     height: 170,
     rating: 3,
     description: "beautiful",
-    conditions: "conditions", 
+    conditions: "conditions",
     pictures: [
       "https://i.etsystatic.com/45624040/r/il/f51b82/5215193199/il_fullxfull.5215193199_3esv.jpg",
     ],
@@ -136,7 +136,7 @@ const toysArray: Toy[] = [
     height: 170,
     rating: 3,
     description: "beautiful",
-    conditions: "conditions", 
+    conditions: "conditions",
     pictures: [
       "https://i.etsystatic.com/45624040/r/il/f51b82/5215193199/il_fullxfull.5215193199_3esv.jpg",
     ],
@@ -152,7 +152,7 @@ const toysArray: Toy[] = [
     height: 170,
     rating: 3,
     description: "beautiful",
-    conditions: "conditions", 
+    conditions: "conditions",
     pictures: [
       "https://i.etsystatic.com/45624040/r/il/f51b82/5215193199/il_fullxfull.5215193199_3esv.jpg",
     ],
@@ -168,7 +168,7 @@ const toysArray: Toy[] = [
     height: 170,
     rating: 3,
     description: "beautiful",
-    conditions: "conditions", 
+    conditions: "conditions",
     pictures: [
       "https://i.etsystatic.com/45624040/r/il/f51b82/5215193199/il_fullxfull.5215193199_3esv.jpg",
     ],
@@ -184,7 +184,7 @@ const toysArray: Toy[] = [
     height: 170,
     rating: 3,
     description: "beautiful",
-    conditions: "conditions", 
+    conditions: "conditions",
     pictures: [
       "https://i.etsystatic.com/45624040/r/il/f51b82/5215193199/il_fullxfull.5215193199_3esv.jpg",
     ],
@@ -200,7 +200,7 @@ const toysArray: Toy[] = [
     height: 170,
     rating: 3,
     description: "beautiful",
-    conditions: "conditions", 
+    conditions: "conditions",
     pictures: [
       "https://i.etsystatic.com/45624040/r/il/f51b82/5215193199/il_fullxfull.5215193199_3esv.jpg",
     ],
@@ -216,7 +216,7 @@ const toysArray: Toy[] = [
     height: 170,
     rating: 3,
     description: "beautiful",
-    conditions: "conditions", 
+    conditions: "conditions",
     pictures: [
       "https://i.etsystatic.com/45624040/r/il/f51b82/5215193199/il_fullxfull.5215193199_3esv.jpg",
     ],
@@ -232,7 +232,7 @@ const toysArray: Toy[] = [
     height: 170,
     rating: 3,
     description: "beautiful",
-    conditions: "conditions", 
+    conditions: "conditions",
     pictures: [
       "https://i.etsystatic.com/45624040/r/il/f51b82/5215193199/il_fullxfull.5215193199_3esv.jpg",
     ],

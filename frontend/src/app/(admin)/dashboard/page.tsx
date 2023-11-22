@@ -7,7 +7,7 @@ export default withPageAuthRequired(
   async function Profile() {
     const session = await getSession();
     if (!session || !session.user) {
-      redirect("/admin");
+      redirect("/");
     }
     const user = session!.user;
 
@@ -21,5 +21,5 @@ export default withPageAuthRequired(
       </div>
     );
   },
-  { returnTo: "/admin" }
+  { returnTo: "/" }
 );
