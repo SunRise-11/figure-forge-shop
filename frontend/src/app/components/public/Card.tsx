@@ -12,8 +12,8 @@ export type Toy = {
   diameter: Number;
   height: Number;
   rating: number;
-  description: String;
-  detail: String;
+  description: String; 
+  conditions: String;
   pictures: String[];
 };
 
