@@ -8,12 +8,12 @@ export const httpGetAllFigures = async () => {
 }
 
 export const httpPostFigure = async (figure:Figure) => {
-    const dto: FigureDto = { ...figure };
+    const { pictures, ...figureDetails } = figure;
+    const dto: FigureDto = { ...figureDetails };
     const formData = new FormData();
     formData.append('figureDetails', JSON.stringify(dto))
 
-    const pictures = Object.values(figure.pictures);
-    pictures.forEach(picture => formData.append('pictures', picture))
+    Object.values(figure.pictures).forEach(picture => formData.append('pictures', picture))
 
     console.log(formData)
 
