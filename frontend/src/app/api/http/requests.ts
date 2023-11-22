@@ -1,4 +1,4 @@
-import { Figure } from "@/types";
+import { Figure, FigureDto } from "@/types";
 
 const API_URI = "http://localhost:8080/public/figures";
 
@@ -8,12 +8,18 @@ export const httpGetAllFigures = async () => {
 }
 
 export const httpPostFigure = async (figure:Figure) => {
+    const dto: FigureDto = { ...figure };
+    const formData = new FormData();
+    formData.append('figureDetails', JSON.stringify(dto))
+
+    const pictures = Object.values(figure.pictures);
+    pictures.forEach(picture => formData.append('pictures', picture))
+
+    console.log(formData)
+
     return await fetch(API_URI, {
         method: "POST",
-        headers: {
-            "Content-Type":"application/json"
-        },
-        body: JSON.stringify(figure)
+        body: formData
     })
 }
 
