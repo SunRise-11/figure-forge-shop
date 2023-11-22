@@ -12,7 +12,7 @@ export type Toy = {
   diameter: Number;
   height: Number;
   rating: number;
-  description: String; 
+  description: String;
   conditions: String;
   pictures: String[];
 };
@@ -22,6 +22,11 @@ type Props = {
 };
 
 const Card = ({ toy }: Props) => {
+  const formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "EUR",
+    minimumFractionDigits: 0,
+  });
   return (
     <Link
       href={`/figures/${toy.id}`}
@@ -38,7 +43,7 @@ const Card = ({ toy }: Props) => {
       </div>
       <div className="px-4 py-2 my-0">
         <h3>{toy.name}</h3>
-        <h3>$ {toy.price.toString()}</h3>
+        <h3>{formatter.format(toy.price.valueOf())}</h3>
       </div>
     </Link>
   );
