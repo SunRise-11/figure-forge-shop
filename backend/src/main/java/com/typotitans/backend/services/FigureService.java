@@ -30,9 +30,10 @@ public class FigureService {
         var pictures = pictureBlobs.stream().map(picture -> Base64.getEncoder().encodeToString(
                 picture.getImage())).toList();
 
-        return new FigureDto(figure.getId(), figure.getName(), figure.getDescription(), figure.getBrand(),
+        return new FigureDto(figure.getId(), figure.getName(), figure.getDescription(),
+                figure.getBrand(),
                 figure.getPrice(), figure.getOrigin(), figure.getWidth(), figure.getHeight(),
-                figure.getLength(), figure.getWeight(), figure.getSeller(),pictures);
+                figure.getLength(), figure.getWeight(), figure.getSeller());
     }
 
     public List<Figure> getAllFigures() {
@@ -44,12 +45,12 @@ public class FigureService {
                 () -> new NoSuchElementException("Figure not found"));
     }
 
-    public FigureDto addFigure(FigureDto request, MultipartFile[] pictures) {
+    public Figure addFigure(FigureDto request, MultipartFile[] pictures) {
         var figure = convertDtoToEntity(request);
         figureRepository.save(figure);
         var savedPictures = pictureService.savePicturesAsBlobs(pictures, figure);
         figure.setPictures(savedPictures);
-        return convertEntityToDto(figure);
+        return getFigure(figure.getId());
     }
 
     public void deleteFigure(String id) {
