@@ -66,4 +66,8 @@ public class FigureService {
 
         }
     }
+
+    public void delete() {
+
+    }
 }
