@@ -22,7 +22,7 @@ const Figures = ({ action, data }: Props) => {
     }
     case "sold": {
       buttonAction = "Delete";
-      break;
+      break; 
     }
   }
   return (
