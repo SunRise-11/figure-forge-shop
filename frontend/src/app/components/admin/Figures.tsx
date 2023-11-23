@@ -26,7 +26,7 @@ const Figures = ({ action, data }: Props) => {
     }
   }
   return (
-    <div className="w-3/4 absolute top-0 left-[19rem] h-screen flex items-center justify-center ">
+    <div className="w-3/4 absolute top-1 left-[19rem] h-screen flex items-center justify-center ">
       <Card className="absolute right-0 w-full max-w-[calc(100vw-19rem)] h-max p-4 shadow-xl shadow-blue-gray-900/5 border-solid border-2">
         <Typography variant="h5" color="blue-gray" className=" my-auto ">
           {action} Figures
@@ -43,7 +43,7 @@ const Figures = ({ action, data }: Props) => {
             </tr>
             {data.map((toy) => {
               return (
-                <tr>
+                <tr key={toy.id.toString()}>
                   <td className="border px-6 py-4">{toy.name}</td>
                   <td className="border px-6 py-4">
                     {

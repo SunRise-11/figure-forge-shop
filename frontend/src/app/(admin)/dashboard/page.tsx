@@ -1,10 +1,11 @@
 "use client";
 import Card from "@/app/components/admin/Card";
+import AllFigures from "@/app/components/admin/AllFigures"; 
 import { FiguresContext } from "@/app/contexts/figures.context";
 import { withPageAuthRequired, getSession } from "@auth0/nextjs-auth0";
 import { redirect } from "next/navigation";
 import { useContext } from "react";
-import AllFigures from "../../components/admin/allfigures";
+ 
 
 const Dashboard = () => {
   return (

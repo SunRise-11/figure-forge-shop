@@ -41,7 +41,7 @@ const AllFigures = () => {
             </tr>
             {displayedToys.map((toy) => {
               return (
-                <tr>
+                <tr key={toy.id.toString()}>
                   <td className="border px-6 py-4">{toy.name}</td>
                   <td className="border px-6 py-4">{toy.status}</td>
                   <td className="border px-6 py-4">{toy.rating}</td>
