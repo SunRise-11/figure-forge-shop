@@ -8,7 +8,6 @@ public class Picture {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @JsonIgnore
     private String id;
     private String fileType;
     private String pictureUrl;
