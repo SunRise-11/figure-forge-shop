@@ -1,6 +1,5 @@
 package com.typotitans.backend.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -28,7 +27,6 @@ public class Figure {
     @OneToMany(
             mappedBy = "figure",
             cascade = CascadeType.ALL)
-    @JsonIgnore
     private List<Picture> pictures;
 
     public Figure() {
