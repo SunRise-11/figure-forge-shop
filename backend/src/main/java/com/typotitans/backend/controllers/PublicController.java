@@ -40,7 +40,7 @@ public class PublicController {
             HttpServletRequest req) {
 
         var figure = figureService.addFigure(figureDetails, pictures);
-        URI location = URI.create(req.getRequestURI() + "/");
+        URI location = URI.create(req.getRequestURI() + "/" + figure.id());
 
         return ResponseEntity.created(location).body(figure);
     }
