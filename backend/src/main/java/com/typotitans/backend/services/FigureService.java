@@ -2,7 +2,6 @@ package com.typotitans.backend.services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.typotitans.backend.dtos.FigureDto;
 import com.typotitans.backend.dtos.ResponseDto;
 import com.typotitans.backend.dtos.UpdateDto;
 import com.typotitans.backend.models.Figure;
@@ -25,24 +24,12 @@ public class FigureService {
     private final BlobService blobService;
 
     public FigureService(FigureRepository figureRepository,
-                         PictureRepository pictureRepository, ObjectMapper objectMapper, BlobService blobService) {
+                         PictureRepository pictureRepository, ObjectMapper objectMapper,
+                         BlobService blobService) {
         this.figureRepository = figureRepository;
         this.pictureRepository = pictureRepository;
         this.blobService = blobService;
         this.objectMapper = objectMapper;
-    }
-
-    private Figure convertDtoToEntity(FigureDto dto) {
-        return new Figure(dto.name(), dto.origin(), dto.brand(), dto.price(), dto.width(),
-                dto.length(), dto.height(), dto.weight(), dto.description(), dto.seller());
-    }
-
-    private FigureDto convertEntityToDto(Figure figure) {
-
-        return new FigureDto(figure.getName(), figure.getDescription(),
-                figure.getBrand(),
-                figure.getPrice(), figure.getOrigin(), figure.getWidth(), figure.getHeight(),
-                figure.getLength(), figure.getWeight(), figure.getSeller());
     }
 
     public List<ResponseDto> getAllFigures() {
@@ -58,7 +45,7 @@ public class FigureService {
     }
 
     public ResponseDto addFigure(String figureDetails,
-                               MultipartFile[] pictures) {
+                                 MultipartFile[] pictures) {
         Figure figure = null;
         try {
             figure = objectMapper.readValue(figureDetails, Figure.class);
@@ -68,20 +55,18 @@ public class FigureService {
         var savedPictures = Arrays.stream(pictures).map(picture -> {
             var savedPicture = new Picture();
             pictureRepository.save(savedPicture);
-                try {
-                    var blob = blobService.uploadBlob(savedPicture.getId(), picture);
-                    savedPicture.setFileType(picture.getContentType());
-                    savedPicture.setPictureUrl(blob);
-                    return savedPicture;
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }).toList();
+            try {
+                var blob = blobService.uploadBlob(savedPicture.getId(), picture);
+                savedPicture.setFileType(picture.getContentType());
+                savedPicture.setPictureUrl(blob);
+                return savedPicture;
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }).toList();
 
-            figure.setPictures(savedPictures);
+        figure.setPictures(savedPictures);
 
-//        var savedPictures = pictureService.savePicturesAsBlobs(pictures, figure);
-//        figure.setPictures(savedPictures);
         return objectMapper.convertValue(figureRepository.save(figure), ResponseDto.class);
     }
 
