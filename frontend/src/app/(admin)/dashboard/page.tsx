@@ -1,10 +1,7 @@
 "use client";
- import Card from "@/app/components/admin/Card";
-import { FiguresContext } from "@/app/contexts/figures.context";
-import { withPageAuthRequired, getSession } from "@auth0/nextjs-auth0";
-import { redirect } from "next/navigation";
-import { useContext } from "react";
- 
+import Card from "@/app/components/admin/Card";
+import AllFigures from "@/app/components/admin/allfigures";
+// import AllFigures from "@/app/components/admin/AllFigures";
 
 const Dashboard = () => {
   return (
@@ -14,9 +11,7 @@ const Dashboard = () => {
         <Card title="Posted" />
         <Card title="Uncheck" />
       </div>
-      <div className="w-3/4 absolute left-[19rem] top-60 flex flex-row gap-10 mt-10">
- 
-       </div>
+      <div className="w-3/4 absolute left-[19rem] top-60 flex flex-row gap-10 mt-10"></div>
     </div>
   );
 };
