@@ -12,6 +12,7 @@ const Dashboard = () => {
         <Card title="Uncheck" />
       </div>
       <div className="w-3/4 absolute left-[19rem] top-60 flex flex-row gap-10 mt-10"></div>
+      <AllFigures />
     </div>
   );
 };
