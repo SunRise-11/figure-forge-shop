@@ -1,5 +1,7 @@
 package com.typotitans.backend.services;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.typotitans.backend.dtos.FigureDto;
 import com.typotitans.backend.models.Figure;
 import com.typotitans.backend.repositories.FigureRepository;
@@ -14,10 +16,13 @@ import java.util.NoSuchElementException;
 public class FigureService {
     private final FigureRepository figureRepository;
     private final PictureService pictureService;
+    private final ObjectMapper objectMapper;
 
-    public FigureService(FigureRepository figureRepository, PictureService pictureService) {
+    public FigureService(FigureRepository figureRepository, PictureService pictureService,
+                         ObjectMapper objectMapper) {
         this.figureRepository = figureRepository;
         this.pictureService = pictureService;
+        this.objectMapper = objectMapper;
     }
 
     private Figure convertDtoToEntity(FigureDto dto) {
@@ -36,33 +41,31 @@ public class FigureService {
                 figure.getLength(), figure.getWeight(), figure.getSeller());
     }
 
-    public List<Figure> getAllFigures() {
-        return figureRepository.findAll();
+    public List<FigureDto> getAllFigures() {
+        var figures = figureRepository.findAll();
+        return figures.stream().map(figure -> objectMapper.convertValue(figure, FigureDto.class)).toList();
     }
 
-    public Figure getFigure(String id) {
-        return figureRepository.findById(id).orElseThrow(
+    public FigureDto getFigure(String id) {
+        var figure = figureRepository.findById(id).orElseThrow(
                 () -> new NoSuchElementException("Figure not found"));
+        return objectMapper.convertValue(figure, FigureDto.class);
     }
 
-    public Figure addFigure(FigureDto request, MultipartFile[] pictures) {
-        var figure = convertDtoToEntity(request);
+    public FigureDto addFigure(String request) throws JsonProcessingException {
+//        public FigureDto addFigure(String request, MultipartFile[] pictures) throws JsonProcessingException {
+        FigureDto dto = objectMapper.readValue(request, FigureDto.class);
+        var figure = convertDtoToEntity(dto);
+
         figureRepository.save(figure);
-        var savedPictures = pictureService.savePicturesAsBlobs(pictures, figure);
-        figure.setPictures(savedPictures);
+//        var savedPictures = pictureService.savePicturesAsBlobs(pictures, figure);
+//        figure.setPictures(savedPictures);
         return getFigure(figure.getId());
     }
 
     public void deleteFigure(String id) {
-        try {
-            var figure = getFigure(id);
+        var figure = figureRepository.findById(id).orElseThrow(
+                () -> new NoSuchElementException("Figure not found"));
             figureRepository.delete(figure);
-        } catch (NoSuchElementException exception) {
-            System.out.println("Already deleted");
-        }
-    }
-
-    public void delete() {
-
     }
 }
