@@ -3,6 +3,7 @@
 import React from "react";
 import { Toy } from "../public/Card";
 import { Card, Typography } from "@material-tailwind/react";
+import Link from "next/link";
 
 type Props = {
   action: String;
@@ -48,9 +49,11 @@ const Figures = ({ action, data }: Props) => {
                   <td className="border px-6 py-4">
                     {
                     action == "uncheck" ? (
+                      <Link href={`/dashboard/filteredfigures/${action}/review/${toy.id}`} passHref>
                       <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                         {buttonAction}
                       </button>
+                      </Link>
                     ) : action == "posted" ? (
                       <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                         {buttonAction}

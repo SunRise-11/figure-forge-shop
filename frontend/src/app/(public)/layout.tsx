@@ -22,14 +22,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className=" mx-auto max-w-screen-2xl">
+    <html lang="en" className=" mx-auto max-w-screen-2xl bg-background">
       <UserProvider>
         <FiguresProvider>
-        <body className={poppins.className}>
-          <Navbar />
-          {children}
-          <Footer />
-        </body>
+          <body className={poppins.className}>
+            <Navbar />
+            {children}
+            <Footer />
+          </body>
         </FiguresProvider>
       </UserProvider>
     </html>

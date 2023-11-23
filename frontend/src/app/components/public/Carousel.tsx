@@ -3,7 +3,7 @@ import { Carousel } from "@material-tailwind/react";
 
 const CarouselHomePage = () => {
   return (
-    <Carousel className="rounded-xl" autoplay>
+    <Carousel className="rounded-xl z-10" autoplay>
       <img
         src="wink-studio-luffy-nika-lightning-resin-statue003.jpg"
         alt="image 1"

@@ -1,8 +1,9 @@
 package com.typotitans.backend.dtos;
 
-public record FigureDto(
+public record UpdateDto(
         String name,
         String description,
+        String condition,
         String brand,
         double price,
         String origin,
@@ -10,6 +11,7 @@ public record FigureDto(
         int height,
         int length,
         int weight,
-        String seller
+        int rating
 ) {
+
 }

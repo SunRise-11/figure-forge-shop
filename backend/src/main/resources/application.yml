@@ -6,8 +6,15 @@ logging:
         boot:
           autoconfigure: ERROR
 spring:
+  cloud:
+    azure:
+      storage:
+        blob:
+          account-name: ${AZURE_STORAGE_ACCOUNT_NAME}
+          account-key: ${AZURE_STORAGE_ACCOUNT_KEY}
+          endpoint: https://${AZURE_STORAGE_ACCOUNT_NAME}.blob.core.windows.net
   datasource:
-    url: jdbc:postgresql://figureforge.postgres.database.azure.com:5432/postgres?sslmode=require
+    url: jdbc:postgresql://figureforgepostgres.postgres.database.azure.com:5432/postgres
     username: ${postgres.username}
     password: ${postgres.password}
   config:
