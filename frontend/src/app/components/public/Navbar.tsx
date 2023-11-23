@@ -50,7 +50,7 @@ export const Navbar = () => {
           <Link href="/" onClick={handleClick}>
             <p
               className={`${
-                pathname == "/" ? "text-primary" : ""
+                pathname === "/" ? "text-primary" : ""
               } lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text font-bold items-center justify-center hover:text-primary`}
             >
               Home
@@ -59,7 +59,7 @@ export const Navbar = () => {
           <Link href="/figures" onClick={handleClick}>
             <p
               className={`${
-                pathname == "/figures" ? "text-primary" : ""
+                pathname === "/figures" ? "text-primary" : ""
               } lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text font-bold items-center justify-center hover:text-primary`}
             >
               Shop
@@ -68,7 +68,7 @@ export const Navbar = () => {
           <Link href="/about" onClick={handleClick}>
             <p
               className={`${
-                pathname == "/about" ? "text-primary" : ""
+                pathname === "/about" ? "text-primary" : ""
               } lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text font-bold items-center justify-center hover:text-primary`}
             >
               About us

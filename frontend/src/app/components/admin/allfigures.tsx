@@ -12,16 +12,22 @@ const AllFiguresComponent = () => {
     setCurrentPage(pageNumber);
   };
 
+  const formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "EUR",
+    minimumFractionDigits: 0,
+  });
+
   const startIndex = (currentPage - 1) * elementsPerPage;
   const endIndex = startIndex + elementsPerPage;
   const displayedToys = toys.slice(startIndex, endIndex);
 
   return (
-    <Card className="absolute right-0 w-full max-w-[calc(100vw-19rem)] top-[17rem] h-max p-4 shadow-xl shadow-blue-gray-900/5 border-solid border-2">
+    <Card className="absolute right-0 w-full max-w-[calc(100vw-19rem)] top-[17rem] overflow-y-auto h-[26.9rem] p-4 shadow-xl shadow-blue-gray-900/5 border-solid border-2">
       <Typography variant="h5" color="blue-gray" className=" my-auto ">
         All Figures
       </Typography>
-      <table className="w-full text-sm text-left text-black px-15">
+      <table className="w-full text-sm text-left text-black px-15  h-full">
         <thead className="border text-xs text-black uppercase bg-slate-300 dark:bg-slate-300 dark:text-black">
           <tr>
             <th scope="col" className="border px-6 py-3">
@@ -43,7 +49,9 @@ const AllFiguresComponent = () => {
                 <td className="border px-6 py-4">{toy.name}</td>
                 <td className="border px-6 py-4">{toy.status}</td>
                 <td className="border px-6 py-4">{toy.rating}</td>
-                <td className="border px-6 py-4">{toy.price.toString()}</td>
+                <td className="border px-6 py-4">
+                  {formatter.format(toy.price)}
+                </td>
               </tr>
             );
           })}

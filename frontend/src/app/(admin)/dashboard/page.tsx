@@ -6,7 +6,7 @@ import AllFiguresComponent from "@/app/components/admin/allfigures";
 const Dashboard = () => {
   return (
     <div className=" relative">
-      <div className=" absolute top-16 left-[19rem] flex flex-row gap-10">
+      <div className=" absolute top-16 right-0 flex flex-row gap-10  w-full max-w-[calc(100vw-19rem)]">
         <Card title="Profit" />
         <Card title="Posted" />
         <Card title="Uncheck" />
