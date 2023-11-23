@@ -2,17 +2,17 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="mx-auto w-full max-w-screen-2xl p-4 py-6 lg:py-8">
-      <hr className="pb-10 border-midnight" />
-      <div className="md:flex md:justify-between">
-        <div className="mb-6 md:mb-0">
-          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-text">
-            Figure Forge
+    <footer className="mx-auto w-full max-w-screen-2xl p-4 py-6 lg:py-8 ">
+      <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+      <div className="md:flex md:justify-between lg:px-8">
+        <div className="mb-6 md:mb-0 flex justify-center">
+          <span className="self-center text-3xl font-semibold whitespace-nowrap dark:text-text">
+            FIGURE FORGE
           </span>
         </div>
         <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
           <div>
-            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-text">
+            <h2 className="mb-6 text-sm font-semibold text-primary uppercase dark:text-text">
               Navigate
             </h2>
             <ul className="text-gray-500 dark:text-gray-400 font-medium">
@@ -22,14 +22,17 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="/shop" className="hover:underline hover:text-purple">
+                <a
+                  href="/figures"
+                  className="hover:underline hover:text-purple"
+                >
                   Shop
                 </a>
               </li>
             </ul>
           </div>
           <div>
-            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-text">
+            <h2 className="mb-6 text-sm font-semibold text-primary uppercase dark:text-text">
               Follow us
             </h2>
             <ul className="text-gray-500 dark:text-gray-400 font-medium">
@@ -52,7 +55,7 @@ const Footer = () => {
             </ul>
           </div>
           <div>
-            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-text">
+            <h2 className="mb-6 text-sm font-semibold text-primary uppercase dark:text-text">
               Company
             </h2>
             <ul className="text-gray-500 dark:text-gray-400 font-medium">
@@ -70,16 +73,16 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8 border-midnight" />
-      <div className="sm:flex sm:items-center sm:justify-between">
-        <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
+      <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+      <div className="flex items-center justify-between sm:flex sm:items-center sm:justify-between lg:px-8">
+        <span className=" text-xs text-gray-500 sm:text-center dark:text-gray-400 ">
           © 2023{" "}
           <a href="/" className="hover:underline hover:text-purple">
             Figure Forge™
           </a>
           . All Rights Reserved.
         </span>
-        <div className="flex mt-4 space-x-5 sm:justify-center sm:mt-0">
+        <div className="flex space-x-5 sm:justify-center sm:mt-0 ">
           <a
             href="#"
             className="text-gray-500 hover:text-gray-900 dark:hover:text-text"

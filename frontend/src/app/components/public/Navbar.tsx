@@ -12,7 +12,7 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="flex items-center flex-wrap bg-background p-3 ">
+    <nav className="flex items-center flex-wrap bg-background lg:px-8">
       <Link href="/">
         <p className="inline-flex items-center p-2 mr-4 ">
           <span className="text-xl text-text font-bold uppercase tracking-wide">
@@ -42,11 +42,11 @@ export const Navbar = () => {
       <div
         className={`${
           active ? "" : "hidden"
-        }   w-full lg:inline-flex lg:flex-grow lg:w-auto`}
+        }   w-full lg:inline-flex lg:flex-grow lg:w-auto `}
       >
-        <div className="lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start  flex flex-col lg:h-auto gap-4">
+        <div className="lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto lg:relative lg:h-auto lg:top-0 lg:items-center w-full flex flex-col gap-4 fixed z-30 bg-background ">
           <Link href="/" onClick={handleClick}>
-            <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text font-bold items-center justify-center hover:text-purple active:text-primary">
+            <p className=" lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text font-bold items-center justify-center hover:text-purple active:text-primary">
               Home
             </p>
           </Link>
@@ -82,17 +82,17 @@ export const Navbar = () => {
               </p>
             </Link>
           ) : (
-            <div></div>
+            <div className="hidden"></div>
           )}
           {user ? (
             <Link href="/api/auth/logout" onClick={handleClick}>
-              <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text bg-primary font-bold items-center justify-center transition ease-in-out delay-350 hover:text-accent hover:transition-all">
+              <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text bg-primary font-bold text-center items-center justify-center transition ease-in-out delay-350 hover:text-accent hover:transition-all">
                 Logout
               </p>
             </Link>
           ) : (
             <Link href="/api/auth/login" onClick={handleClick}>
-              <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text bg-primary font-bold items-center justify-center transition ease-in-out delay-350 hover:text-accent hover:transition-all">
+              <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text bg-primary font-bold text-center items-center justify-center transition ease-in-out delay-350 hover:text-accent hover:transition-all">
                 Login
               </p>
             </Link>

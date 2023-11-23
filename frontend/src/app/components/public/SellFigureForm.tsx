@@ -20,13 +20,13 @@ export const SellFigureForm = () => {
 
   const inputStyle =
     "bg-secondary appearance-none border-2 border-secondary rounded w-full py-2 px-4 text-text leading-tight focus:outline-none focus:border-primary";
-  const fieldStyle = "flex flex-col gap-5 h-max mb-4 sm:w-1/2";
+  const fieldStyle = "flex flex-col gap-5 h-max mb-4 w-full px-4 sm:w-1/2";
   return (
     <form
       className="flex flex-col items-center gap-5 h-max mb-4 py-10 "
       onSubmit={onFormSubmit}
     >
-      <legend>Details</legend>
+      <legend className=" text-2xl font-semibold">Details</legend>
       <fieldset className={fieldStyle}>
         <input className="hidden" {...register("seller")} value={email} />
         <input
@@ -58,7 +58,7 @@ export const SellFigureForm = () => {
         />
       </fieldset>
 
-      <legend>Dimensions</legend>
+      <legend className=" text-2xl font-semibold">Dimensions</legend>
       <fieldset className={fieldStyle}>
         <input
           className={inputStyle}
@@ -86,7 +86,7 @@ export const SellFigureForm = () => {
         />
       </fieldset>
 
-      <legend>Pictures</legend>
+      <legend className=" text-2xl font-semibold">Pictures</legend>
       <fieldset className={fieldStyle}>
         <input
           className={inputStyle}
@@ -96,7 +96,12 @@ export const SellFigureForm = () => {
         />
       </fieldset>
 
-      <button type="submit">Submit</button>
+      <button
+        type="submit"
+        className="lg:inline-flex lg:w-auto w-52 px-3 py-2 text-xl rounded text-text bg-primary font-bold items-center justify-center transition ease-in-out delay-350 hover:text-accent hover:transition-all"
+      >
+        Submit
+      </button>
     </form>
   );
 };
