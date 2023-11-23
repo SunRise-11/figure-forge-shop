@@ -3,6 +3,8 @@ package com.typotitans.backend.services;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.typotitans.backend.dtos.FigureDto;
+import com.typotitans.backend.dtos.ResponseDto;
+import com.typotitans.backend.dtos.UpdateDto;
 import com.typotitans.backend.models.Figure;
 import com.typotitans.backend.models.Picture;
 import com.typotitans.backend.repositories.FigureRepository;
@@ -82,6 +84,24 @@ public class FigureService {
 //        var savedPictures = pictureService.savePicturesAsBlobs(pictures, figure);
 //        figure.setPictures(savedPictures);
         return getFigure(figure.getId());
+    }
+
+    public ResponseDto updateFigure(UpdateDto updateDto, String id) {
+        Figure figure = figureRepository.findById(id).orElseThrow(
+                () -> new NoSuchElementException("Figure not found"));
+        figure.setName(updateDto.name());
+        figure.setOrigin(updateDto.origin());
+        figure.setBrand(updateDto.brand());
+        figure.setWidth(updateDto.width());
+        figure.setLength(updateDto.length());
+        figure.setHeight(updateDto.height());
+        figure.setWeight(updateDto.weight());
+        figure.setDescription(updateDto.description());
+        figure.setPrice(updateDto.price());
+        figure.setRating(updateDto.rating());
+        figure.setCondition(updateDto.condition());
+
+        return objectMapper.convertValue(figureRepository.save(figure), ResponseDto.class);
     }
 
     public void deleteFigure(String id) {
