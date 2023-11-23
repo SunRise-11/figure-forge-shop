@@ -22,9 +22,7 @@ public class Figure {
     private String description;
     private double price;
     private int rating;
-
-    @ManyToOne
-    Seller seller;
+    private String seller;
 
     @OneToMany(
             mappedBy = "figure",
@@ -37,7 +35,7 @@ public class Figure {
 
     public Figure(String name, String origin, String brand, double price, int width, int length,
                   int height,
-                  int weight, String description, Seller seller) {
+                  int weight, String description, String seller) {
         this.name = name;
         this.origin = origin;
         this.brand = brand;
@@ -142,11 +140,11 @@ public class Figure {
         this.pictures = pictures;
     }
 
-    public Seller getSeller() {
+    public String getSeller() {
         return seller;
     }
 
-    public void setSeller(Seller seller) {
+    public void setSeller(String seller) {
         this.seller = seller;
     }
 }
