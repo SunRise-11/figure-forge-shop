@@ -47,7 +47,7 @@ public class PublicController {
             HttpServletRequest req) {
 
         var figure = figureService.addFigure(figureDetails);
-        URI location = URI.create(req.getRequestURI() + "/" + figure.id());
+        URI location = URI.create(req.getRequestURI() + "/");
 
 //        ResponseDto response = new ResponseDto(objectMapper.convertValue(figure, FigureDto.class),
 //                figure.getPictures());
