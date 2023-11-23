@@ -1,12 +1,10 @@
 package com.typotitans.backend.services;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.typotitans.backend.dtos.FigureDto;
 import com.typotitans.backend.models.Figure;
 import com.typotitans.backend.repositories.FigureRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Base64;
 import java.util.List;
@@ -43,7 +41,8 @@ public class FigureService {
 
     public List<FigureDto> getAllFigures() {
         var figures = figureRepository.findAll();
-        return figures.stream().map(figure -> objectMapper.convertValue(figure, FigureDto.class)).toList();
+        return figures.stream().map(
+                figure -> objectMapper.convertValue(figure, FigureDto.class)).toList();
     }
 
     public FigureDto getFigure(String id) {
@@ -52,10 +51,10 @@ public class FigureService {
         return objectMapper.convertValue(figure, FigureDto.class);
     }
 
-    public FigureDto addFigure(String request) throws JsonProcessingException {
+    public FigureDto addFigure(FigureDto request) {
 //        public FigureDto addFigure(String request, MultipartFile[] pictures) throws JsonProcessingException {
-        FigureDto dto = objectMapper.readValue(request, FigureDto.class);
-        var figure = convertDtoToEntity(dto);
+//        FigureDto dto = objectMapper.readValue(request, FigureDto.class);
+        var figure = convertDtoToEntity(request);
 
         figureRepository.save(figure);
 //        var savedPictures = pictureService.savePicturesAsBlobs(pictures, figure);
@@ -66,6 +65,6 @@ public class FigureService {
     public void deleteFigure(String id) {
         var figure = figureRepository.findById(id).orElseThrow(
                 () -> new NoSuchElementException("Figure not found"));
-            figureRepository.delete(figure);
+        figureRepository.delete(figure);
     }
 }
