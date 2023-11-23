@@ -21,9 +21,9 @@ public class Figure {
     private int weight;
     private String description;
     private double price;
-    private int rating;
+    private int rating = 0;
     private String seller;
-    private String condition;
+    private String condition = "";
 
     @OneToMany(
             mappedBy = "figure",
@@ -36,7 +36,7 @@ public class Figure {
 
     public Figure(String name, String origin, String brand, double price, int width, int length,
                   int height,
-                  int weight, String description, String seller, String condition) {
+                  int weight, String description, String seller) {
         this.name = name;
         this.origin = origin;
         this.brand = brand;
@@ -47,7 +47,6 @@ public class Figure {
         this.description = description;
         this.price = price;
         this.seller = seller;
-        this.condition = condition;
     }
 
     public String getId() {
