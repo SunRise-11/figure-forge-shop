@@ -1,6 +1,7 @@
 package com.typotitans.backend.controllers;
 
 import com.typotitans.backend.dtos.FigureDto;
+import com.typotitans.backend.dtos.ResponseDto;
 import com.typotitans.backend.services.FigureService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ public class PublicController {
     }
 
     @GetMapping
-    ResponseEntity<List<FigureDto>> getAllFigures() {
+    ResponseEntity<List<ResponseDto>> getAllFigures() {
 //        var figures = figureService.getAllFigures();
 //        ResponseDto response = new ResponseDto(objectMapper.convertValue(fig))
 //        var response = figures.stream().map(figure -> {
@@ -35,13 +36,13 @@ public class PublicController {
     }
 
     @GetMapping("{id}")
-    ResponseEntity<FigureDto> getSpecificFigure(@PathVariable String id) {
+    ResponseEntity<ResponseDto> getSpecificFigure(@PathVariable String id) {
         return ResponseEntity.ok(figureService.getFigure(id));
     }
 
     //    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PostMapping
-    public ResponseEntity<FigureDto> createFigure(
+    public ResponseEntity<ResponseDto> createFigure(
 //            @RequestParam("pictures") MultipartFile[] pictures,
             @RequestBody FigureDto figureDetails,
             HttpServletRequest req) {

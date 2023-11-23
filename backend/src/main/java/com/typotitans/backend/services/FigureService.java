@@ -2,6 +2,7 @@ package com.typotitans.backend.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.typotitans.backend.dtos.FigureDto;
+import com.typotitans.backend.dtos.ResponseDto;
 import com.typotitans.backend.dtos.UpdateDto;
 import com.typotitans.backend.models.Figure;
 import com.typotitans.backend.repositories.FigureRepository;
@@ -40,19 +41,19 @@ public class FigureService {
                 figure.getLength(), figure.getWeight(), figure.getSeller());
     }
 
-    public List<FigureDto> getAllFigures() {
+    public List<ResponseDto> getAllFigures() {
         var figures = figureRepository.findAll();
         return figures.stream().map(
-                figure -> objectMapper.convertValue(figure, FigureDto.class)).toList();
+                figure -> objectMapper.convertValue(figure, ResponseDto.class)).toList();
     }
 
-    public FigureDto getFigure(String id) {
+    public ResponseDto getFigure(String id) {
         var figure = figureRepository.findById(id).orElseThrow(
                 () -> new NoSuchElementException("Figure not found"));
-        return objectMapper.convertValue(figure, FigureDto.class);
+        return objectMapper.convertValue(figure, ResponseDto.class);
     }
 
-    public FigureDto addFigure(FigureDto request) {
+    public ResponseDto addFigure(FigureDto request) {
 //        public FigureDto addFigure(String request, MultipartFile[] pictures) throws JsonProcessingException {
 //        FigureDto dto = objectMapper.readValue(request, FigureDto.class);
         var figure = convertDtoToEntity(request);
@@ -69,7 +70,7 @@ public class FigureService {
         figureRepository.delete(figure);
     }
 
-    public FigureDto updateFigure(UpdateDto updateDto, String id) {
+    public ResponseDto updateFigure(UpdateDto updateDto, String id) {
         Figure figure = figureRepository.findById(id).orElseThrow(
                 () -> new NoSuchElementException("Figure not found"));
         figure.setName(updateDto.name());
@@ -84,6 +85,6 @@ public class FigureService {
         figure.setRating(updateDto.rating());
         figure.setCondition(updateDto.condition());
 
-        return objectMapper.convertValue(figureRepository.save(figure), FigureDto.class);
+        return objectMapper.convertValue(figureRepository.save(figure), ResponseDto.class);
     }
 }

@@ -1,6 +1,7 @@
 package com.typotitans.backend.controllers;
 
 import com.typotitans.backend.dtos.FigureDto;
+import com.typotitans.backend.dtos.ResponseDto;
 import com.typotitans.backend.dtos.UpdateDto;
 import com.typotitans.backend.services.FigureService;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +30,7 @@ public class AdminController {
     }
 
     @PutMapping("{id}")
-    ResponseEntity<FigureDto> updateFigure(@RequestBody UpdateDto figure, @PathVariable String id) {
+    ResponseEntity<ResponseDto> updateFigure(@RequestBody UpdateDto figure, @PathVariable String id) {
         return ResponseEntity.ok(figureService.updateFigure(figure, id));
     }
 }
