@@ -1,5 +1,7 @@
 "use client";
 import RatingAdmin from "@/app/components/admin/RatingAdmin";
+import { FiguresContext } from "@/app/contexts/figures.context";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 
 const toy = {
@@ -27,9 +29,8 @@ const inputStyle =
 
 const ReviewPage = ({params}:{ params: { id: string } }) => {
   const { register, handleSubmit, watch, setValue } = useForm();
+  const {toys} = useContext(FiguresContext);
   const rating = watch("rating");
-
-  console.log(params.id)
 
   const onSubmit = (data: any) => {
     const formData = {
