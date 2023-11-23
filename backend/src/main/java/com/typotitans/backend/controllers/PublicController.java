@@ -1,6 +1,6 @@
 package com.typotitans.backend.controllers;
 
-import com.typotitans.backend.dtos.FigureDto;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.typotitans.backend.dtos.ResponseDto;
 import com.typotitans.backend.services.FigureService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -33,13 +33,18 @@ public class PublicController {
         return ResponseEntity.ok(figureService.getFigure(id));
     }
 
-        @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ResponseDto> createFigure(
             @RequestParam("pictures") MultipartFile[] pictures,
             @RequestParam("figureDetails") String figureDetails,
             HttpServletRequest req) {
 
-        var figure = figureService.addFigure(figureDetails, pictures);
+        ResponseDto figure = null;
+        try {
+            figure = figureService.addFigure(figureDetails, pictures);
+        } catch (JsonProcessingException e) {
+            return ResponseEntity.badRequest().build();
+        }
         URI location = URI.create(req.getRequestURI() + "/" + figure.id());
 
         return ResponseEntity.created(location).body(figure);
