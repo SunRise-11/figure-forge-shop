@@ -25,9 +25,11 @@ const inputStyle =
     "bg-grey appearance-none border-2 border-secondary rounded  py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:border-primary";
   const fieldStyle = "flex flex-col gap-5 h-max mb-4 sm:w-1/2";
 
-const ReviewPage = () => {
+const ReviewPage = ({params}:{ params: { id: string } }) => {
   const { register, handleSubmit, watch, setValue } = useForm();
   const rating = watch("rating");
+
+  console.log(params.id)
 
   const onSubmit = (data: any) => {
     const formData = {
@@ -40,8 +42,6 @@ const ReviewPage = () => {
   const handleRatingChange = (nextValue: number) => {
     setValue("rating", nextValue);
   };
-
-  
 
   return (
     <div className="absolute top-20 left-80  overflow-y-auto py-5">
