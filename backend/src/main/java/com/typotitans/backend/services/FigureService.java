@@ -2,6 +2,7 @@ package com.typotitans.backend.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.typotitans.backend.dtos.FigureDto;
+import com.typotitans.backend.dtos.UpdateDto;
 import com.typotitans.backend.models.Figure;
 import com.typotitans.backend.repositories.FigureRepository;
 import org.springframework.stereotype.Service;
@@ -66,5 +67,23 @@ public class FigureService {
         var figure = figureRepository.findById(id).orElseThrow(
                 () -> new NoSuchElementException("Figure not found"));
         figureRepository.delete(figure);
+    }
+
+    public FigureDto updateFigure(UpdateDto updateDto, String id) {
+        Figure figure = figureRepository.findById(id).orElseThrow(
+                () -> new NoSuchElementException("Figure not found"));
+        figure.setName(updateDto.name());
+        figure.setOrigin(updateDto.origin());
+        figure.setBrand(updateDto.brand());
+        figure.setWidth(updateDto.width());
+        figure.setLength(updateDto.length());
+        figure.setHeight(updateDto.height());
+        figure.setWeight(updateDto.weight());
+        figure.setDescription(updateDto.description());
+        figure.setPrice(updateDto.price());
+        figure.setRating(updateDto.rating());
+        figure.setCondition(updateDto.condition());
+
+        return objectMapper.convertValue(figureRepository.save(figure), FigureDto.class);
     }
 }
