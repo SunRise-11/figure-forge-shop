@@ -5,9 +5,9 @@ import CarouselHomePage from "../components/public/Carousel";
 
 export default function HomePage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24 p-3 ">
+    <main className="flex min-h-screen flex-col items-center justify-between p-4 ">
       <CarouselHomePage />
-      <div className="bg-black flex flex-col sm:flex-row justify-between items-center my-10 mt-20">
+      <div className="bg-background flex flex-col sm:flex-row justify-between items-center my-10 mt-20">
         <div className="flex flex-col sm:items-start sm:justify-center py-4 gap-10">
           <Link href="/sell-figure">
             <h1 className=" text-2xl font-bold underline">
@@ -54,7 +54,7 @@ export default function HomePage() {
             action figure.
           </p>
           <Link href="/about">
-            <p className=" text-midnight underline">Read more</p>
+            <p className=" text-text underline">Read more</p>
           </Link>
         </div>
       </div>
