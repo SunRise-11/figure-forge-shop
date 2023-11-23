@@ -45,27 +45,21 @@ public class FigureService {
     }
 
     public ResponseDto addFigure(String figureDetails,
-                                 MultipartFile[] pictures) {
-        Figure figure = null;
-        try {
-            figure = objectMapper.readValue(figureDetails, Figure.class);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
-        var savedPictures = Arrays.stream(pictures).map(picture -> {
-            var savedPicture = new Picture();
-            pictureRepository.save(savedPicture);
+                                 MultipartFile[] pictures) throws JsonProcessingException {
+        var figure = figureRepository.save(objectMapper.readValue(figureDetails, Figure.class));
+        Arrays.stream(pictures).forEach(picture -> {
+            var savedPicture = pictureRepository.save(new Picture());
+            String blob = null;
             try {
-                var blob = blobService.uploadBlob(savedPicture.getId(), picture);
-                savedPicture.setFileType(picture.getContentType());
-                savedPicture.setPictureUrl(blob);
-                return savedPicture;
+                blob = blobService.uploadBlob(savedPicture.getId(), picture);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-        }).toList();
-
-        figure.setPictures(savedPictures);
+            savedPicture.setFileType(picture.getContentType());
+            savedPicture.setPictureUrl(blob);
+            savedPicture.setFigure(figure);
+            pictureRepository.save(savedPicture);
+        });
 
         return objectMapper.convertValue(figureRepository.save(figure), ResponseDto.class);
     }
