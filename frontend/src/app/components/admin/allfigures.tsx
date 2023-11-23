@@ -23,7 +23,7 @@ const AllFiguresComponent = () => {
   const displayedToys = toys.slice(startIndex, endIndex);
 
   return (
-    <Card className="absolute right-0 w-full max-w-[calc(100vw-19rem)] top-[17rem] overflow-y-auto h-[26.9rem] p-4 shadow-xl shadow-blue-gray-900/5 border-solid border-2">
+    <Card className="absolute right-0 w-full max-w-[calc(100vw-19rem)] top-[17rem] overflow-y-auto h-min max-h-[calc(100vh-17rem)] p-4 shadow-xl shadow-blue-gray-900/5 border-solid border-2 ">
       <Typography variant="h5" color="blue-gray" className=" my-auto ">
         All Figures
       </Typography>
