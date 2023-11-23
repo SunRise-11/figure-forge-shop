@@ -32,7 +32,7 @@ const Figures = ({ action, data }: Props) => {
       </Typography>
       <table className="w-full text-sm text-left text-black mt-10">
         <thead className="border text-xs text-black uppercase bg-slate-300 dark:bg-slate-300 dark:text-black">
-          <tr>
+          <tr className="bg-primary text-text">
             <th scope="col" className="border px-6 py-3 w-4/5">
               Name
             </th>
