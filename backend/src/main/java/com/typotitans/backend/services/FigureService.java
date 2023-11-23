@@ -45,19 +45,19 @@ public class FigureService {
                 figure.getLength(), figure.getWeight(), figure.getSeller());
     }
 
-    public List<FigureDto> getAllFigures() {
+    public List<ResponseDto> getAllFigures() {
         var figures = figureRepository.findAll();
         return figures.stream().map(
-                figure -> objectMapper.convertValue(figure, FigureDto.class)).toList();
+                figure -> objectMapper.convertValue(figure, ResponseDto.class)).toList();
     }
 
-    public FigureDto getFigure(String id) {
+    public ResponseDto getFigure(String id) {
         var figure = figureRepository.findById(id).orElseThrow(
                 () -> new NoSuchElementException("Figure not found"));
-        return objectMapper.convertValue(figure, FigureDto.class);
+        return objectMapper.convertValue(figure, ResponseDto.class);
     }
 
-    public FigureDto addFigure(String figureDetails,
+    public ResponseDto addFigure(String figureDetails,
                                MultipartFile[] pictures) {
         Figure figure = null;
         try {
@@ -80,10 +80,9 @@ public class FigureService {
 
             figure.setPictures(savedPictures);
 
-        figureRepository.save(figure);
 //        var savedPictures = pictureService.savePicturesAsBlobs(pictures, figure);
 //        figure.setPictures(savedPictures);
-        return getFigure(figure.getId());
+        return objectMapper.convertValue(figureRepository.save(figure), ResponseDto.class);
     }
 
     public ResponseDto updateFigure(UpdateDto updateDto, String id) {
