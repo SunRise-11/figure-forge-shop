@@ -78,15 +78,15 @@ export function Sidebar() {
           </ListItem>
           <AccordionBody className="py-1">
             <List className="p-0">
-              <a href="/dashboard/filteredfigures/uncheck">
+              <a href="/filteredfigures/uncheck">
                 <ListItem>
                   <ListItemPrefix>
                     <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
                   </ListItemPrefix>
                   Uncheck
                 </ListItem>
-              </a> 
-              <Link href="/dashboard/filteredfigures/posted">
+              </a>
+              <Link href="/filteredfigures/posted">
                 <ListItem>
                   <ListItemPrefix>
                     <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
@@ -94,7 +94,7 @@ export function Sidebar() {
                   Posted
                 </ListItem>
               </Link>
-              <a href="/dashboard/filteredfigures/sold">
+              <a href="/filteredfigures/sold">
                 <ListItem>
                   <ListItemPrefix>
                     <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
