@@ -10,10 +10,8 @@ public class Picture {
     @GeneratedValue(strategy = GenerationType.UUID)
     @JsonIgnore
     private String id;
-
-    @Lob
-    @Basic(fetch = FetchType.LAZY)
-    private byte[] image;
+    private String fileType;
+    private String pictureUrl;
 
     @ManyToOne
     @JsonIgnore
@@ -22,21 +20,24 @@ public class Picture {
     public Picture() {
     }
 
-    public Picture(byte[] image, Figure figure) {
-        this.image = image;
-        this.figure = figure;
-    }
-
     public String getId() {
         return id;
     }
 
-    public byte[] getImage() {
-        return image;
+    public String getFileType() {
+        return fileType;
     }
 
-    public void setImage(byte[] image) {
-        this.image = image;
+    public void setFileType(String fileType) {
+        this.fileType = fileType;
+    }
+
+    public String getPictureUrl() {
+        return pictureUrl;
+    }
+
+    public void setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
     }
 
     public Figure getFigure() {
