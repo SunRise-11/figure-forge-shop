@@ -1,7 +1,6 @@
 package com.typotitans.backend.dtos;
 
 public record FigureDto(
-        String id,
         String name,
         String description,
         String brand,
