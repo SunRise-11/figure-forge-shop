@@ -32,11 +32,12 @@ public class BlobService {
         return blobNames;
     }
 
-    public void uploadBlob(String blobName, MultipartFile file) throws IOException {
+    public String uploadBlob(String blobName, MultipartFile file) throws IOException {
         BlobContainerClient containerClient = blobServiceClient.getBlobContainerClient(
                 containerName);
         BlobClient blobClient = containerClient.getBlobClient(blobName);
         blobClient.upload(file.getInputStream(), file.getSize(), true);
+        return blobClient.getBlobUrl();
     }
 
     public byte[] downloadBlob(String blobName) {
