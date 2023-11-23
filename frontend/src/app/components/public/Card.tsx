@@ -30,7 +30,7 @@ const Card = ({ toy }: Props) => {
   return (
     <Link
       href={`/figures/${toy.id}`}
-      className="w-[300px] h-[380px] bg-purple border-4 border-white flex flex-col justify-between rounded-lg sm:my-10"
+      className="w-[300px] h-[380px] bg-purple border-4 border-white flex flex-col justify-between rounded-lg sm:my-10 text-text"
     >
       <div className="w-full h-[300px] border-white flex item-center justify-center overflow-hidden rounded-t-lg">
         <Image

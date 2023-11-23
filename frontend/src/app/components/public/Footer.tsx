@@ -6,8 +6,8 @@ const Footer = () => {
       <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
       <div className="md:flex md:justify-between lg:px-8">
         <div className="mb-6 md:mb-0 flex justify-center">
-          <span className="self-center text-3xl font-semibold whitespace-nowrap dark:text-text">
-            FIGURE FORGE
+          <span className="self-center text-3xl font-semibold whitespace-nowrap text-text">
+            <a href="/">FIGURE FORGE</a>
           </span>
         </div>
         <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
@@ -17,15 +17,12 @@ const Footer = () => {
             </h2>
             <ul className="text-gray-500 dark:text-gray-400 font-medium">
               <li className="mb-4">
-                <a href="/" className="hover:underline hover:text-purple">
+                <a href="/" className="hover:underline hover:text-text">
                   Home
                 </a>
               </li>
               <li>
-                <a
-                  href="/figures"
-                  className="hover:underline hover:text-purple"
-                >
+                <a href="/figures" className="hover:underline hover:text-text">
                   Shop
                 </a>
               </li>
@@ -39,7 +36,7 @@ const Footer = () => {
               <li className="mb-4">
                 <a
                   href="https://github.com/kevingida"
-                  className="hover:underline hover:text-purple "
+                  className="hover:underline hover:text-text "
                 >
                   Github
                 </a>
@@ -47,7 +44,7 @@ const Footer = () => {
               <li>
                 <a
                   href="https://discord.gg"
-                  className="hover:underline hover:text-purple"
+                  className="hover:underline hover:text-text"
                 >
                   Discord
                 </a>
@@ -60,12 +57,12 @@ const Footer = () => {
             </h2>
             <ul className="text-gray-500 dark:text-gray-400 font-medium">
               <li className="mb-4">
-                <a href="/about" className="hover:underline hover:text-purple">
+                <a href="/about" className="hover:underline hover:text-text">
                   About Us
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:underline hover:text-purple">
+                <a href="#" className="hover:underline hover:text-text">
                   Terms &amp; Conditions
                 </a>
               </li>
@@ -77,16 +74,13 @@ const Footer = () => {
       <div className="flex items-center justify-between sm:flex sm:items-center sm:justify-between lg:px-8">
         <span className=" text-xs text-gray-500 sm:text-center dark:text-gray-400 ">
           © 2023{" "}
-          <a href="/" className="hover:underline hover:text-purple">
+          <a href="/" className="hover:underline hover:text-text">
             Figure Forge™
           </a>
           . All Rights Reserved.
         </span>
         <div className="flex space-x-5 sm:justify-center sm:mt-0 ">
-          <a
-            href="#"
-            className="text-gray-500 hover:text-gray-900 dark:hover:text-text"
-          >
+          <a href="#" className="text-gray-500 hover:text-text">
             <svg
               className="w-4 h-4 hover:fill-purple"
               aria-hidden="true"
@@ -100,7 +94,7 @@ const Footer = () => {
           </a>
           <a
             href="https://github.com/kevingida"
-            className="text-gray-500 hover:text-gray-900 dark:hover:text-text"
+            className="text-gray-500 hover:text-text"
           >
             <svg
               className="w-4 h-4 hover:fill-purple"

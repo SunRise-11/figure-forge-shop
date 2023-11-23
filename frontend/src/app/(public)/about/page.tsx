@@ -9,7 +9,7 @@ const AboutPage = () => {
         imageSource="https://onepiecetreasuregk.net/cdn/shop/collections/6bb4c691b68569b75fa51528eabbd39_2260x.jpg?v=1660340062"
       />
       <div className="my-10">
-        <p>
+        <p className="text-text">
           At Figure Forge, our story is a tapestry woven with threads of passion
           for action figures and an unwavering commitment to the collector
           community. Nestled in the heart of the city, our shop stands as a
@@ -22,9 +22,9 @@ const AboutPage = () => {
           action figures.
         </p>
       </div>
-      <div className="bg-black w-full h-100 flex flex-row justify-between my-10">
+      <div className="bg-background w-full h-100 flex flex-row justify-between my-10 text-text">
         <div className="flex flex-col py-4 justify-around p-4">
-          <h1 className=" text-2xl font-bold underline">RATING SYSTEM</h1>
+          <h1 className=" text-2xl font-bold underline ">RATING SYSTEM</h1>
           <h2 className=" font-semibold mt-5">
             ⭐⭐⭐⭐⭐ - 5 Stars: Excellent (Sealed in Box)
           </h2>

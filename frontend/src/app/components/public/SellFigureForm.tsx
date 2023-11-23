@@ -26,7 +26,7 @@ export const SellFigureForm = () => {
       className="flex flex-col items-center gap-5 h-max mb-4 py-10 "
       onSubmit={onFormSubmit}
     >
-      <legend className=" text-2xl font-semibold">Details</legend>
+      <legend className=" text-2xl font-semibold text-text">Details</legend>
       <fieldset className={fieldStyle}>
         <input className="hidden" {...register("seller")} value={email} />
         <input
@@ -58,7 +58,7 @@ export const SellFigureForm = () => {
         />
       </fieldset>
 
-      <legend className=" text-2xl font-semibold">Dimensions</legend>
+      <legend className=" text-2xl font-semibold text-text">Dimensions</legend>
       <fieldset className={fieldStyle}>
         <input
           className={inputStyle}
@@ -86,7 +86,7 @@ export const SellFigureForm = () => {
         />
       </fieldset>
 
-      <legend className=" text-2xl font-semibold">Pictures</legend>
+      <legend className=" text-2xl font-semibold text-text">Pictures</legend>
       <fieldset className={fieldStyle}>
         <input
           className={inputStyle}

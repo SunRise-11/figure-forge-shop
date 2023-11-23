@@ -28,17 +28,17 @@ const DetailPage = ({ params }: Props) => {
     return (
       <>
         <Carousel />
-        <div className="w-full h-20 bg-purple-900 text-white text-4xl flex justify-center items-center">
+        <div className="w-full h-20 bg-primary text-text text-4xl flex justify-center items-center">
           {data.name}
         </div>
         <div className="flex flex-col sm:flex-row h-max mb-4 py-10">
           <div className="flex flex-col sm:items-start sm:justify-center py-4 gap-10 w-1/2">
-            <legend className="text-lg font-semibold">Details</legend>
+            <legend className="text-lg text-text font-semibold">Details</legend>
             <div className="w-full max-w-sm">
               <div className="md:flex md:items-center mb-6">
                 <div className="md:w-1/3">
                   <label
-                    className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+                    className="block  text-text font-bold md:text-right mb-1 md:mb-0 pr-4"
                     htmlFor="inline-origin"
                   >
                     Origin
@@ -46,7 +46,7 @@ const DetailPage = ({ params }: Props) => {
                 </div>
                 <div className="md:w-2/3">
                   <input
-                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-background leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                     id="inline-origin"
                     type="text"
                     value={data.origin.toString()}
@@ -57,7 +57,7 @@ const DetailPage = ({ params }: Props) => {
               <div className="md:flex md:items-center mb-6">
                 <div className="md:w-1/3">
                   <label
-                    className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+                    className="block  text-text font-bold md:text-right mb-1 md:mb-0 pr-4"
                     htmlFor="inline-brand"
                   >
                     Brand
@@ -65,7 +65,7 @@ const DetailPage = ({ params }: Props) => {
                 </div>
                 <div className="md:w-2/3">
                   <input
-                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-background leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                     id="inline-brand"
                     type="text"
                     value={data.brand.toString()}
@@ -76,7 +76,7 @@ const DetailPage = ({ params }: Props) => {
               <div className="md:flex md:items-center mb-6">
                 <div className="md:w-1/3">
                   <label
-                    className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+                    className="block  text-text font-bold md:text-right mb-1 md:mb-0 pr-4"
                     htmlFor="inline-price"
                   >
                     Price
@@ -84,7 +84,7 @@ const DetailPage = ({ params }: Props) => {
                 </div>
                 <div className="md:w-2/3">
                   <input
-                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-background leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                     id="inline-price"
                     type="text"
                     value={data.price.toString()}
@@ -95,12 +95,14 @@ const DetailPage = ({ params }: Props) => {
             </div>
           </div>
           <div className="flex flex-col sm:items-start sm:justify-center py-4 gap-10 w-1/2">
-            <legend className="text-lg font-semibold">Dimension</legend>
+            <legend className="text-lg text-text font-semibold">
+              Dimension
+            </legend>
             <div className="w-full max-w-sm">
               <div className="md:flex md:items-center mb-6">
                 <div className="md:w-1/3">
                   <label
-                    className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+                    className="block  text-text font-bold md:text-right mb-1 md:mb-0 pr-4"
                     htmlFor="inline-width"
                   >
                     Width
@@ -108,7 +110,7 @@ const DetailPage = ({ params }: Props) => {
                 </div>
                 <div className="md:w-2/3">
                   <input
-                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-background leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                     id="inline-width"
                     type="text"
                     value={data.width.toString()}
@@ -119,7 +121,7 @@ const DetailPage = ({ params }: Props) => {
               <div className="md:flex md:items-center mb-6">
                 <div className="md:w-1/3">
                   <label
-                    className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+                    className="block  text-text font-bold md:text-right mb-1 md:mb-0 pr-4"
                     htmlFor="inline-height"
                   >
                     Height
@@ -127,7 +129,7 @@ const DetailPage = ({ params }: Props) => {
                 </div>
                 <div className="md:w-2/3">
                   <input
-                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-background leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                     id="inline-height"
                     type="text"
                     value={data.height.toString()}
@@ -138,7 +140,7 @@ const DetailPage = ({ params }: Props) => {
               <div className="md:flex md:items-center mb-6">
                 <div className="md:w-1/3">
                   <label
-                    className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+                    className="block  text-text font-bold md:text-right mb-1 md:mb-0 pr-4"
                     htmlFor="inline-diameter"
                   >
                     Diameter
@@ -146,7 +148,7 @@ const DetailPage = ({ params }: Props) => {
                 </div>
                 <div className="md:w-2/3">
                   <input
-                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-background leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                     id="inline-diameter"
                     type="text"
                     readOnly
@@ -160,9 +162,11 @@ const DetailPage = ({ params }: Props) => {
         <div className="flex flex-col sm:flex-row h-max mb-4">
           <div className="flex flex-row flex-wrap -mx-3 mb-6 w-full">
             <div className="w-full px-3">
-              <legend className="text-lg font-semibold">Description</legend>
+              <legend className="text-lg text-text font-semibold">
+                Description
+              </legend>
               <textarea
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="appearance-none block w-full bg-gray-200 text-background border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-description"
                 placeholder="description"
                 readOnly
@@ -174,9 +178,11 @@ const DetailPage = ({ params }: Props) => {
         <div className="flex flex-col sm:flex-row h-max mb-4">
           <div className="flex flex-row flex-wrap -mx-3 mb-6 w-full">
             <div className="w-full px-3">
-              <legend className="text-lg font-semibold">Conditions</legend>
+              <legend className="text-lg text-text font-semibold">
+                Conditions
+              </legend>
               <textarea
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="appearance-none block w-full bg-gray-200 text-background border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-condition"
                 placeholder="..."
                 readOnly

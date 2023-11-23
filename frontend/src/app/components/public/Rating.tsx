@@ -4,7 +4,7 @@ const Rating = () => {
   return (
     <div className="flex flex-col sm:flex-row h-max mb-4 py-10 mx-auto items-center">
       <div className="flex flex-col items-center mb-6 sm:mb-0 sm:mr-6 w-full">
-        <legend className="text-lg font-semibold mb-2">Rating</legend>
+        <legend className="text-lg font-semibold text-text mb-2">Rating</legend>
         <div className="flex flex-row items-center">
           <svg
             className="w-6 h-6 ms-2 text-yellow-300"

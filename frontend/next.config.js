@@ -14,7 +14,7 @@ module.exports = {
       },
       {
         protocol: "https",
-        hostname: "www.resingrounds.com",
+        hostname: "m.media-amazon.com",
       },
       {
         protocol: "https",
