@@ -33,18 +33,21 @@ const Figures = ({ action, data }: Props) => {
       <table className="w-full text-sm text-left text-black mt-10">
         <thead className="border text-xs text-black uppercase bg-slate-300 dark:bg-slate-300 dark:text-black">
           <tr>
-            <th scope="col" className="border px-6 py-3">
+            <th scope="col" className="border px-6 py-3 w-4/5">
               Name
             </th>
-            <th scope="col" className="border px-6 py-3">
+            <th scope="col" className="border px-6 py-3 text-center">
               Action
             </th>
           </tr>
           {data.map((toy) => {
             return (
-              <tr key={toy.id.toString()}>
+              <tr
+                key={toy.id.toString()}
+                className="even:bg-white odd:bg-gray-100"
+              >
                 <td className="border px-6 py-4">{toy.name}</td>
-                <td className="border px-6 py-4">
+                <td className="border px-6 py-4 text-center">
                   {action == "uncheck" ? (
                     <Link
                       href={`/filteredfigures/${action}/review/${toy.id}`}
