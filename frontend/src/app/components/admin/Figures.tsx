@@ -1,5 +1,4 @@
 "use client";
-
 import React from "react";
 import { Toy } from "../public/Card";
 import { Card, Typography } from "@material-tailwind/react";
@@ -27,7 +26,7 @@ const Figures = ({ action, data }: Props) => {
     }
   }
   return (
-    <div className="w-3/4 absolute top-1 left-[19rem] h-screen flex items-center justify-center ">
+    <div className=" absolute top-20 right-0 h-screen w-full max-w-[calc(100vw-19rem)]">
       <Card className="absolute right-0 w-full max-w-[calc(100vw-19rem)] h-max p-4 shadow-xl shadow-blue-gray-900/5 border-solid border-2">
         <Typography variant="h5" color="blue-gray" className=" my-auto ">
           {action} Figures
