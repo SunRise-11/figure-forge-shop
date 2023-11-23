@@ -1,27 +1,9 @@
 "use client";
 import RatingAdmin from "@/app/components/admin/RatingAdmin";
+import { Toy } from "@/app/components/public/Card";
 import { FiguresContext } from "@/app/contexts/figures.context";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-
-const toy = {
-  id: 1,
-  name: "Ninja",
-  origin: "France",
-  brand: "marvel",
-  price: 300,
-  width: 200,
-  height: 700,
-  weight: 400,
-  length: 600,
-  description: "nice figure collection edition",
-  status: "unchecked",
-  pictures: [
-    "https://i.etsystatic.com/45624040/r/il/f51b82/5215193199/il_fullxfull.5215193199_3esv.jpg",
-    "https://majorspoilers.com/wp-content/uploads/2023/04/STAR-LORD-EPIC-HERO-SERIES-ACTION-FIGURE-1.jpg",
-    "https://www.collectiondx.com/gallery2/d/644457-3/IMG_0404.JPG?g2_GALLERYSID=2453f3be516252cc67f0d5545938bda4",
-  ],
-};
 
 const inputStyle =
     "bg-grey appearance-none border-2 border-secondary rounded  py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:border-primary";
@@ -32,10 +14,10 @@ const ReviewPage = ({params}:{ params: { id: string } }) => {
   const {toys} = useContext(FiguresContext);
   const rating = watch("rating");
 
+  const toy = toys.find(toy => toy.id === Number(params.id));
   const onSubmit = (data: any) => {
     const formData = {
       ...data,
-      pictures: toy.pictures,
     };
     console.log(formData);
   };
@@ -47,7 +29,7 @@ const ReviewPage = ({params}:{ params: { id: string } }) => {
   return (
     <div className="absolute top-20 left-80  overflow-y-auto py-5">
       <div className="flex h-auto w-auto">
-        {toy.pictures.map((picture,index) => (
+        {toy?.pictures.map((picture,index) => (
           <img src={picture} className="w-1/6" key={index}/>
         ))}
       </div>
@@ -65,7 +47,7 @@ const ReviewPage = ({params}:{ params: { id: string } }) => {
                 className={inputStyle}
                 {...register("name")}
                 placeholder="Name"
-                value={toy.name}
+                value={toy?.name}
               />
             </div>
 
@@ -75,7 +57,7 @@ const ReviewPage = ({params}:{ params: { id: string } }) => {
                 className={inputStyle}
                 {...register("origin")}
                 placeholder="Origin"
-                value={toy.origin}
+                value={toy?.origin}
               />
             </div>
 
@@ -85,7 +67,7 @@ const ReviewPage = ({params}:{ params: { id: string } }) => {
                 className={inputStyle}
                 {...register("brand")}
                 placeholder="Brand"
-                value={toy.brand}
+                value={toy?.brand}
               />
             </div>
 
@@ -97,7 +79,7 @@ const ReviewPage = ({params}:{ params: { id: string } }) => {
                 type="number"
                 step="0.01"
                 placeholder="Price (EUR)"
-                value={toy.price}
+                value={toy?.price}
               />
               <label>EUR</label>
             </div>
@@ -112,7 +94,7 @@ const ReviewPage = ({params}:{ params: { id: string } }) => {
                 {...register("width", { valueAsNumber: true })}
                 type="number"
                 placeholder="Width (cm)"
-                value={toy.width}
+                value={toy?.width}
               />
               <label>cm</label>
             </div>
@@ -123,7 +105,7 @@ const ReviewPage = ({params}:{ params: { id: string } }) => {
                 {...register("length", { valueAsNumber: true })}
                 type="number"
                 placeholder="Length (cm)"
-                value={toy.length}
+                value={toy?.length}
               />
               <label>cm</label>
             </div>
@@ -135,7 +117,7 @@ const ReviewPage = ({params}:{ params: { id: string } }) => {
                 {...register("height", { valueAsNumber: true })}
                 type="number"
                 placeholder="Height (cm)"
-                value={toy.height}
+                value={toy?.height}
               />
               <label>cm</label>
             </div>
@@ -146,7 +128,7 @@ const ReviewPage = ({params}:{ params: { id: string } }) => {
                 {...register("weight", { valueAsNumber: true })}
                 type="number"
                 placeholder="Weight (g)"
-                value={toy.weight}
+                value={toy?.weight}
               />
               <label>g</label>
             </div>
@@ -158,7 +140,7 @@ const ReviewPage = ({params}:{ params: { id: string } }) => {
               className={inputStyle}
               {...register("description")}
               placeholder="Description"
-              value={toy.description}
+              value={toy?.description}
             />
           </fieldset>
         </div>

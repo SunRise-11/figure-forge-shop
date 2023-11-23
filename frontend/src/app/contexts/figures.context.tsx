@@ -2,19 +2,20 @@
 import { ReactNode, createContext, useEffect, useState } from "react";
 
 type Toy = {
-  id: Number;
-  name: String;
-  origin: String;
-  brand: String;
+  id: number;
+  name: string;
+  origin: string;
+  brand: string;
   price: number;
-  width: Number;
-  diameter: Number;
-  height: Number;
+  width: number;
+  height: number;
   rating: number;
-  status: String;
-  description: String;
-  conditions: String;
-  pictures: String[];
+  status: string;
+  description: string;
+  conditions: string;
+  weight: number;
+  length: number;
+  pictures: string[];
 };
 
 type FiguresProviderProps = {
@@ -37,8 +38,9 @@ const toysArray: Toy[] = [
     brand: "Ferrari",
     price: 1200,
     width: 70,
-    diameter: 40,
     height: 170,
+    weight: 250,
+    length: 100,
     rating: 3,
     status: "uncheck",
     description: "beautiful",
@@ -54,8 +56,9 @@ const toysArray: Toy[] = [
     brand: "Ferrari",
     price: 1200,
     width: 70,
-    diameter: 40,
     height: 170,
+    length: 100,
+    weight: 230,
     rating: 3,
     status: "uncheck",
     description: "beautiful",
@@ -71,7 +74,8 @@ const toysArray: Toy[] = [
     brand: "Ferrari",
     price: 1200,
     width: 70,
-    diameter: 40,
+    weight: 240,
+    length: 100,
     height: 170,
     rating: 3,
     status: "uncheck",
@@ -88,7 +92,8 @@ const toysArray: Toy[] = [
     brand: "Ferrari",
     price: 1200,
     width: 70,
-    diameter: 40,
+    weight: 250,
+    length: 100,
     height: 170,
     rating: 3,
     status: "posted",
@@ -105,8 +110,9 @@ const toysArray: Toy[] = [
     brand: "Ferrari",
     price: 1200,
     width: 70,
-    diameter: 40,
+    weight: 239,
     height: 170,
+    length: 100,
     rating: 3,
     status: "posted",
     description: "beautiful",
@@ -122,8 +128,9 @@ const toysArray: Toy[] = [
     brand: "Ferrari",
     price: 1200,
     width: 70,
-    diameter: 40,
+    weight: 340,
     height: 170,
+    length: 100,
     rating: 3,
     status: "posted",
     description: "beautiful",
@@ -139,8 +146,9 @@ const toysArray: Toy[] = [
     brand: "Ferrari",
     price: 1200,
     width: 70,
-    diameter: 40,
+    length: 100,
     height: 170,
+    weight: 340,
     rating: 3,
     status: "posted",
     description: "beautiful",
@@ -156,7 +164,8 @@ const toysArray: Toy[] = [
     brand: "Ferrari",
     price: 1200,
     width: 70,
-    diameter: 40,
+    weight: 340,
+    length: 100,
     height: 170,
     rating: 3,
     status: "posted",
@@ -173,7 +182,8 @@ const toysArray: Toy[] = [
     brand: "Ferrari",
     price: 1200,
     width: 70,
-    diameter: 40,
+    weight: 340,
+    length: 100,
     height: 170,
     rating: 3,
     status: "posted",
@@ -190,7 +200,8 @@ const toysArray: Toy[] = [
     brand: "Ferrari",
     price: 1200,
     width: 70,
-    diameter: 40,
+    length: 100,
+    weight: 340,
     height: 170,
     rating: 3,
     status: "posted",
@@ -207,7 +218,8 @@ const toysArray: Toy[] = [
     brand: "Ferrari",
     price: 1200,
     width: 70,
-    diameter: 40,
+    weight: 340,
+    length: 100,
     height: 170,
     rating: 3,
     status: "sold",
@@ -224,7 +236,8 @@ const toysArray: Toy[] = [
     brand: "Ferrari",
     price: 1200,
     width: 70,
-    diameter: 40,
+    weight: 340,
+    length: 100,
     height: 170,
     rating: 3,
     status: "sold",
@@ -241,7 +254,8 @@ const toysArray: Toy[] = [
     brand: "Ferrari",
     price: 1200,
     width: 70,
-    diameter: 40,
+    weight: 340,
+    length: 100,
     height: 170,
     rating: 3,
     status: "sold",
@@ -258,9 +272,10 @@ const toysArray: Toy[] = [
     brand: "Ferrari",
     price: 1200,
     width: 70,
-    diameter: 40,
+    weight: 340,
     height: 170,
     rating: 3,
+    length: 100,
     status: "posted",
     description: "beautiful",
     conditions: "conditions",
@@ -275,7 +290,8 @@ const toysArray: Toy[] = [
     brand: "Ferrari",
     price: 1200,
     width: 70,
-    diameter: 40,
+    weight: 340,
+    length: 100,
     height: 170,
     rating: 3,
     status: "posted",
@@ -292,7 +308,8 @@ const toysArray: Toy[] = [
     brand: "Ferrari",
     price: 1200,
     width: 70,
-    diameter: 40,
+    weight: 340,
+    length: 100,
     height: 170,
     rating: 3,
     status: "posted",
@@ -309,7 +326,8 @@ const toysArray: Toy[] = [
     brand: "Ferrari",
     price: 1200,
     width: 70,
-    diameter: 40,
+    weight: 340,
+    length: 100,
     height: 170,
     rating: 3,
     status: "posted",
@@ -326,7 +344,8 @@ const toysArray: Toy[] = [
     brand: "Ferrari",
     price: 1200,
     width: 70,
-    diameter: 40,
+    length: 100,
+    weight: 340,
     height: 170,
     rating: 3,
     status: "posted",
@@ -343,7 +362,8 @@ const toysArray: Toy[] = [
     brand: "Ferrari",
     price: 1200,
     width: 70,
-    diameter: 40,
+    length: 100,
+    weight: 340,
     height: 170,
     rating: 3,
     status: "posted",
@@ -360,7 +380,8 @@ const toysArray: Toy[] = [
     brand: "Ferrari",
     price: 1200,
     width: 70,
-    diameter: 40,
+    length: 100,
+    weight: 340,
     height: 170,
     rating: 3,
     status: "posted",
@@ -377,7 +398,8 @@ const toysArray: Toy[] = [
     brand: "Ferrari",
     price: 1200,
     width: 70,
-    diameter: 40,
+    weight: 340,
+    length: 100,
     height: 170,
     rating: 3,
     status: "posted",
@@ -394,7 +416,8 @@ const toysArray: Toy[] = [
   //   brand: "Ferrari",
   //   price: 1200,
   //   width: 70,
-  //   diameter: 40,
+  //length:100,
+  //weight:340,
   //   height: 170,
   //   rating: 3,
   // status: "posted",
@@ -412,7 +435,8 @@ const toysArray: Toy[] = [
   //   brand: "Ferrari",
   //   price: 1200,
   //   width: 70,
-  //   diameter: 40,
+  //weight:340,
+  //length:100,
   //   height: 170,
   //   rating: 3,
   // status: "posted",
@@ -430,7 +454,8 @@ const toysArray: Toy[] = [
   //   brand: "Ferrari",
   //   price: 1200,
   //   width: 70,
-  //   diameter: 40,
+  //length:100,
+  //weight:340,
   //   height: 170,
   //   rating: 3,
   // status: "posted",
@@ -448,7 +473,8 @@ const toysArray: Toy[] = [
   //   brand: "Ferrari",
   //   price: 1200,
   //   width: 70,
-  //   diameter: 40,
+  //length:100,
+  //weight:340,
   //   height: 170,
   //   rating: 3,
   // status: "posted",
