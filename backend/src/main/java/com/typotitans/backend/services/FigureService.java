@@ -33,7 +33,7 @@ public class FigureService {
         var pictures = pictureBlobs.stream().map(picture -> Base64.getEncoder().encodeToString(
                 picture.getImage())).toList();
 
-        return new FigureDto(figure.getId(), figure.getName(), figure.getDescription(),
+        return new FigureDto(figure.getName(), figure.getDescription(),
                 figure.getBrand(),
                 figure.getPrice(), figure.getOrigin(), figure.getWidth(), figure.getHeight(),
                 figure.getLength(), figure.getWeight(), figure.getSeller());
