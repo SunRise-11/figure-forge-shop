@@ -1,19 +1,26 @@
-'use client';
-import { httpPostFigure } from '@/app/api/http/requests';
-import { Figure } from '@/types';
-import React from 'react';
-import { useForm } from 'react-hook-form';
+"use client";
+import { httpPostFigure } from "@/app/api/http/requests";
+import { Figure } from "@/types";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import React from "react";
+import { useForm } from "react-hook-form";
 
 export const SellFigureForm = () => {
   const { register, handleSubmit } = useForm<Figure>();
-
+  const { user } = useUser();
+  let email = user?.email;
+  if (email == null) {
+    email = "unverified seller";
+  }
   const onFormSubmit = handleSubmit((data) => {
+    console.log(data);
+
     httpPostFigure(data);
   });
 
   const inputStyle =
-    'bg-secondary appearance-none border-2 border-secondary rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:border-primary';
-  const fieldStyle = 'flex flex-col gap-5 h-max mb-4 sm:w-1/2' 
+    "bg-secondary appearance-none border-2 border-secondary rounded w-full py-2 px-4 text-text leading-tight focus:outline-none focus:border-primary";
+  const fieldStyle = "flex flex-col gap-5 h-max mb-4 sm:w-1/2";
   return (
     <form
       className="flex flex-col items-center gap-5 h-max mb-4 py-10 "
@@ -21,29 +28,30 @@ export const SellFigureForm = () => {
     >
       <legend>Details</legend>
       <fieldset className={fieldStyle}>
+        <input className="hidden" {...register("seller")} value={email} />
         <input
           className={inputStyle}
-          {...register('name')}
+          {...register("name")}
           placeholder="Name"
         />
         <input
           className={inputStyle}
-          {...register('origin')}
+          {...register("origin")}
           placeholder="Origin"
         />
         <input
           className={inputStyle}
-          {...register('brand')}
+          {...register("brand")}
           placeholder="Brand"
         />
-        <textarea 
+        <textarea
           className={inputStyle}
-          {...register('description')}
+          {...register("description")}
           placeholder="Description"
         />
         <input
           className={inputStyle}
-          {...register('price', { valueAsNumber: true })}
+          {...register("price", { valueAsNumber: true })}
           type="number"
           step="0.01"
           placeholder="Price (EUR)"
@@ -54,25 +62,25 @@ export const SellFigureForm = () => {
       <fieldset className={fieldStyle}>
         <input
           className={inputStyle}
-          {...register('width', { valueAsNumber: true })}
+          {...register("width", { valueAsNumber: true })}
           type="number"
           placeholder="Width (cm)"
         />
         <input
           className={inputStyle}
-          {...register('length', { valueAsNumber: true })}
+          {...register("length", { valueAsNumber: true })}
           type="number"
           placeholder="Length (cm)"
         />
         <input
           className={inputStyle}
-          {...register('height', { valueAsNumber: true })}
+          {...register("height", { valueAsNumber: true })}
           type="number"
           placeholder="Height (cm)"
         />
         <input
           className={inputStyle}
-          {...register('weight', { valueAsNumber: true })}
+          {...register("weight", { valueAsNumber: true })}
           type="number"
           placeholder="Weight (g)"
         />
@@ -80,12 +88,12 @@ export const SellFigureForm = () => {
 
       <legend>Pictures</legend>
       <fieldset className={fieldStyle}>
-      <input
-        className={inputStyle}
-        type="file"
-        {...register('pictures')}
-        multiple
-      />
+        <input
+          className={inputStyle}
+          type="file"
+          {...register("pictures")}
+          multiple
+        />
       </fieldset>
 
       <button type="submit">Submit</button>
