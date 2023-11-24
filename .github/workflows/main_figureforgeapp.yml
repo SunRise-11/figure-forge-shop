@@ -5,7 +5,7 @@ name: Build and deploy JAR app to Azure Web App - figureForgeApp
 
 on:
   push:
-  paths:
+    paths:
       - backend
     branches:
       - main
