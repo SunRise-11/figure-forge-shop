@@ -5,15 +5,13 @@ name: Build and deploy JAR app to Azure Web App - figureForgeApp
 
 on:
   push:
-    paths:
-      - backend
     branches:
       - main
   workflow_dispatch:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -22,7 +20,6 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: '17'
-
 
       - name: Build with Maven
         working-directory: ./backend
@@ -35,18 +32,18 @@ jobs:
           path: '${{ github.workspace }}/backend/target/*.jar'
 
   deploy:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     needs: build
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-    
+
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
           name: java-app
-      
+
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
