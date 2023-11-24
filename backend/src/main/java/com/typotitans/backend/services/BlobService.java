@@ -4,7 +4,6 @@ import com.azure.storage.blob.BlobClient;
 import com.azure.storage.blob.BlobContainerClient;
 import com.azure.storage.blob.BlobServiceClient;
 import com.azure.storage.blob.models.BlobItem;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,6 +19,10 @@ public class BlobService {
 
     @Value("figureimages")
     private String containerName;
+
+    public BlobService(BlobServiceClient blobServiceClient) {
+        this.blobServiceClient = blobServiceClient;
+    }
 
     public List<String> listBlobs() {
         List<String> blobNames = new ArrayList<>();
