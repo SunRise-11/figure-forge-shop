@@ -1,8 +1,7 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
 import Rating from "@/app/components/public/Rating";
-import { FiguresContext } from "@/app/contexts/figures.context";
-import { Toy } from "@/app/components/public/Card";
+import { FiguresContext, Toy } from "@/app/contexts/figures.context";
 import Carousel from "@/app/components/public/Carousel";
 
 type Props = {
@@ -143,7 +142,7 @@ const DetailPage = ({ params }: Props) => {
                     className="block  text-text font-bold md:text-right mb-1 md:mb-0 pr-4"
                     htmlFor="inline-diameter"
                   >
-                    Diameter
+                    Weight
                   </label>
                 </div>
                 <div className="md:w-2/3">
@@ -152,7 +151,7 @@ const DetailPage = ({ params }: Props) => {
                     id="inline-diameter"
                     type="text"
                     readOnly
-                    value={data.diameter.toString()}
+                    value={data.weight.toString()}
                   />
                 </div>
               </div>

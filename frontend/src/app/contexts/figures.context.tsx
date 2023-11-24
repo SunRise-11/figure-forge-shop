@@ -1,7 +1,7 @@
 "use client";
 import { ReactNode, createContext, useEffect, useState } from "react";
 
-type Toy = {
+export type Toy = {
   id: number;
   name: string;
   origin: string;

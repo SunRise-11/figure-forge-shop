@@ -1,6 +1,5 @@
 "use client";
 import RatingAdmin from "@/app/components/admin/RatingAdmin";
-import { Toy } from "@/app/components/public/Card";
 import { FiguresContext } from "@/app/contexts/figures.context";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";

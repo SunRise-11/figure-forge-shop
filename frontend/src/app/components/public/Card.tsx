@@ -1,21 +1,9 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { Toy } from "@/app/contexts/figures.context";
 
-export type Toy = {
-  id: Number;
-  name: String;
-  origin: String;
-  brand: String;
-  price: Number;
-  width: Number;
-  diameter: Number;
-  height: Number;
-  rating: number;
-  description: String;
-  conditions: String;
-  pictures: String[];
-};
+
 
 type Props = {
   toy: Toy;
