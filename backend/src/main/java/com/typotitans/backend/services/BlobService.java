@@ -16,7 +16,6 @@ import java.util.List;
 @Service
 public class BlobService {
 
-    @Autowired
     private BlobServiceClient blobServiceClient;
 
     @Value("figureimages")
