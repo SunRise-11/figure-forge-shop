@@ -3,6 +3,7 @@ import RatingAdmin from "@/app/components/admin/RatingAdmin";
 import { FiguresContext } from "@/app/contexts/figures.context";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
+//comment
 
 const inputStyle =
     "bg-grey appearance-none border-2 border-secondary rounded  py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:border-primary";
