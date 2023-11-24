@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
-import { Toy } from "../public/Card";
 import { Card, Typography } from "@material-tailwind/react";
 import Link from "next/link";
+import { Toy } from "@/app/contexts/figures.context";
 
 type Props = {
   action: String;
