@@ -5,17 +5,17 @@ const CarouselHomePage = () => {
   return (
     <Carousel className="rounded-xl z-10" autoplay>
       <img
-        src="wink-studio-luffy-nika-lightning-resin-statue003.jpg"
+        src="../wink-studio-luffy-nika-lightning-resin-statue003.jpg"
         alt="image 1"
         className="h-full w-full object-cover"
       />
       <img
-        src="wink-studio-luffy-nika-lightning-resin-statue003.jpg"
+        src="../wink-studio-luffy-nika-lightning-resin-statue003.jpg"
         alt="image 2"
         className="h-full w-full object-cover"
       />
       <img
-        src="wink-studio-luffy-nika-lightning-resin-statue003.jpg"
+        src="../wink-studio-luffy-nika-lightning-resin-statue003.jpg"
         alt="image 3"
         className="h-full w-full object-cover"
       />
