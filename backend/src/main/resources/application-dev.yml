@@ -1,0 +1,33 @@
+debug: true
+logging:
+  level:
+    org:
+      springframework:
+        boot:
+          autoconfigure: DEBUG
+spring:
+  cloud:
+    azure:
+      storage:
+        blob:
+          account-name: ${blob.name}
+          account-key: ${blob.key}
+          endpoint: https://${blob.name}.blob.core.windows.net
+  datasource:
+    url: jdbc:postgresql://figureforgepostgres.postgres.database.azure.com:5432/postgres
+    username: ${postgres.username}
+    password: ${postgres.password}
+  config:
+    import: optional:secret.yml
+  jpa:
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  sql:
+    init:
+      platform: postgresql
+      mode: always

@@ -1,0 +1,23 @@
+spring:
+  cloud:
+    azure:
+      storage:
+        blob:
+          account-name: ${BLOB_NAME}
+          account-key: ${BLOB_KEY}
+          endpoint: https://${BLOB_NAME}.blob.core.windows.net
+  datasource:
+    url: jdbc:postgresql://figureforgepostgres.postgres.database.azure.com:5432/postgres
+    username: ${PGSQL_USR}
+    password: ${PGSQL_PWD}
+  jpa:
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  sql:
+    init:
+      platform: postgresql
+      mode: always
