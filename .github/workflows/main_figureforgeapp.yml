@@ -5,6 +5,8 @@ name: Build and deploy JAR app to Azure Web App - figureForgeApp
 
 on:
   push:
+  paths:
+      - backend
     branches:
       - main
   workflow_dispatch:
@@ -21,14 +23,16 @@ jobs:
         with:
           java-version: '17'
 
+
       - name: Build with Maven
+        working-directory: ./backend
         run: mvn clean install
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: java-app
-          path: '${{ github.workspace }}/target/*.jar'
+          path: '${{ github.workspace }}/backend/target/*.jar'
 
   deploy:
     runs-on: windows-latest
