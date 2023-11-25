@@ -1,5 +1,6 @@
 "use client";
 import RatingAdmin from "@/app/components/admin/RatingAdmin";
+import CarouselDetail from "@/app/components/public/CarouselDetail";
 import { FiguresContext } from "@/app/contexts/figures.context";
 import { Card } from "@material-tailwind/react";
 import { useContext } from "react";
@@ -27,23 +28,22 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
   };
 
   return (
-    <Card className="absolute right-0 w-full max-w-[calc(100vw-19rem)] top-24 max-h-[calc(100vh-6rem)] p-4 shadow-xl shadow-blue-gray-900/5 border-solid border-2 ">
+    <Card className="absolute right-0 w-full max-w-[calc(100vw-19rem)] top-20 max-h-[calc(100vh-5rem)] p-4 shadow-xl shadow-blue-gray-900/5 border-solid border-2 ">
       <div className="overflow-y-auto">
-        <div className="flex h-auto w-auto">
-          {toy?.pictures.map((picture, index) => (
-            <img src={picture.pictureUrl} className="w-1/6" key={index} />
-          ))}
+        <div className=" h-96 w-96">
+          <CarouselDetail pictures={toy!.pictures} />
         </div>
         <form
-          className="flex gap-5 h-max w-max mb-4 py-10 justify-between"
+          className="flex gap-5 h-max w-max mb-4 py-10 justify-between relative"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <div className="flex flex-col">
-            <fieldset className={fieldStyle}>
+          <div className="flex flex-row gap-14 absolute left-[25rem] -top-96 ">
+            <fieldset className={`${fieldStyle} `}>
               <legend className="font-bold mb-2">Details</legend>
 
               <div className="flex  items-center gap-3">
                 <label>Name</label>
+                <br />
                 <input
                   className={inputStyle}
                   {...register("name")}
@@ -54,6 +54,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
 
               <div className="flex items-center gap-3">
                 <label>Origin</label>
+                <br />
                 <input
                   className={inputStyle}
                   {...register("origin")}
@@ -64,6 +65,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
 
               <div className="flex items-center gap-3">
                 <label>Brand</label>
+                <br />
                 <input
                   className={inputStyle}
                   {...register("brand")}
@@ -74,6 +76,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
 
               <div className="flex items-center gap-3">
                 <label>Price</label>
+                <br />
                 <input
                   className={inputStyle}
                   {...register("price", { valueAsNumber: true })}
@@ -86,7 +89,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
               </div>
             </fieldset>
 
-            <fieldset className={fieldStyle}>
+            <fieldset className={`${fieldStyle}`}>
               <legend className="font-bold mb-2">Dimensions</legend>
               <div className="flex items-center gap-3">
                 <label>Width</label>
@@ -135,17 +138,17 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
               </div>
             </fieldset>
 
-            <fieldset className={fieldStyle}>
+            <fieldset className={`${fieldStyle} absolute top-[17rem]`}>
               <legend className="font-bold mb-2">Description</legend>
               <textarea
-                className={inputStyle}
+                className={`${inputStyle} w-full`}
                 {...register("description")}
                 placeholder="Description"
                 value={toy?.description}
               />
             </fieldset>
           </div>
-          <div className="ml-40">
+          <div className="flex flex-row">
             <fieldset className={fieldStyle}>
               <legend className="font-bold mb-2">Conditions</legend>
               <textarea
