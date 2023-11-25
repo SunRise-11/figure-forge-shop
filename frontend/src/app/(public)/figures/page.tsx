@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import Banner from "@/app/components/public/Banner";
 import Catalog from "@/app/components/public/Catalog";
 

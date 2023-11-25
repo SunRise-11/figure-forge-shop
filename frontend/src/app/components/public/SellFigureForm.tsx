@@ -1,6 +1,6 @@
 "use client";
 import { httpPostFigure } from "@/app/api/http/requests";
-import { Figure } from "@/types";
+import { Figure } from "@/app/types/types";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import React from "react";
 import { useForm } from "react-hook-form";

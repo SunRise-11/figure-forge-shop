@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { FiguresContext } from "@/app/contexts/figures.context";
 import Figures from "@/app/components/admin/Figures";
 

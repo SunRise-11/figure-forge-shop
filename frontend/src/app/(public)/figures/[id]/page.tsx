@@ -1,8 +1,9 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
 import Rating from "@/app/components/public/Rating";
-import { FiguresContext, Toy } from "@/app/contexts/figures.context";
+import { FiguresContext } from "@/app/contexts/figures.context";
 import Carousel from "@/app/components/public/Carousel";
+import { Toy } from "@/app/types/types";
 
 type Props = {
   params: { id: Number };
@@ -14,10 +15,6 @@ const DetailPage = ({ params }: Props) => {
   const fetchbackend = async () => {
     const toy = toys.filter((toy) => toy.id == params.id);
     setData(toy[0]);
-    // const response = await axios.get(
-    //   "http://localhost:8080/public/figures" + params.id
-    // );
-    // setData(response.data);
   };
 
   useEffect(() => {

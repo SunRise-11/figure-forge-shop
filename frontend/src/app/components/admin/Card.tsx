@@ -1,12 +1,6 @@
 import React, { useContext } from "react";
 import { FiguresContext } from "@/app/contexts/figures.context";
-import {
-  Card,
-  CardBody,
-  CardFooter,
-  Typography,
-  Button,
-} from "@material-tailwind/react";
+import { Card, CardBody, Typography } from "@material-tailwind/react";
 
 type Props = {
   title: String;

@@ -2,7 +2,7 @@
 import React from "react";
 import { Card, Typography } from "@material-tailwind/react";
 import Link from "next/link";
-import { Toy } from "@/app/contexts/figures.context";
+import { Toy } from "@/app/types/types";
 
 type Props = {
   action: String;

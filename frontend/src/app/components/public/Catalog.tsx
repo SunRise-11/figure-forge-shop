@@ -5,7 +5,7 @@ import Pagination from "./Pagination";
 import { FiguresContext } from "@/app/contexts/figures.context";
 
 const Catalog = () => {
-  const {toys} = useContext(FiguresContext)
+  const { toys } = useContext(FiguresContext);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const elementsPerPage: number = 9;
 
@@ -20,14 +20,16 @@ const Catalog = () => {
   return (
     <>
       <div className="flex flex-wrap w-full">
-        {displayedToys.map((toy, index) => (
-          <div
-            className="flex w-full sm:w-1/1  md:w-1/3 lg:w-1/3 pw-10 py-4 justify-center items-center"
-            key={toy.id.toString()}
-          >
-            <Card toy={toy} />
-          </div>
-        ))}
+        {displayedToys
+          .filter((toy) => toy.status == "posted")
+          .map((toy, index) => (
+            <div
+              className="flex w-full sm:w-1/1  md:w-1/3 lg:w-1/3 pw-10 py-4 justify-center items-center"
+              key={toy.id.toString()}
+            >
+              <Card toy={toy} />
+            </div>
+          ))}
       </div>
       <Pagination
         totalElements={toys.length}

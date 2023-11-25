@@ -31,7 +31,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
       <div className="overflow-y-auto">
         <div className="flex h-auto w-auto">
           {toy?.pictures.map((picture, index) => (
-            <img src={picture} className="w-1/6" key={index} />
+            <img src={picture.pictureUrl} className="w-1/6" key={index} />
           ))}
         </div>
         <form
