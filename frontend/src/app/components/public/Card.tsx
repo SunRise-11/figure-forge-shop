@@ -1,9 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Toy } from "@/app/contexts/figures.context";
-
-
+import { Toy } from "@/app/types/types";
 
 type Props = {
   toy: Toy;
@@ -23,7 +21,11 @@ const Card = ({ toy }: Props) => {
       <div className="w-full h-[300px] border-white flex item-center justify-center overflow-hidden rounded-t-lg">
         <Image
           className="h-full"
-          src={toy.pictures[0].toString()}
+          src={
+            toy.pictures[0].pictureUrl == undefined
+              ? ""
+              : toy.pictures[0].pictureUrl
+          }
           alt="some Pic"
           width={300}
           height={500}

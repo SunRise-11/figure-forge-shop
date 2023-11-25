@@ -1,3 +1,26 @@
+export type Picture = {
+  id: string;
+  fileType: string;
+  pictureUrl: string;
+};
+
+export type Toy = {
+  id: number;
+  name: string;
+  origin: string;
+  brand: string;
+  price: number;
+  width: number;
+  height: number;
+  rating: number;
+  status: string;
+  description: string;
+  conditions: string;
+  weight: number;
+  length: number;
+  pictures: Picture[];
+};
+
 export type Seller = {
   name: string;
   email: string;

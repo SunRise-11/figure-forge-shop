@@ -24,6 +24,14 @@ module.exports = {
         protocol: "https",
         hostname: "onepiecetreasuregk.net",
       },
+      {
+        protocol: "https",
+        hostname: "figureforgeapp.azurewebsites.net",
+      },
+      {
+        protocol: "https",
+        hostname: "figurestorage.blob.core.windows.net",
+      },
     ],
     domains: ["i.etsystatic.com"],
   },
