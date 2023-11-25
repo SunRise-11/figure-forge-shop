@@ -2,8 +2,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import Rating from "@/app/components/public/Rating";
 import { FiguresContext } from "@/app/contexts/figures.context";
-import Carousel from "@/app/components/public/Carousel";
 import { Toy } from "@/app/types/types";
+import CarouselDetail from "@/app/components/public/CarouselDetail";
 
 type Props = {
   params: { id: Number };
@@ -23,7 +23,7 @@ const DetailPage = ({ params }: Props) => {
   if (data) {
     return (
       <>
-        <Carousel />
+        <CarouselDetail pictures={data.pictures} />
         <div className="w-full h-20 bg-primary text-text text-4xl flex justify-center items-center">
           {data.name}
         </div>
