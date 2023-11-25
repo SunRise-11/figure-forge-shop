@@ -1,10 +1,13 @@
 "use client";
+import { useShoppingCart } from "@/app/contexts/cartContext";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import { ShoppingBagIcon, ShoppingCartIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 export const Navbar = () => {
+  const { openCart, cartQuantity } = useShoppingCart();
   const [active, setActive] = useState(false);
   const { user } = useUser();
   const pathname = usePathname();
@@ -110,6 +113,23 @@ export const Navbar = () => {
           ) : (
             <div className="hidden"></div>
           )}
+          <button className="h-8 my-auto relative mr-4" onClick={openCart}>
+            <ShoppingBagIcon className="h-8 text-text" />
+            <div
+              className="rounded-full bg-red-600 d-flex justify-content-center align-items-center"
+              style={{
+                color: "white",
+                width: "1.5rem",
+                height: "1.5rem",
+                position: "absolute",
+                bottom: 0,
+                right: 0,
+                transform: "translate(50%, -55%)",
+              }}
+            >
+              {cartQuantity}
+            </div>
+          </button>
           {user ? (
             <Link href="/api/auth/logout" onClick={handleClick}>
               <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text bg-primary font-bold text-center items-center justify-center transition ease-in-out delay-350 hover:text-accent hover:transition-all">

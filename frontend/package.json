@@ -10,11 +10,14 @@
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^3.3.0",
+    "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
     "@material-tailwind/react": "^2.1.4",
     "axios": "^1.6.2",
+    "bootstrap": "^5.3.2",
     "next": "14.0.2",
     "react": "^18",
+    "react-bootstrap": "^2.9.1",
     "react-dom": "^18",
     "react-hook-form": "^7.48.2",
     "react-rating-star-with-type": "^1.2.1"

@@ -47,7 +47,7 @@ const toysArray: Toy[] = [
   },
   {
     id: 2,
-    name: "Ninja",
+    name: "Samurai",
     origin: "UK",
     brand: "Ferrari",
     price: 1200,
@@ -76,7 +76,7 @@ const toysArray: Toy[] = [
   },
   {
     id: 3,
-    name: "Ninja",
+    name: "Samurai",
     origin: "UK",
     brand: "Ferrari",
     price: 1200,
@@ -105,7 +105,7 @@ const toysArray: Toy[] = [
   },
   {
     id: 4,
-    name: "Ninja",
+    name: "Sniper",
     origin: "UK",
     brand: "Ferrari",
     price: 1200,
