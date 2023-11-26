@@ -43,7 +43,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
   };
 
   const sendToDiscord = async () => {
-    console.log("figure id is : " + figure?.id);
+    console.log("figure id is : " + params.id);
     const discordUrl =
       "https://discord.com/api/webhooks/1178368931262631946/LQmN55RY6c6cGiXolEGkhh4lmBtUBEEuPJ19eXQxpNYZN_mGEzywFUZPfJf1fwJK_JBm";
 
@@ -64,7 +64,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
             figure?.price +
             "\n " +
             "Url: https://figure-forge-shop.vercel.app/figures/" +
-            figure?.id +
+            params.id +
             "\n ",
         },
       ],
