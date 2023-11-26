@@ -1,13 +1,11 @@
 import React from "react";
 import Banner from "../../components/public/Banner";
+import AboutImage from "../../../../public/about-image.webp";
 
 const AboutPage = () => {
   return (
     <div className="flex min-h-screen flex-col items-center justify-between ">
-      <Banner
-        name="ABOUT US"
-        imageSource="https://onepiecetreasuregk.net/cdn/shop/collections/6bb4c691b68569b75fa51528eabbd39_2260x.jpg?v=1660340062"
-      />
+      <Banner name="ABOUT US" imageSource={AboutImage.src} />
       <div className="my-10">
         <p className="text-text">
           At Figure Forge, our story is a tapestry woven with threads of passion

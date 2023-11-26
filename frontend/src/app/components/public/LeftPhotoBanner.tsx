@@ -1,13 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
+import AboutImage from "../../../../public/hero-about-image.png";
 
 const LeftPhotoBanner = () => {
   return (
     <div className="bg-accent flex flex-col sm:flex-row justify-between items-center my-10 mt-20">
       <Image
         className=" brightness-75"
-        src="https://tsumeart-1d733.kxcdn.com/web/image/167936-9f6cb5f6/naruto_montage_intro%20%281%29.png"
+        src={AboutImage.src}
         width={400}
         height={400}
         alt="Hero Image"

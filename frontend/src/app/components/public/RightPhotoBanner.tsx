@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
+import SellingImage from "../../../../public/hero-selling-image.jpg";
 
 const RightPhotoBanner = () => {
   return (
@@ -24,7 +25,7 @@ const RightPhotoBanner = () => {
       </div>
       <Image
         className=" brightness-75"
-        src="https://m.media-amazon.com/images/I/711qNxSRLkL._AC_UF1000,1000_QL80_.jpg"
+        src={SellingImage.src}
         width={300}
         height={300}
         alt="Hero Image"
