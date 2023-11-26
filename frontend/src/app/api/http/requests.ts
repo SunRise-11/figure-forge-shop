@@ -26,6 +26,24 @@ export const httpPostFigure = async (figure: Figure) => {
   });
 };
 
+export const httpPutFigure = async (figure: Figure) => {
+  const { pictures, ...figureDetails } = figure;
+  const dto: FigureDto = { ...figureDetails };
+  const formData = new FormData();
+  formData.append("figureDetails", JSON.stringify(dto));
+
+  Object.values(figure.pictures).forEach((picture) =>
+    formData.append("pictures", picture)
+  );
+
+  console.log(formData);
+
+  return await fetch(ADMIN_URI, {
+    method: "PUT",
+    body: formData,
+  });
+};
+
 export const httpDeleteFigure = async (id: Number) => {
   return await fetch(`${PUBLIC_URI}/${id}`, {
     method: "DELETE",

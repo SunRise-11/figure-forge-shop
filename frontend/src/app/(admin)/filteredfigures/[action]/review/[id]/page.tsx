@@ -1,9 +1,11 @@
 "use client";
+import { httpPutFigure } from "@/app/api/http/requests";
 import RatingAdmin from "@/app/components/admin/RatingAdmin";
 import CarouselDetail from "@/app/components/public/CarouselDetail";
 import { FiguresContext } from "@/app/contexts/figures.context";
+import { Figure } from "@/app/types/types";
 import { Card } from "@material-tailwind/react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 
 const inputStyle =
@@ -13,6 +15,8 @@ const fieldStyle = "flex flex-col gap-5 h-max mb-4 sm:w-1/2";
 const ReviewPage = ({ params }: { params: { id: string } }) => {
   const { register, handleSubmit, watch, setValue } = useForm();
   const { toys } = useContext(FiguresContext);
+  const [figure, setFigure] = useState<Figure>();
+
   const rating = watch("rating");
 
   const toy = toys.find((toy) => toy.id === Number(params.id));
@@ -21,6 +25,62 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
       ...data,
     };
     console.log(formData);
+
+    httpPutFigure(formData)
+      .then((response) => {
+        if (response.ok) {
+          console.log("responde ok.");
+          return response.json();
+        } else {
+          throw new Error(`Failed to add report. Status: ${response.status}`);
+        }
+      })
+      .then((data) => {
+        console.log("Data checked.");
+        setFigure(data);
+        sendToDiscord();
+      });
+  };
+
+  const sendToDiscord = async () => {
+    console.log("figure id is : " + figure?.id);
+    const discordUrl =
+      "https://discord.com/api/webhooks/1178368931262631946/LQmN55RY6c6cGiXolEGkhh4lmBtUBEEuPJ19eXQxpNYZN_mGEzywFUZPfJf1fwJK_JBm";
+
+    const reportData = {
+      tts: false,
+      color: "white",
+      embeds: [
+        {
+          title: "New product available",
+          description:
+            "Name: " +
+            figure?.name +
+            "\n " +
+            "Description : " +
+            figure?.description +
+            "\n " +
+            "Price : " +
+            figure?.price +
+            "\n " +
+            "Url: https://figure-forge-shop.vercel.app/figures/" +
+            figure?.id +
+            "\n ",
+        },
+      ],
+    };
+    const requestOptions: RequestInit = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(reportData),
+    };
+    await fetch(discordUrl, requestOptions)
+      .then((response) => response)
+      .catch((error) => {
+        // Handle any errors that occur during the request
+      });
   };
 
   const handleRatingChange = (nextValue: number) => {

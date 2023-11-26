@@ -8,8 +8,6 @@ import { useForm } from "react-hook-form";
 export const SellFigureForm = () => {
   const { register, handleSubmit } = useForm<Figure>();
   const { user } = useUser();
-  const [figure, setFigure] = useState<Figure>();
-
 
   let email = user?.email;
   if (email == null) {
@@ -17,52 +15,8 @@ export const SellFigureForm = () => {
   }
   const onFormSubmit = handleSubmit((data) => {
     console.log(data);
-
-     httpPostFigure(data)
-     .then(response=>{
-      if (response.ok) {
-        console.log("responde ok.");
-        return response.json();
-      } else {
-        throw new Error(`Failed to add report. Status: ${response.status}`);
-      }
-     })
-     .then((data)=>{
-      console.log("Data checked.");
-      setFigure(data);
-      sendToDiscord();
-    });
+    httpPostFigure(data);
   });
-
-  const sendToDiscord = async()=>{
-    console.log("figure id is : " + figure?.id);
-    const discordUrl="https://discord.com/api/webhooks/1178368931262631946/LQmN55RY6c6cGiXolEGkhh4lmBtUBEEuPJ19eXQxpNYZN_mGEzywFUZPfJf1fwJK_JBm"
-     
-    const reportData = {
-        "tts":false,
-        "color":"white",
-        "embeds":[{
-        "title":"New product available",
-        "description":
-            "Name: "+figure?.name +"\n " +
-            "Description : "+figure?.description+"\n " +
-            "Price : "+figure?.price+"\n " +
-            "Url: https://figure-forge-shop.vercel.app/figures/"+ figure?.id+"\n " 
-        }]
-    }; 
-    const requestOptions: RequestInit = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(reportData),
-      };
-     await fetch(discordUrl, requestOptions)
-      .then((response) => response) 
-      .catch((error) => {
-        // Handle any errors that occur during the request
-    });
-}
 
   const inputStyle =
     "bg-secondary appearance-none border-2 border-secondary rounded w-full py-2 px-4 text-text leading-tight focus:outline-none focus:border-primary";
