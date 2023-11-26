@@ -27,6 +27,7 @@ export type Seller = {
 };
 
 export type Figure = {
+  id:string;
   name: string;
   origin: string;
   brand: string;
