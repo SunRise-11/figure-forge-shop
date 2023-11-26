@@ -55,3 +55,8 @@ export type FigureDto = {
   rating: number;
   seller: Seller;
 };
+
+export type CartItem = {
+  id: number;
+  quantity: number;
+};

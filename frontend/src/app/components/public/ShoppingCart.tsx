@@ -3,6 +3,7 @@ import { Fragment, useContext } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import CartItem from "./CartItem";
 import { FiguresContext } from "@/app/contexts/figures.context";
+import axios from "axios";
 
 type ShoppingCartProps = {
   isOpen: boolean;
@@ -17,6 +18,33 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
     currency: "EUR",
     minimumFractionDigits: 0,
   });
+
+  const handlePayment = async (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    var cartData = [];
+    for (var i = 0; i < cartItems.length; i++) {
+      cartData.push({
+        name: toys.find((toy) => toy.id === cartItems[i].id)?.name,
+        price: toys.find((toy) => toy.id === cartItems[i].id)?.price,
+        image: toys.find((toy) => toy.id === cartItems[i].id)?.pictures[0]
+          .pictureUrl,
+      });
+    }
+    const { data } = await axios.post(
+      "/api/checkout",
+      {
+        item: cartData,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    console.log(data);
+
+    window.location.assign(data);
+  };
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
@@ -73,9 +101,9 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
                   <button
                     type="button"
                     className="  inline-flex justify-center rounded-md border border-transparent bg-primary text-text px-4 py-2 text-sm font-medium hover:text-secondary focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                    onClick={closeCart}
+                    onClick={handlePayment}
                   >
-                    Continue to payment
+                    Checkout
                   </button>
                 </div>
               </Dialog.Panel>

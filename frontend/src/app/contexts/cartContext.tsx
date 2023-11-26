@@ -1,14 +1,10 @@
 "use client";
 import { ReactNode, createContext, useContext, useState } from "react";
 import { ShoppingCart } from "../components/public/ShoppingCart";
+import { CartItem } from "../types/types";
 
 type CartProviderProps = {
   children: ReactNode;
-};
-
-type CartItem = {
-  id: number;
-  quantity: number;
 };
 
 type CartContext = {

@@ -19,9 +19,6 @@ const CartItem = ({ id, quantity }: CartItemProps) => {
   });
 
   const item = toys.find((toy) => toy.id === id);
-  //   console.log(toys);
-
-  console.log(item);
 
   if (item == null) return null;
 
