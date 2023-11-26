@@ -21,21 +21,8 @@ export async function POST(req) {
   }
   const session = await stripe.checkout.sessions.create({
     line_items: lineItem,
-    // [
-    //   {
-    //     price_data: {
-    //       currency: "eur",
-    //       product_data: {
-    //         name: items[0].name,
-    //         images: [items[0].image],
-    //       },
-    //       unit_amount: items[0].price + "00",
-    //     },
-    //     quantity: 1,
-    //   },
-    // ],
     mode: "payment",
-    success_url: "http://localhost:3000",
+    success_url: "http://localhost:3000/order/success",
     cancel_url: "http://localhost:3000",
   });
 
