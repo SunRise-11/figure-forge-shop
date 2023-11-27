@@ -27,8 +27,7 @@ const Catalog = () => {
 
   return (
     <>
-      <div className="flex flex-wrap w-full">
-        <div className="relative">
+     <div className="relative mt-5">
           <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
             <svg
               className="w-4 h-4 text-gray-500 dark:text-gray-400"
@@ -54,6 +53,8 @@ const Catalog = () => {
             required
           />
         </div> 
+      <div className="flex flex-wrap w-full">
+       
         {displayedToys.map((toy, index) => (
           <div
             className="flex w-full sm:w-1/1  md:w-1/3 lg:w-1/3 pw-10 py-4 justify-center items-center"
