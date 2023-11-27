@@ -16,7 +16,8 @@ export const SellFigureForm = () => {
 
   const onFormSubmit = handleSubmit((data) => {
     const { pictures, ...figureDetails } = data;
-    httpPostFigure(figureDetails);
+    const figure: FigureDto = {...figureDetails, pictures: savedPictures}
+    httpPostFigure(figure);
   });
 
   const [savedPictures, setSavedPictures] = useState<Picture[]>([]);
