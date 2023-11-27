@@ -16,7 +16,11 @@ module.exports = {
         protocol: "https",
         hostname: "onepiecetreasuregk.net",
       },
+      {
+        protocol: "https",
+        hostname: "tsumeart-1d733.kxcdn.com",
+      },
     ],
-    domains: ["i.etsystatic.com","onepiecetreasuregk.net"],
+    domains: ["i.etsystatic.com", "onepiecetreasuregk.net"],
   },
 };
