@@ -32,7 +32,7 @@ const Catalog = () => {
           ))}
       </div>
       <Pagination
-        totalElements={toys.length}
+        totalElements={toys.filter((toy) => toy.status == "posted").length}
         elementsPerPage={elementsPerPage}
         currentPage={currentPage}
         onPageChange={handlePageChange}

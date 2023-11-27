@@ -29,7 +29,7 @@ const Card = ({ toy }: Props) => {
           <Image
             className="h-full"
             src={
-              toy.pictures[0].pictureUrl == undefined
+              toy.pictures[0].pictureUrl === undefined
                 ? ""
                 : toy.pictures[0].pictureUrl
             }

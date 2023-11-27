@@ -60,7 +60,7 @@ export const SellFigureForm = () => {
   const fieldStyle = 'flex flex-col gap-5 h-max mb-4 w-full px-4 sm:w-1/2';
   return (
     <form
-      className="flex flex-col items-center gap-5 h-max mb-4 py-10 "
+      className="flex flex-col items-center gap-5 h-max mb-4 py-10 pt-20"
       onSubmit={onFormSubmit}
     >
       <legend className=" text-2xl font-semibold text-text">Details</legend>
