@@ -62,5 +62,4 @@ export type Picture = {
   id: string;
   fileType: string;
   pictureUrl: string;
-  previewUrl: string;
-}
+};

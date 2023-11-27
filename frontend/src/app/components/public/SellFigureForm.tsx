@@ -5,6 +5,7 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { redirect } from "next/navigation";
 
 export const SellFigureForm = () => {
   const { register, handleSubmit, watch } = useForm<Figure>();
@@ -19,6 +20,7 @@ export const SellFigureForm = () => {
     const { pictures, ...figureDetails } = data;
     const figure: FigureDto = { ...figureDetails, pictures: savedPictures };
     httpPostFigure(figure);
+    redirect("/figures");
   });
 
   const [savedPictures, setSavedPictures] = useState<Picture[]>([]);
@@ -27,7 +29,6 @@ export const SellFigureForm = () => {
   const pictures: File[] = watch("pictures");
 
   useEffect(() => {
-    console.log(pictures);
     handlePictureChange(pictures);
   }, [pictures]);
 
