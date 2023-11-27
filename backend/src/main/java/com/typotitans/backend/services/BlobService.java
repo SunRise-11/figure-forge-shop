@@ -8,7 +8,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,4 +57,17 @@ public class BlobService {
                 containerName);
         containerClient.getBlobClient(blobName).delete();
     }
+
+    public String uploadBlobFromUrl(String blobName, String imageUrl) throws IOException {
+        URL url = new URL(imageUrl);
+        try (InputStream inputStream = url.openStream()) {
+            byte[] imageData = inputStream.readAllBytes(); // Read all bytes from the stream
+            BlobContainerClient containerClient = blobServiceClient.getBlobContainerClient(containerName);
+            BlobClient blobClient = containerClient.getBlobClient(blobName);
+            blobClient.upload(new ByteArrayInputStream(imageData), imageData.length, true);
+            return blobClient.getBlobUrl();
+        }
+    }
+
+
 }
