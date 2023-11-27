@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Toy } from "@/app/types/types";
 import { button } from "@material-tailwind/react";
 import { useShoppingCart } from "@/app/contexts/cartContext";
+import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 
 type Props = {
   toy: Toy;
@@ -39,7 +40,7 @@ const Card = ({ toy }: Props) => {
           />
         </div>
         <div className="px-4 py-2 my-0">
-          <h3>{toy.name}</h3>
+          <h3 className="  truncate w-4/6 ">{toy.name}</h3>
           <h3>{formatter.format(toy.price.valueOf())}</h3>
         </div>
       </Link>
@@ -49,7 +50,7 @@ const Card = ({ toy }: Props) => {
             className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text bg-primary font-bold text-center items-center justify-center transition ease-in-out delay-350 hover:text-accent hover:transition-all"
             onClick={() => increaseCartQuantity(toy.id)}
           >
-            + Add To Cart
+            <ShoppingCartIcon className="h-8 text-text" />
           </button>
         ) : (
           <button
