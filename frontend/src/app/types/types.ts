@@ -1,5 +1,5 @@
 export type Toy = {
-  id: number;
+  id: string;
   name: string;
   origin: string;
   brand: string;
@@ -54,7 +54,7 @@ export type FigureDto = {
 };
 
 export type CartItem = {
-  id: number;
+  id: string;
   quantity: number;
 };
 

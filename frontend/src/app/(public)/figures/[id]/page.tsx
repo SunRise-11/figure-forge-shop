@@ -6,7 +6,7 @@ import { Toy } from "@/app/types/types";
 import CarouselDetail from "@/app/components/public/CarouselDetail";
 
 type Props = {
-  params: { id: Number };
+  params: { id: string };
 };
 
 const DetailPage = ({ params }: Props) => {

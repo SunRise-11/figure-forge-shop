@@ -20,7 +20,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
 
   const rating = watch("rating");
 
-  const toy = toys.find((toy) => toy.id === Number(params.id));
+  const toy = toys.find((toy) => toy.id === params.id);
   const onSubmit = (data: any) => {
     const formData = {
       ...data,
@@ -250,10 +250,10 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
                 Delete
               </button>
               <Link href={"/filteredfigures/uncheck"}>
-              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                Cancel
-              </button>
-              </Link> 
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                  Cancel
+                </button>
+              </Link>
             </div>
           </div>
         </form>
