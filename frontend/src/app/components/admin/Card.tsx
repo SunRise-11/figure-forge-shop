@@ -26,7 +26,7 @@ const CardComponent = ({ title }: Props) => {
             ? formatter.format(soldToys.reduce((s, a) => s + a.price, 0))
             : title == "Posted"
             ? toys.filter((toy) => toy.status == "posted").length
-            : toys.filter((toy) => toy.status == "uncheck").length}
+            : toys.filter((toy) => toy.status == "unchecked").length}
         </Typography>
       </CardBody>
     </Card>
