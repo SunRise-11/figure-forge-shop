@@ -6,10 +6,22 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { redirect } from "next/navigation";
+import {
+  Button,
+  Dialog,
+  DialogHeader,
+  DialogBody,
+  DialogFooter,
+} from "@material-tailwind/react";
 
 export const SellFigureForm = () => {
   const { register, handleSubmit, watch } = useForm<Figure>();
   const { user } = useUser();
+  const [open, setOpen] = React.useState(false);
+  const [savedPictures, setSavedPictures] = useState<Picture[]>([]);
+  const [previewPictures, setPreviewPictures] = useState<string[]>([]);
+
+  const handleOpen = () => setOpen(!open);
 
   let email = user?.email;
   if (email == null) {
@@ -23,14 +35,7 @@ export const SellFigureForm = () => {
     redirect("/figures");
   });
 
-  const [savedPictures, setSavedPictures] = useState<Picture[]>([]);
-  const [previewPictures, setPreviewPictures] = useState<string[]>([]);
-
   const pictures: File[] = watch("pictures");
-
-  useEffect(() => {
-    handlePictureChange(pictures);
-  }, [pictures]);
 
   const handlePictureChange = async (pictures: File[]) => {
     if (pictures != undefined && pictures.length > 0) {
@@ -56,6 +61,10 @@ export const SellFigureForm = () => {
       });
     }
   };
+
+  useEffect(() => {
+    handlePictureChange(pictures);
+  }, [pictures]);
 
   const inputStyle =
     "bg-secondary appearance-none border-2 border-secondary rounded w-full py-2 px-4 text-text leading-tight focus:outline-none focus:border-primary";
@@ -155,6 +164,28 @@ export const SellFigureForm = () => {
       >
         Submit
       </button>
+      <Dialog open={open} handler={handleOpen}>
+        <DialogHeader>Its a simple dialog.</DialogHeader>
+        <DialogBody>
+          The key to more success is to have a lot of pillows. Put it this way,
+          it took me twenty five years to get these plants, twenty five years of
+          blood sweat and tears, and I&apos;m never giving up, I&apos;m just
+          getting started. I&apos;m up to something. Fan luv.
+        </DialogBody>
+        <DialogFooter>
+          <Button
+            variant="text"
+            color="red"
+            onClick={handleOpen}
+            className="mr-1"
+          >
+            <span>Cancel</span>
+          </Button>
+          <Button variant="gradient" color="green" onClick={handleOpen}>
+            <span>Confirm</span>
+          </Button>
+        </DialogFooter>
+      </Dialog>
     </form>
   );
 };
