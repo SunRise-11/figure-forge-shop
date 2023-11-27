@@ -6,37 +6,62 @@ import { FiguresContext } from "@/app/contexts/figures.context";
 import { Toy } from "@/app/types/types";
 
 const Catalog = () => {
-  const {toys}  = useContext(FiguresContext); 
+  const { toys } = useContext(FiguresContext);
   const [searchFigure, setSearchFigure] = useState("");
-  const [filteredResults, setFilteredResult] =  useState<Toy[]>([]);; 
+  const [filteredResults, setFilteredResult] = useState<Toy[]>([]);
+  const [sortBy, setSortBy] = useState<string>("rating");
+  const [sortOrder, setSortOrder] = useState<string>("desc");
   const [currentPage, setCurrentPage] = useState<number>(1);
   const elementsPerPage: number = 9;
 
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
   };
-  
-  useEffect(() => { 
-    const filterAndPaginate = () => {
+
+  useEffect(() => {
+    const filterSortAndPaginate = () => {
       const startIndex = (currentPage - 1) * elementsPerPage;
       const endIndex = startIndex + elementsPerPage;
 
+      //Filtering
       const filteredToys = toys.filter(
         (item) =>
           item.name.toLowerCase().includes(searchFigure.toLowerCase()) ||
           item.description.toLowerCase().includes(searchFigure.toLowerCase())
       );
+
+      // Sorting
+      const sortedToys = filteredToys.sort((a, b) => {
+        if (sortBy === "rating") {
+          return sortOrder === "asc"
+            ? a.rating - b.rating
+            : b.rating - a.rating;
+        } else if (sortBy === "price") {
+          return sortOrder === "asc" ? a.price - b.price : b.price - a.price;
+        }
+        return 0; // Default case, no sorting
+      });
+
+      // Pagination
       const paginatedToys = filteredToys.slice(startIndex, endIndex);
 
       setFilteredResult(paginatedToys);
     };
-    filterAndPaginate();
-     
-  }, [toys, searchFigure, currentPage]);
- 
+
+    filterSortAndPaginate();
+  }, [toys, searchFigure, currentPage, sortBy, sortOrder]);
+
   const handleFilterChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchFigure(event.target.value);
-    setCurrentPage(1);  
+    setCurrentPage(1);
+  };
+
+  const handleSortChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    setSortBy(event.target.value);
+  };
+
+  const handleOrderChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    setSortOrder(event.target.value);
   };
 
   return (
@@ -66,6 +91,19 @@ const Catalog = () => {
           placeholder="Search Figures ..."
           required
         />
+
+        <label htmlFor="sort">Sort By:</label>
+        <select id="sort" onChange={handleSortChange} value={sortBy}>
+          <option value="rating">Rating</option>
+          <option value="price">Price</option>
+        </select>
+
+        <label htmlFor="order">Sort Order:</label>
+        <select id="order" onChange={handleOrderChange} value={sortOrder}>
+          <option value="asc">Ascending</option>
+          <option value="desc">Descending</option>
+        </select>
+        
       </div>
       <div className="flex flex-wrap w-full">
         {filteredResults.length > 0 &&
