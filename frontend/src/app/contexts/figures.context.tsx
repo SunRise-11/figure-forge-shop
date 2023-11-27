@@ -36,12 +36,14 @@ export const FiguresContext = createContext<FiguresContextType>({
 //         fileType: "image/webp",
 //         pictureUrl:
 //           "https://onepiecetreasuregk.net/cdn/shop/collections/6bb4c691b68569b75fa51528eabbd39_2260x.jpg?v=1660340062",
+//         previewUrl: ""
 //       },
 //       {
 //         id: "4bc380d7-4423-404c-89d9-7cc262d64d70",
 //         fileType: "image/png",
 //         pictureUrl:
 //           "https://onepiecetreasuregk.net/cdn/shop/collections/6bb4c691b68569b75fa51528eabbd39_2260x.jpg?v=1660340062",
+//         previewUrl: ""
 //       },
 //     ],
 //   },
@@ -65,12 +67,14 @@ export const FiguresContext = createContext<FiguresContextType>({
 //         fileType: "image/webp",
 //         pictureUrl:
 //           "https://i.etsystatic.com/45624040/r/il/f51b82/5215193199/il_fullxfull.5215193199_3esv.jpg",
+//         previewUrl: ""
 //       },
 //       {
 //         id: "4bc380d7-4423-404c-89d9-7cc262d64d70",
 //         fileType: "image/png",
 //         pictureUrl:
 //           "https://i.etsystatic.com/45624040/r/il/f51b82/5215193199/il_fullxfull.5215193199_3esv.jpg",
+//         previewUrl: ""
 //       },
 //     ],
 //   },
@@ -94,12 +98,14 @@ export const FiguresContext = createContext<FiguresContextType>({
 //         fileType: "image/webp",
 //         pictureUrl:
 //           "https://i.etsystatic.com/45624040/r/il/f51b82/5215193199/il_fullxfull.5215193199_3esv.jpg",
+//         previewUrl: ""
 //       },
 //       {
 //         id: "4bc380d7-4423-404c-89d9-7cc262d64d70",
 //         fileType: "image/png",
 //         pictureUrl:
 //           "https://i.etsystatic.com/45624040/r/il/f51b82/5215193199/il_fullxfull.5215193199_3esv.jpg",
+//         previewUrl: ""
 //       },
 //     ],
 //   },
@@ -123,12 +129,14 @@ export const FiguresContext = createContext<FiguresContextType>({
 //         fileType: "image/webp",
 //         pictureUrl:
 //           "https://onepiecetreasuregk.net/cdn/shop/collections/e90e0b70e19e1bca6bfb4b47732e33f_2260x.jpg?v=1660340100",
+//         previewUrl: ""
 //       },
 //       {
 //         id: "4bc380d7-4423-404c-89d9-7cc262d64d70",
 //         fileType: "image/png",
 //         pictureUrl:
 //           "https://onepiecetreasuregk.net/cdn/shop/collections/e90e0b70e19e1bca6bfb4b47732e33f_2260x.jpg?v=1660340100",
+//         previewUrl: ""
 //       },
 //     ],
 //   },
@@ -152,12 +160,14 @@ export const FiguresContext = createContext<FiguresContextType>({
 //         fileType: "image/webp",
 //         pictureUrl:
 //           "https://i.etsystatic.com/45624040/r/il/f51b82/5215193199/il_fullxfull.5215193199_3esv.jpg",
+//         previewUrl: ""
 //       },
 //       {
 //         id: "4bc380d7-4423-404c-89d9-7cc262d64d70",
 //         fileType: "image/png",
 //         pictureUrl:
 //           "https://i.etsystatic.com/45624040/r/il/f51b82/5215193199/il_fullxfull.5215193199_3esv.jpg",
+//         previewUrl: ""
 //       },
 //     ],
 //   },
@@ -167,9 +177,8 @@ export const FiguresProvider = ({ children }: FiguresProviderProps) => {
   const [toys, setToys] = useState<Toy[]>([]);
 
   const fetchbackend = async () => {
-    const toy = await httpGetAllFigures();
-    setToys(toy);
-    console.log(toy);
+    const fetchedToys = await httpGetAllFigures();
+    setToys(fetchedToys);
   };
 
   let value: FiguresContextType = {
