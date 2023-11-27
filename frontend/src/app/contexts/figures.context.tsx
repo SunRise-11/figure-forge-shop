@@ -9,10 +9,12 @@ type FiguresProviderProps = {
 
 type FiguresContextType = {
   toys: Toy[];
+  deleteFigure: (id: string) => void;
 };
 
 export const FiguresContext = createContext<FiguresContextType>({
   toys: [],
+  deleteFigure: (id: string) => {},
 });
 
 // const toysArray: Toy[] = [
@@ -181,8 +183,16 @@ export const FiguresProvider = ({ children }: FiguresProviderProps) => {
     setToys(fetchedToys);
   };
 
+  const deleteFigure = (id: string) => {
+    if (id !== undefined) {
+      console.log("I am deleting", id);
+      // setToys((prev) => prev.filter((toy) => toy.id !== id));
+    }
+  };
+
   let value: FiguresContextType = {
     toys,
+    deleteFigure,
   };
 
   useEffect(() => {
