@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useState } from "react";
+import React, { ChangeEvent, useContext, useState } from "react";
 import Card from "./Card";
 import Pagination from "./Pagination";
 import { FiguresContext } from "@/app/contexts/figures.context";
@@ -17,13 +17,18 @@ const Catalog = () => {
   const startIndex = (currentPage - 1) * elementsPerPage;
   const endIndex = startIndex + elementsPerPage;
   let displayedToys = toys.slice(startIndex, endIndex);
+ 
 
-  displayedToys = displayedToys.filter(
-    (figure) =>
-      (figure.status == "posted" &&
-        figure.name.toLowerCase().includes(searchFigure.toLowerCase())) ||
-      figure.description.toLowerCase().includes(searchFigure.toLowerCase())
-  );
+  const handleFilterChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const inputValue = event.target.value;
+    setSearchFigure(inputValue);
+
+    const filteredResults = toys.filter(item =>
+      item.name.toLowerCase().includes(inputValue.toLowerCase()) ||
+      item.description.toLowerCase().includes(searchFigure.toLowerCase())
+    );
+    displayedToys = filteredResults.slice(startIndex, endIndex);
+  };
 
   return (
     <>
@@ -47,7 +52,8 @@ const Catalog = () => {
         </div>
         <input
           type="search"
-          onChange={(e) => setSearchFigure(e.target.value)}
+          onChange={handleFilterChange}
+          //onChange={(e) => setSearchFigure(e.target.value)}
           className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Search Figures ..."
           required
