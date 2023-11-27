@@ -127,12 +127,13 @@ export const SellFigureForm = () => {
       <fieldset className={fieldStyle}>
         {previewPictures && (
           <fieldset className="flex flex-wrap -mx-4">
-            {previewPictures.map((picture) => {
+            {previewPictures.map((picture, index) => {
               return (
                 <img
                   className="w-1/5 px-4 mb-4"
                   src={picture}
                   alt="Uploaded picture preview"
+                  key={index}
                 />
               );
             })}
