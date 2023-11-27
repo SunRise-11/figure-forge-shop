@@ -6,32 +6,37 @@ import { FiguresContext } from "@/app/contexts/figures.context";
 import { Toy } from "@/app/types/types";
 
 const Catalog = () => {
-  const { toys } = useContext(FiguresContext);
+  const {toys}  = useContext(FiguresContext); 
   const [searchFigure, setSearchFigure] = useState("");
-  const [filteredResults, setFilteredResult] = useState<Toy[]>([]);
+  const [filteredResults, setFilteredResult] =  useState<Toy[]>([]);; 
   const [currentPage, setCurrentPage] = useState<number>(1);
   const elementsPerPage: number = 9;
 
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
   };
+  
+  useEffect(() => { 
+    const filterAndPaginate = () => {
+      const startIndex = (currentPage - 1) * elementsPerPage;
+      const endIndex = startIndex + elementsPerPage;
 
-  const startIndex = (currentPage - 1) * elementsPerPage;
-  const endIndex = startIndex + elementsPerPage;
-  let displayedToys = toys.slice(startIndex, endIndex);
+      const filteredToys = toys.filter(
+        (item) =>
+          item.name.toLowerCase().includes(searchFigure.toLowerCase()) ||
+          item.description.toLowerCase().includes(searchFigure.toLowerCase())
+      );
+      const paginatedToys = filteredToys.slice(startIndex, endIndex);
 
+      setFilteredResult(paginatedToys);
+    };
+    filterAndPaginate();
+     
+  }, [toys, searchFigure, currentPage]);
+ 
   const handleFilterChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchFigure(event.target.value);
-    setCurrentPage(1);
-    const inputValue = event.target.value;
-    setSearchFigure(inputValue);
-
-    const filteredResults = toys.filter(
-      (item) =>
-        item.name.toLowerCase().includes(inputValue.toLowerCase()) ||
-        item.description.toLowerCase().includes(searchFigure.toLowerCase())
-    );
-    displayedToys = filteredResults.slice(startIndex, endIndex);
+    setCurrentPage(1);  
   };
 
   return (
@@ -63,22 +68,18 @@ const Catalog = () => {
         />
       </div>
       <div className="flex flex-wrap w-full">
-        {displayedToys
-          // .filter((toy) => toy.status == "posted")
-          .map((toy, index) => (
+        {filteredResults.length > 0 &&
+          filteredResults.map((figure, index) => (
             <div
               className="flex w-full sm:w-1/1  md:w-1/3 lg:w-1/3 pw-10 py-4 justify-center items-center"
-              key={toy.id}
+              key={figure.id.toString()}
             >
-              <Card toy={toy} />
+              <Card toy={figure} />
             </div>
           ))}
       </div>
       <Pagination
-        totalElements={
-          // .filter((toy) => toy.status == "posted")
-          toys.length
-        }
+        totalElements={filteredResults.length}
         elementsPerPage={elementsPerPage}
         currentPage={currentPage}
         onPageChange={handlePageChange}
