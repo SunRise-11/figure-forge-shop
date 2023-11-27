@@ -16,25 +16,22 @@ const Catalog = () => {
     setCurrentPage(pageNumber);
   };
 
-  useEffect(() => {
-    const filterAndPaginate = () => {
-      const startIndex = (currentPage - 1) * elementsPerPage;
-      const endIndex = startIndex + elementsPerPage;
-
-      const filteredToys = toys.filter(
-        (item) =>
-          item.name.toLowerCase().includes(searchFigure.toLowerCase()) ||
-          item.description.toLowerCase().includes(searchFigure.toLowerCase())
-      );
-      const paginatedToys = filteredToys.slice(startIndex, endIndex);
-      setFilteredResult(paginatedToys);
-    };
-    filterAndPaginate();
-  }, [toys, searchFigure, currentPage]);
+  const startIndex = (currentPage - 1) * elementsPerPage;
+  const endIndex = startIndex + elementsPerPage;
+  let displayedToys = toys.slice(startIndex, endIndex);
 
   const handleFilterChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchFigure(event.target.value);
     setCurrentPage(1);
+    const inputValue = event.target.value;
+    setSearchFigure(inputValue);
+
+    const filteredResults = toys.filter(
+      (item) =>
+        item.name.toLowerCase().includes(inputValue.toLowerCase()) ||
+        item.description.toLowerCase().includes(searchFigure.toLowerCase())
+    );
+    displayedToys = filteredResults.slice(startIndex, endIndex);
   };
 
   return (
@@ -66,18 +63,22 @@ const Catalog = () => {
         />
       </div>
       <div className="flex flex-wrap w-full">
-        {filteredResults.length > 0 &&
-          filteredResults.map((figure, index) => (
+        {displayedToys
+          // .filter((toy) => toy.status == "posted")
+          .map((toy, index) => (
             <div
               className="flex w-full sm:w-1/1  md:w-1/3 lg:w-1/3 pw-10 py-4 justify-center items-center"
-              key={figure.id.toString()}
+              key={toy.id}
             >
-              <Card toy={figure} />
+              <Card toy={toy} />
             </div>
           ))}
       </div>
       <Pagination
-        totalElements={filteredResults.length}
+        totalElements={
+          // .filter((toy) => toy.status == "posted")
+          toys.length
+        }
         elementsPerPage={elementsPerPage}
         currentPage={currentPage}
         onPageChange={handlePageChange}

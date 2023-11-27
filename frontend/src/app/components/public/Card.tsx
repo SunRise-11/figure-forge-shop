@@ -50,7 +50,7 @@ const Card = ({ toy }: Props) => {
             className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text bg-primary font-bold text-center items-center justify-center transition ease-in-out delay-350 hover:text-accent hover:transition-all"
             onClick={() => increaseCartQuantity(toy.id)}
           >
-            <ShoppingCartIcon className="h-8 text-text" />
+            <ShoppingCartIcon className="h-6 text-text" />
           </button>
         ) : (
           <button
