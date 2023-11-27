@@ -15,19 +15,20 @@ const fieldStyle = "flex flex-col gap-5 h-max mb-4 sm:w-1/2";
 
 const ReviewPage = ({ params }: { params: { id: string } }) => {
   const { register, handleSubmit, watch, setValue } = useForm();
-  const { toys } = useContext(FiguresContext);
+  const { toys,deleteFigure,updateFigure } = useContext(FiguresContext);
   const [figure, setFigure] = useState<Figure>();
 
   const rating = watch("rating");
 
   const toy = toys.find((toy) => toy.id === params.id);
+
   const onSubmit = (data: any) => {
-    const formData = {
+    const formData = {status:"check",
       ...data,
     };
     console.log(formData);
 
-    httpPutFigure(formData)
+    httpPutFigure(formData,toy!.id)
       .then((response) => {
         if (response.ok) {
           console.log("responde ok.");
@@ -38,6 +39,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
       })
       .then((data) => {
         console.log("Data checked.");
+        updateFigure(data);
         setFigure(data);
         sendToDiscord();
       });
@@ -113,7 +115,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
         </div>
         <form
           className="flex gap-5 h-max w-max mb-4 py-10 justify-between relative"
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={() => handleSubmit(onSubmit)}
         >
           <div className="flex flex-row gap-14 absolute left-[25rem] -top-96 ">
             <fieldset className={`${fieldStyle} `}>

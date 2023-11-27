@@ -24,20 +24,22 @@ export const httpPostPicture = async (picture: File) => {
 };
 
 export const httpPostFigure = async (figure: FigureDto) => {
-  const json = JSON.stringify(figure);
-
   return await fetch(PUBLIC_URI + "/figures", {
     method: "POST",
-    body: json,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(figure),
   });
 };
 
-export const httpPutFigure = async (figure: FigureDto) => {
-  const json = JSON.stringify(figure);
-
-  return await fetch(ADMIN_URI + "/figures", {
+export const httpPutFigure = async (figure: FigureDto,id: string) => {
+  return await fetch(`${ADMIN_URI}/figures/${id}`, {
     method: "PUT",
-    body: json,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(figure),
   });
 };
 

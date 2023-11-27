@@ -50,7 +50,7 @@ export type FigureDto = {
   rating: number;
   seller: Seller;
   status: String;
-  pictures: Picture[];
+  // pictures: Picture[];
 };
 
 export type CartItem = {
