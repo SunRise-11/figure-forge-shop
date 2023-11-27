@@ -1,7 +1,7 @@
 import Stripe from "stripe";
 import { NextResponse, NextRequest } from "next/server";
 
-const BASE_URI = "https://figure-forge-shop.vercel.app/";
+const BASE_URI = "https://figure-forge-shop.vercel.app";
 
 export async function POST(req) {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -21,12 +21,17 @@ export async function POST(req) {
       quantity: 1,
     });
   }
-  const session = await stripe.checkout.sessions.create({
-    line_items: lineItem,
-    mode: "payment",
-    success_url: `${BASE_URI}/order/success`,
-    cancel_url: `${BASE_URI}`,
-  });
+  const session = await stripe.checkout.sessions.create(
+    {
+      line_items: lineItem,
+      mode: "payment",
+      success_url: `${BASE_URI}/order/success`,
+      cancel_url: `${BASE_URI}`,
+    },
+    {
+      apiKey: process.env.STRIPE_SECRET_KEY,
+    }
+  );
 
   return NextResponse.json(session.url);
 }

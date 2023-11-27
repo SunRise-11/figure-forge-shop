@@ -12,6 +12,10 @@ module.exports = {
         protocol: "https",
         hostname: "figurestorage.blob.core.windows.net",
       },
+      {
+        protocol: "https",
+        hostname: "onepiecetreasuregk.net",
+      },
     ],
     domains: ["i.etsystatic.com"],
   },
