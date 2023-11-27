@@ -23,28 +23,22 @@ public class Figure {
     private int rating = 0;
     private String seller;
     private String condition = "";
+    private String status = "unchecked";
 
     @OneToMany(
-            mappedBy = "figure",
-            cascade = CascadeType.ALL)
+            mappedBy = "figure")
+//            cascade = CascadeType.ALL)
     private List<Picture> pictures;
 
     public Figure() {
     }
 
-    public Figure(String name, String origin, String brand, double price, int width, int length,
-                  int height,
-                  int weight, String description, String seller) {
-        this.name = name;
-        this.origin = origin;
-        this.brand = brand;
-        this.width = width;
-        this.length = length;
-        this.height = height;
-        this.weight = weight;
-        this.description = description;
-        this.price = price;
-        this.seller = seller;
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getId() {
