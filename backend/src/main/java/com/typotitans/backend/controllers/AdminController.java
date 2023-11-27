@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("admin/figures")
-@CrossOrigin
+@CrossOrigin(origins = "*")
 public class AdminController {
 
     private final FigureService figureService;
