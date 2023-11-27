@@ -2,6 +2,7 @@
 import { httpPostFigure, httpPostPicture } from "@/app/api/http/requests";
 import { Figure, FigureDto, Picture } from "@/app/types/types";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -129,7 +130,8 @@ export const SellFigureForm = () => {
           <fieldset className="flex flex-wrap -mx-4">
             {previewPictures.map((picture, index) => {
               return (
-                <img
+                <Image
+                  key={index}
                   className="w-1/5 px-4 mb-4"
                   src={picture}
                   alt="Uploaded picture preview"
