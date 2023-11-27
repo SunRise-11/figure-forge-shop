@@ -34,7 +34,7 @@ export type Figure = {
   rating: number;
   seller: Seller;
   status: String;
-  pictures: Picture[];
+  pictures: File[];
 };
 
 export type FigureDto = {
