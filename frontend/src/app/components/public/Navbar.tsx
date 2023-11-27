@@ -1,7 +1,7 @@
 "use client";
 import { useShoppingCart } from "@/app/contexts/cartContext";
 import { useUser } from "@auth0/nextjs-auth0/client";
-import { ShoppingBagIcon, ShoppingCartIcon } from "@heroicons/react/24/outline";
+import { ShoppingBagIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";

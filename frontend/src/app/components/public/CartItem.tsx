@@ -23,6 +23,8 @@ const CartItem = ({ id, quantity }: CartItem) => {
     <div className="flex flex-row gap-4 justify-center items-end mb-4 min-w-96 relative">
       <Image
         alt=""
+        width={200}
+        height={200}
         src={item.pictures[0].pictureUrl}
         style={{ width: "125px", height: "75px", objectFit: "cover" }}
       />
