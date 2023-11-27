@@ -29,10 +29,10 @@ const Card = ({ toy }: Props) => {
           <Image
             className="h-full"
             src={
-              toy.pictures[0].pictureUrl === undefined
+              toy.pictures.length == 0 
                 ? ""
                 : toy.pictures[0].pictureUrl
-            }
+            } 
             alt="some Pic"
             width={300}
             height={500}
