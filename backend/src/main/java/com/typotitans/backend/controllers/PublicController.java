@@ -47,4 +47,23 @@ public class PublicController {
             return ResponseEntity.badRequest().build();
         }
     }
+
+    @PostMapping(value = "pictures")
+    public ResponseEntity<Picture> uploadPicture(
+            @RequestParam("picture") MultipartFile picture,
+            HttpServletRequest req) {
+        try {
+            var savedPicture = figureService.savePicture(picture);
+            URI location = URI.create(req.getRequestURI() + "/" + savedPicture.getId());
+            return ResponseEntity.created(location).body(savedPicture);
+        } catch (IOException e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @GetMapping("pictures/{id}")
+    public ResponseEntity<byte[]> getPicture(
+            @PathVariable String id) {
+        return ResponseEntity.ok(figureService.getPicture(id));
+    }
 }
