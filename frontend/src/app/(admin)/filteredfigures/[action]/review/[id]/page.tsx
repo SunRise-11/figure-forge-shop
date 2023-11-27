@@ -1,5 +1,5 @@
 "use client";
-import { httpPutFigure } from "@/app/api/http/requests";
+import { httpPutFigure,httpDeleteFigure } from "@/app/api/http/requests";
 import RatingAdmin from "@/app/components/admin/RatingAdmin";
 import CarouselDetail from "@/app/components/public/CarouselDetail";
 import { FiguresContext } from "@/app/contexts/figures.context";
@@ -20,7 +20,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
 
   const rating = watch("rating");
 
-  const toy = toys.find((toy) => toy.id === Number(params.id));
+  const toy = toys.find((toy) => toy.id === params.id);
   const onSubmit = (data: any) => {
     const formData = {
       ...data,
@@ -41,6 +41,23 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
         setFigure(data);
         sendToDiscord();
       });
+  };
+
+  const handleDelete = async (id: string | undefined) => {
+    if (id !== undefined) {
+      const newId = "7a19f6c5-5dfa-4d74-ae1e-d9f3469ab325";
+      return await httpDeleteFigure(newId);
+      // console.log("server response status:", serverResponse.status);
+      // console.log("server response status text:", serverResponse.statusText);
+  
+      // if (serverResponse.status === 204) {
+      //   console.log("deleted figure 1");
+      //   deleteFigure(1);
+      // } else {
+      //   const responseText = await serverResponse.text();
+      //   throw new Error(`Server response: ${responseText}`);
+      // }
+    }
   };
 
   const sendToDiscord = async () => {
@@ -229,14 +246,14 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
                 Submit
               </button>
 
-              <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+              <button /*onClick={() => handleDelete(toy.id)} */ className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                 Delete
               </button>
               <Link href={"/filteredfigures/uncheck"}>
-              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                Cancel
-              </button>
-              </Link> 
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                  Cancel
+                </button>
+              </Link>
             </div>
           </div>
         </form>

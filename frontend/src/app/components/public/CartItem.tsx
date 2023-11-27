@@ -1,15 +1,11 @@
 "use client";
 import { useShoppingCart } from "@/app/contexts/cartContext";
 import { FiguresContext } from "@/app/contexts/figures.context";
+import { CartItem } from "@/app/types/types";
 import Image from "next/image";
 import React, { useContext } from "react";
 
-type CartItemProps = {
-  id: number;
-  quantity: number;
-};
-
-const CartItem = ({ id, quantity }: CartItemProps) => {
+const CartItem = ({ id, quantity }: CartItem) => {
   const { removeFromCart } = useShoppingCart();
   const { toys } = useContext(FiguresContext);
 
