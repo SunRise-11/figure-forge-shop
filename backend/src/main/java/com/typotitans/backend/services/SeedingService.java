@@ -99,7 +99,6 @@ public class SeedingService implements ApplicationRunner {
             reader.close();
         } catch (Exception e) {
             e.printStackTrace();
-            // Handle exception
         }
     }
 
