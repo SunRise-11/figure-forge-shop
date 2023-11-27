@@ -1,9 +1,3 @@
-export type Picture = {
-  id: string;
-  fileType: string;
-  pictureUrl: string;
-};
-
 export type Toy = {
   id: number;
   name: string;
@@ -27,6 +21,7 @@ export type Seller = {
 };
 
 export type Figure = {
+  id: string;
   name: string;
   origin: string;
   brand: string;
@@ -38,6 +33,7 @@ export type Figure = {
   price: number;
   rating: number;
   seller: Seller;
+  status: String;
   pictures: File[];
 };
 
@@ -53,9 +49,18 @@ export type FigureDto = {
   price: number;
   rating: number;
   seller: Seller;
+  status: String;
+  pictures: Picture[];
 };
 
 export type CartItem = {
   id: number;
   quantity: number;
 };
+
+export type Picture = {
+  id: string;
+  fileType: string;
+  pictureUrl: string;
+  previewUrl: string;
+}
