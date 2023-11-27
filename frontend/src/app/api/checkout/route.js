@@ -26,7 +26,7 @@ export async function POST(req) {
       line_items: lineItem,
       mode: "payment",
       success_url: `${BASE_URI}/order/success`,
-      cancel_url: `${BASE_URI}`,
+      cancel_url: `${BASE_URI}/figures`,
     },
     {
       apiKey: process.env.STRIPE_SECRET_KEY,

@@ -21,8 +21,7 @@ const page = () => {
             Thank you! Your payment has been received.
           </p>
           <p className="text-text">
-            {" "}
-            You will recieve a confirmation email shortly.{" "}
+            You will recieve a confirmation email shortly.
           </p>
           <div className="py-10 text-center">
             <a
