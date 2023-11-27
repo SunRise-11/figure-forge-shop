@@ -18,6 +18,7 @@ public class Figure {
     private int length;
     private int height;
     private int weight;
+    @Column(length = 500)
     private String description;
     private double price;
     private int rating = 0;
