@@ -60,6 +60,21 @@ public class FigureService {
         return objectMapper.convertValue(figure, ResponseDto.class);
     }
 
+    public Picture savePicture(MultipartFile picture) throws IOException {
+        var savedPicture = pictureRepository.save(new Picture());
+        String id = savedPicture.getId();
+        String blob = blobService.uploadBlob(id, picture);
+        savedPicture.setFileType(picture.getContentType());
+        savedPicture.setPictureUrl(
+                "https://figureforgeapp.azurewebsites.net/public/pictures/" + id);
+        pictureRepository.save(savedPicture);
+        return savedPicture;
+    }
+
+    public byte[] getPicture(String id) {
+        return blobService.downloadBlob(id);
+    }
+
     public ResponseDto updateFigure(UpdateDto updateDto, String id) {
         Figure figure = figureRepository.findById(id).orElseThrow(
                 () -> new NoSuchElementException("Figure not found"));
