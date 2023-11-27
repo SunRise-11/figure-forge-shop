@@ -17,6 +17,6 @@ module.exports = {
         hostname: "onepiecetreasuregk.net",
       },
     ],
-    domains: ["i.etsystatic.com"],
+    domains: ["i.etsystatic.com","onepiecetreasuregk.net"],
   },
 };
