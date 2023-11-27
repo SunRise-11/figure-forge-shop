@@ -43,7 +43,7 @@ export const httpPutFigure = async (figure: AdminPutDTO,id: string) => {
   });
 };
 
-export const httpDeleteFigure = async (id: String) => {
+export const httpDeleteFigure = async (id: string) => {
   return await fetch(`${ADMIN_URI}/figures/${id}`, {
     method: "DELETE",
   });

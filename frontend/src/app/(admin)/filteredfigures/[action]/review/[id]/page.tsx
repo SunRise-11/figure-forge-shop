@@ -17,7 +17,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
   const { register, handleSubmit, watch, setValue } = useForm();
   const { toys, deleteFigure, updateFigure } = useContext(FiguresContext);
   const [figure, setFigure] = useState<Figure>();
-  console.log(toys)
+  console.log(toys);
 
   const rating = watch("rating");
 
@@ -28,7 +28,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
       ...data,
     };
 
-    httpPutFigure(formData,toy!.id)
+    httpPutFigure(formData, toy!.id)
       .then((response) => {
         if (response.ok) {
           console.log("responde ok.");
@@ -45,20 +45,21 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
       });
   };
 
-  const handleDelete = async (id: string | undefined) => {
+  const handleDelete = async (id: string) => {
     if (id !== undefined) {
-      const newId = "7a19f6c5-5dfa-4d74-ae1e-d9f3469ab325";
-      return await httpDeleteFigure(newId);
+      // const newId = "90239b90-129f-4f59-a050-a473cf586f71";
+      // return await httpDeleteFigure(newId);
       // console.log("server response status:", serverResponse.status);
       // console.log("server response status text:", serverResponse.statusText);
+      const serverResponse = await httpDeleteFigure(id);
+      console.log("Server Response" , serverResponse)
 
-      // if (serverResponse.status === 204) {
-      //   console.log("deleted figure 1");
-      //   deleteFigure(1);
-      // } else {
-      //   const responseText = await serverResponse.text();
-      //   throw new Error(`Server response: ${responseText}`);
-      // }
+      if (serverResponse.status === 204) {
+        deleteFigure(id);
+      } else {
+        const responseText = await serverResponse.text();
+        throw new Error(`Server response: ${responseText}`);
+      }
     }
   };
 
@@ -253,13 +254,17 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
               </button>
 
               <button
+                type="button"
                 onClick={() => handleDelete(toy!.id)}
                 className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
               >
                 Delete
               </button>
-              <Link href={"/filteredfigures/uncheck"}>
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              <Link href={"/filteredfigures/unchecked"}>
+                <button
+                  type="button"
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                >
                   Cancel
                 </button>
               </Link>
