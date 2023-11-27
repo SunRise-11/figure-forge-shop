@@ -131,7 +131,6 @@ export const SellFigureForm = () => {
             {previewPictures.map((picture, index) => {
               return (
                 <Image
-                  key={index}
                   className="w-1/5 px-4 mb-4"
                   src={picture}
                   alt="Uploaded picture preview"

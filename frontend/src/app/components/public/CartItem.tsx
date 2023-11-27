@@ -1,6 +1,7 @@
 "use client";
 import { useShoppingCart } from "@/app/contexts/cartContext";
 import { FiguresContext } from "@/app/contexts/figures.context";
+import Image from "next/image";
 import React, { useContext } from "react";
 
 type CartItemProps = {
@@ -24,7 +25,8 @@ const CartItem = ({ id, quantity }: CartItemProps) => {
 
   return (
     <div className="flex flex-row gap-4 justify-center items-end mb-4 min-w-96 relative">
-      <img
+      <Image
+        alt=""
         src={item.pictures[0].pictureUrl}
         style={{ width: "125px", height: "75px", objectFit: "cover" }}
       />
