@@ -52,7 +52,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
       // console.log("server response status:", serverResponse.status);
       // console.log("server response status text:", serverResponse.statusText);
       const serverResponse = await httpDeleteFigure(id);
-      console.log("Server Response" , serverResponse)
+      console.log("Server Response", serverResponse);
 
       if (serverResponse.status === 204) {
         deleteFigure(id);
@@ -112,15 +112,15 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
 
   return (
     <Card className="absolute right-0 w-full max-w-[calc(100vw-19rem)] top-20 max-h-[calc(100vh-5rem)] p-4 shadow-xl shadow-blue-gray-900/5 border-solid border-2 ">
-      <div className="overflow-y-auto">
-        <div className=" h-96 w-96">
-          {/* <CarouselDetail pictures={toy!.pictures} /> */}
-        </div>
-        <form
-          className="flex gap-5 h-max w-max mb-4 py-10 justify-between relative"
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          {toy && (
+      {toy && (
+        <div className="overflow-y-auto">
+          <div className=" h-96 w-96">
+            <CarouselDetail pictures={toy!.pictures} />
+          </div>
+          <form
+            className="flex gap-5 h-max w-max mb-4 py-10 justify-between relative"
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <div className="flex flex-row gap-14 absolute left-[25rem] -top-96 ">
               <fieldset className={`${fieldStyle} `}>
                 <legend className="font-bold mb-2">Details</legend>
@@ -231,47 +231,48 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
                 />
               </fieldset>
             </div>
-          )}
-          <div className="flex flex-row justify-center items-center">
-            <div className="mt-11 mr-10">
-              <legend className="font-bold mb-2">Conditions</legend>
-              <textarea
-                className={`${inputStyle} w-max`}
-                {...register("condition")}
-                placeholder="conditions"
-              />
-            </div>
-            <fieldset className="mt-6">
-              <legend className="font-bold mb-2">Rating</legend>
-              <RatingAdmin onRatingChange={handleRatingChange} />
-            </fieldset>
-            <div className="flex justify-around space-x-4 mt-10 ml-10">
-              <button
-                type="submit"
-                className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-              >
-                Submit
-              </button>
 
-              <button
-                type="button"
-                onClick={() => handleDelete(toy!.id)}
-                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-              >
-                Delete
-              </button>
-              <Link href={"/filteredfigures/unchecked"}>
+            <div className="flex flex-row justify-center items-center">
+              <div className="mt-11 mr-10">
+                <legend className="font-bold mb-2">Conditions</legend>
+                <textarea
+                  className={`${inputStyle} w-max`}
+                  {...register("condition")}
+                  placeholder="conditions"
+                />
+              </div>
+              <fieldset className="mt-6">
+                <legend className="font-bold mb-2">Rating</legend>
+                <RatingAdmin onRatingChange={handleRatingChange} />
+              </fieldset>
+              <div className="flex justify-around space-x-4 mt-10 ml-10">
+                <button
+                  type="submit"
+                  className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                >
+                  Submit
+                </button>
+
                 <button
                   type="button"
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                  onClick={() => handleDelete(toy!.id)}
+                  className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
                 >
-                  Cancel
+                  Delete
                 </button>
-              </Link>
+                <Link href={"/filteredfigures/unchecked"}>
+                  <button
+                    type="button"
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                  >
+                    Cancel
+                  </button>
+                </Link>
+              </div>
             </div>
-          </div>
-        </form>
-      </div>
+          </form>
+        </div>
+      )}
     </Card>
   );
 };
