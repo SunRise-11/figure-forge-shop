@@ -5,6 +5,7 @@ import CarouselDetail from "@/app/components/public/CarouselDetail";
 import { FiguresContext } from "@/app/contexts/figures.context";
 import { Figure } from "@/app/types/types";
 import { Card } from "@material-tailwind/react";
+import Link from "next/link";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -101,60 +102,59 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
             <fieldset className={`${fieldStyle} `}>
               <legend className="font-bold mb-2">Details</legend>
 
-              <div className="flex  items-center gap-3">
-                <label>Name</label>
+              <div className="flex  items-center gap-3 w-full">
+                <label className="flex-1">Name</label>
                 <br />
                 <input
-                  className={inputStyle}
+                  className={`${inputStyle} flex-2`}
                   {...register("name")}
                   placeholder="Name"
                   value={toy?.name}
                 />
               </div>
 
-              <div className="flex items-center gap-3">
-                <label>Origin</label>
+              <div className="flex items-center gap-3 w-full">
+                <label className="flex-1">Origin</label>
                 <br />
                 <input
-                  className={inputStyle}
+                  className={`${inputStyle} flex-2`}
                   {...register("origin")}
                   placeholder="Origin"
                   value={toy?.origin}
                 />
               </div>
 
-              <div className="flex items-center gap-3">
-                <label>Brand</label>
+              <div className="flex items-center gap-3 w-full">
+                <label className="flex-1">Brand</label>
                 <br />
                 <input
-                  className={inputStyle}
+                  className={`${inputStyle} flex-2`}
                   {...register("brand")}
                   placeholder="Brand"
                   value={toy?.brand}
                 />
               </div>
 
-              <div className="flex items-center gap-3">
-                <label>Price</label>
+              <div className="flex items-center gap-3 w-full">
+                <label className="flex-1">Price</label>
                 <br />
                 <input
-                  className={inputStyle}
+                  className={`${inputStyle} flex-2`}
                   {...register("price", { valueAsNumber: true })}
                   type="number"
                   step="0.01"
                   placeholder="Price (EUR)"
                   value={toy?.price}
                 />
-                <label>EUR</label>
               </div>
             </fieldset>
 
-            <fieldset className={`${fieldStyle}`}>
+            <fieldset className={`${fieldStyle} ml-5`}>
               <legend className="font-bold mb-2">Dimensions</legend>
               <div className="flex items-center gap-3">
-                <label>Width</label>
+                <label className="flex-1">Width</label>
                 <input
-                  className={inputStyle}
+                  className={`${inputStyle} flex-2`}
                   {...register("width", { valueAsNumber: true })}
                   type="number"
                   placeholder="Width (cm)"
@@ -163,9 +163,9 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
                 <label>cm</label>
               </div>
               <div className="flex items-center gap-3">
-                <label>Length</label>
+                <label className="flex-1">Length</label>
                 <input
-                  className={inputStyle}
+                  className={`${inputStyle} flex-2`}
                   {...register("length", { valueAsNumber: true })}
                   type="number"
                   placeholder="Length (cm)"
@@ -175,9 +175,9 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
               </div>
 
               <div className="flex items-center gap-3">
-                <label>Heigth</label>
+                <label className="flex-1">Heigth</label>
                 <input
-                  className={inputStyle}
+                  className={`${inputStyle} flex-2`}
                   {...register("height", { valueAsNumber: true })}
                   type="number"
                   placeholder="Height (cm)"
@@ -186,9 +186,9 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
                 <label>cm</label>
               </div>
               <div className="flex items-center gap-3">
-                <label>Weigth</label>
+                <label className="flex-1">Weigth</label>
                 <input
-                  className={inputStyle}
+                  className={`${inputStyle} flex-1`}
                   {...register("weight", { valueAsNumber: true })}
                   type="number"
                   placeholder="Weight (g)"
@@ -208,33 +208,35 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
               />
             </fieldset>
           </div>
-          <div className="flex flex-row">
-            <fieldset className={fieldStyle}>
+          <div className="flex flex-row justify-center items-center">
+            <div className="mt-11 mr-10">
               <legend className="font-bold mb-2">Conditions</legend>
               <textarea
                 className={`${inputStyle} w-max`}
                 {...register("conditions")}
                 placeholder="conditions"
               />
-            </fieldset>
+            </div>
             <fieldset className="mt-6">
               <legend className="font-bold mb-2">Rating</legend>
               <RatingAdmin onRatingChange={handleRatingChange} />
             </fieldset>
-            <div className="flex justify-around space-x-4 mt-10">
+            <div className="flex justify-around space-x-4 mt-10 ml-10">
               <button
                 type="submit"
-                className="bg-blue-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
               >
                 Submit
               </button>
 
-              <button className="bg-blue-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+              <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                 Delete
               </button>
-              <button className="bg-blue-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+              <Link href={"/filteredfigures/uncheck"}>
+              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                 Cancel
               </button>
+              </Link> 
             </div>
           </div>
         </form>
