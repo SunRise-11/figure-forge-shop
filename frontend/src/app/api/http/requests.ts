@@ -1,51 +1,46 @@
-import { Figure, FigureDto } from "@/app/types/types";
+import { Figure, FigureDto, Picture} from "@/app/types/types";
 
-const PUBLIC_URI = "https://figureforgeapp.azurewebsites.net/public/figures";
-const ADMIN_URI = "https://figureforgeapp.azurewebsites.net/admin/figures";
+const PUBLIC_URI = "https://figureforgeapp.azurewebsites.net/public";
+const ADMIN_URI = "https://figureforgeapp.azurewebsites.net/admin";
 
 export const httpGetAllFigures = async () => {
   const response = await fetch(PUBLIC_URI);
   return response.json();
 };
 
-export const httpPostFigure = async (figure: Figure) => {
-  const { pictures, ...figureDetails } = figure;
-  const dto: FigureDto = { ...figureDetails };
+export const httpPostPicture = async (picture: File) => {
   const formData = new FormData();
-  formData.append("figureDetails", JSON.stringify(dto));
 
-  Object.values(figure.pictures).forEach((picture) =>
-    formData.append("pictures", picture)
-  );
+  formData.append('picture', picture);
 
-  console.log(formData);
-
-  return await fetch(PUBLIC_URI, {
-    method: "POST",
+  const response = await fetch(PUBLIC_URI + '/pictures', {
+    method: 'POST',
     body: formData,
+  });
+  const pictureResponse: Picture = await response.json();
+  return pictureResponse;
+};
+
+export const httpPostFigure = async (figure: FigureDto) => {
+  const json = JSON.stringify(figure);
+
+  return await fetch(PUBLIC_URI + '/figures', {
+    method: 'POST',
+    body: json,
   });
 };
 
-export const httpPutFigure = async (figure: Figure) => {
-  const { pictures, ...figureDetails } = figure;
-  const dto: FigureDto = { ...figureDetails };
-  const formData = new FormData();
-  formData.append("figureDetails", JSON.stringify(dto));
+export const httpPutFigure = async (figure: FigureDto) => {
+  const json = JSON.stringify(figure);
 
-  Object.values(figure.pictures).forEach((picture) =>
-    formData.append("pictures", picture)
-  );
-
-  console.log(formData);
-
-  return await fetch(ADMIN_URI, {
+  return await fetch(ADMIN_URI + '/figures', {
     method: "PUT",
-    body: formData,
+    body: json,
   });
-};
+}
 
-export const httpDeleteFigure = async (id: Number) => {
-  return await fetch(`${PUBLIC_URI}/${id}`, {
+export const httpDeleteFigure = async (id: String) => {
+  return await fetch(`${PUBLIC_URI}/figures/${id}`, {
     method: "DELETE",
   });
 };
