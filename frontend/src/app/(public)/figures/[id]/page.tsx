@@ -1,10 +1,9 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
-// import Rating from "@/app/components/public/Rating";
+import Rating from "@/app/components/public/Rating";
 import { FiguresContext } from "@/app/contexts/figures.context";
 import { Toy } from "@/app/types/types";
 import CarouselDetail from "@/app/components/public/CarouselDetail";
-import { Rating } from "@material-tailwind/react";
 
 type Props = {
   params: { id: string };
@@ -189,13 +188,7 @@ const DetailPage = ({ params }: Props) => {
           </div>
         </div>
 
-        <Rating
-          className="h-200 w200 mb-12"
-          unratedColor="amber"
-          ratedColor="amber"
-          value={data.rating}
-          readonly
-        />
+        <Rating star={data.rating} />
       </>
     );
   }
