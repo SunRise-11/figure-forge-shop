@@ -12,7 +12,7 @@ type Props = {
 const Figures = ({ action, data }: Props) => {
   let buttonAction = "";
   switch (action) {
-    case "uncheck": {
+    case "unchecked": {
       buttonAction = "Review";
       break;
     }
@@ -25,7 +25,7 @@ const Figures = ({ action, data }: Props) => {
       break;
     }
   }
-  
+
   return (
     <Card className="absolute right-0 top-[6rem] w-full max-w-[calc(100vw-19rem)]  h-[calc(100vh-6rem)] p-4 shadow-xl shadow-blue-gray-900/5 border-solid border-2 ">
       <Typography variant="h5" color="blue-gray">
@@ -50,7 +50,7 @@ const Figures = ({ action, data }: Props) => {
                 >
                   <td className="border px-6 py-4">{toy.name}</td>
                   <td className="border px-6 py-4 text-center">
-                    {action == "uncheck" ? (
+                    {action == "unchecked" ? (
                       <Link
                         href={`/filteredfigures/${action}/review/${toy.id}`}
                         passHref

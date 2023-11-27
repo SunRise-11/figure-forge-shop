@@ -45,7 +45,7 @@ const DetailPage = ({ params }: Props) => {
                     className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-background leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                     id="inline-origin"
                     type="text"
-                    value={data.origin.toString()}
+                    value={data.origin}
                     readOnly
                   />
                 </div>
@@ -64,7 +64,7 @@ const DetailPage = ({ params }: Props) => {
                     className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-background leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                     id="inline-brand"
                     type="text"
-                    value={data.brand.toString()}
+                    value={data.brand}
                     readOnly
                   />
                 </div>
@@ -83,7 +83,7 @@ const DetailPage = ({ params }: Props) => {
                     className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-background leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                     id="inline-price"
                     type="text"
-                    value={data.price.toString()}
+                    value={data.price}
                     readOnly
                   />
                 </div>
@@ -109,7 +109,7 @@ const DetailPage = ({ params }: Props) => {
                     className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-background leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                     id="inline-width"
                     type="text"
-                    value={data.width.toString()}
+                    value={data.width}
                     readOnly
                   />
                 </div>
@@ -128,7 +128,7 @@ const DetailPage = ({ params }: Props) => {
                     className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-background leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                     id="inline-height"
                     type="text"
-                    value={data.height.toString()}
+                    value={data.height}
                     readOnly
                   />
                 </div>
@@ -148,7 +148,7 @@ const DetailPage = ({ params }: Props) => {
                     id="inline-diameter"
                     type="text"
                     readOnly
-                    value={data.weight.toString()}
+                    value={data.weight}
                   />
                 </div>
               </div>
@@ -166,7 +166,7 @@ const DetailPage = ({ params }: Props) => {
                 id="grid-description"
                 placeholder="description"
                 readOnly
-                value={data.description.toString()}
+                value={data.description}
               />
             </div>
           </div>
@@ -182,7 +182,7 @@ const DetailPage = ({ params }: Props) => {
                 id="grid-condition"
                 placeholder="..."
                 readOnly
-                value={data.conditions.toString()}
+                value={data.conditions}
               />
             </div>
           </div>
