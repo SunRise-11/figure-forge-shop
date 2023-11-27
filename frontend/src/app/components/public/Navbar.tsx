@@ -17,7 +17,7 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="flex items-center flex-wrap bg-background lg:px-8 pt-2">
+    <nav className="flex items-center justify-between bg-background lg:px-8 pt-2 z-50 fixed w-full max-w-screen-2xl mx-auto">
       <Link href="/">
         <p className="inline-flex items-center p-2 mr-4 ">
           <span className="text-xl text-text font-bold uppercase tracking-wide">
