@@ -27,7 +27,7 @@ const toysArray: Toy[] = [
     weight: 250,
     length: 100,
     rating: 3,
-    status: "posted",
+    status: "uncheck",
     description: "beautiful",
     conditions: "conditions",
     pictures: [
