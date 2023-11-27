@@ -63,3 +63,17 @@ export type Picture = {
   fileType: string;
   pictureUrl: string;
 };
+
+export type AdminPutDTO = {
+  name: string;
+  description: string;
+  condition: string;
+  brand: string;
+  price: number;
+  origin: string;
+  width: number;
+  height: number;
+  length: number;
+  weight: number;
+  rating: number;
+}
