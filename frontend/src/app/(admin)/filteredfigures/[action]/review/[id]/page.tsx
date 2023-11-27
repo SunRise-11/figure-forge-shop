@@ -1,5 +1,5 @@
 "use client";
-import { httpPutFigure,httpDeleteFigure } from "@/app/api/http/requests";
+import { httpPutFigure, httpDeleteFigure } from "@/app/api/http/requests";
 import RatingAdmin from "@/app/components/admin/RatingAdmin";
 import CarouselDetail from "@/app/components/public/CarouselDetail";
 import { FiguresContext } from "@/app/contexts/figures.context";
@@ -15,8 +15,9 @@ const fieldStyle = "flex flex-col gap-5 h-max mb-4 sm:w-1/2";
 
 const ReviewPage = ({ params }: { params: { id: string } }) => {
   const { register, handleSubmit, watch, setValue } = useForm();
-  const { toys,deleteFigure,updateFigure } = useContext(FiguresContext);
+  const { toys, deleteFigure, updateFigure } = useContext(FiguresContext);
   const [figure, setFigure] = useState<Figure>();
+  console.log(toys)
 
   const rating = watch("rating");
 
@@ -26,7 +27,6 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
     const formData = {
       ...data,
     };
-    console.log(formData);
 
     httpPutFigure(formData,toy!.id)
       .then((response) => {
@@ -51,7 +51,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
       return await httpDeleteFigure(newId);
       // console.log("server response status:", serverResponse.status);
       // console.log("server response status text:", serverResponse.statusText);
-  
+
       // if (serverResponse.status === 204) {
       //   console.log("deleted figure 1");
       //   deleteFigure(1);
@@ -89,6 +89,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
         },
       ],
     };
+
     const requestOptions: RequestInit = {
       method: "POST",
       headers: {
@@ -96,6 +97,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
       },
       body: JSON.stringify(reportData),
     };
+
     await fetch(discordUrl, requestOptions)
       .then((response) => response)
       .catch((error) => {
@@ -111,128 +113,130 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
     <Card className="absolute right-0 w-full max-w-[calc(100vw-19rem)] top-20 max-h-[calc(100vh-5rem)] p-4 shadow-xl shadow-blue-gray-900/5 border-solid border-2 ">
       <div className="overflow-y-auto">
         <div className=" h-96 w-96">
-          <CarouselDetail pictures={toy!.pictures} />
+          {/* <CarouselDetail pictures={toy!.pictures} /> */}
         </div>
         <form
           className="flex gap-5 h-max w-max mb-4 py-10 justify-between relative"
-          onSubmit={() => handleSubmit(onSubmit)}
+          onSubmit={handleSubmit(onSubmit)}
         >
-          <div className="flex flex-row gap-14 absolute left-[25rem] -top-96 ">
-            <fieldset className={`${fieldStyle} `}>
-              <legend className="font-bold mb-2">Details</legend>
+          {toy && (
+            <div className="flex flex-row gap-14 absolute left-[25rem] -top-96 ">
+              <fieldset className={`${fieldStyle} `}>
+                <legend className="font-bold mb-2">Details</legend>
 
-              <div className="flex  items-center gap-3 w-full">
-                <label className="flex-1">Name</label>
-                <br />
-                <input
-                  className={`${inputStyle} flex-2`}
-                  {...register("name")}
-                  placeholder="Name"
-                  value={toy?.name}
-                />
-              </div>
+                <div className="flex  items-center gap-3 w-full">
+                  <label className="flex-1">Name</label>
+                  <br />
+                  <input
+                    className={`${inputStyle} flex-2`}
+                    {...register("name")}
+                    placeholder="Name"
+                    value={toy?.name}
+                  />
+                </div>
 
-              <div className="flex items-center gap-3 w-full">
-                <label className="flex-1">Origin</label>
-                <br />
-                <input
-                  className={`${inputStyle} flex-2`}
-                  {...register("origin")}
-                  placeholder="Origin"
-                  value={toy?.origin}
-                />
-              </div>
+                <div className="flex items-center gap-3 w-full">
+                  <label className="flex-1">Origin</label>
+                  <br />
+                  <input
+                    className={`${inputStyle} flex-2`}
+                    {...register("origin")}
+                    placeholder="Origin"
+                    value={toy?.origin}
+                  />
+                </div>
 
-              <div className="flex items-center gap-3 w-full">
-                <label className="flex-1">Brand</label>
-                <br />
-                <input
-                  className={`${inputStyle} flex-2`}
-                  {...register("brand")}
-                  placeholder="Brand"
-                  value={toy?.brand}
-                />
-              </div>
+                <div className="flex items-center gap-3 w-full">
+                  <label className="flex-1">Brand</label>
+                  <br />
+                  <input
+                    className={`${inputStyle} flex-2`}
+                    {...register("brand")}
+                    placeholder="Brand"
+                    value={toy?.brand}
+                  />
+                </div>
 
-              <div className="flex items-center gap-3 w-full">
-                <label className="flex-1">Price</label>
-                <br />
-                <input
-                  className={`${inputStyle} flex-2`}
-                  {...register("price", { valueAsNumber: true })}
-                  type="number"
-                  step="0.01"
-                  placeholder="Price (EUR)"
-                  value={toy?.price}
-                />
-              </div>
-            </fieldset>
+                <div className="flex items-center gap-3 w-full">
+                  <label className="flex-1">Price</label>
+                  <br />
+                  <input
+                    className={`${inputStyle} flex-2`}
+                    {...register("price", { valueAsNumber: true })}
+                    type="number"
+                    step="0.01"
+                    placeholder="Price (EUR)"
+                    value={toy?.price}
+                  />
+                </div>
+              </fieldset>
 
-            <fieldset className={`${fieldStyle} ml-5`}>
-              <legend className="font-bold mb-2">Dimensions</legend>
-              <div className="flex items-center gap-3">
-                <label className="flex-1">Width</label>
-                <input
-                  className={`${inputStyle} flex-2`}
-                  {...register("width", { valueAsNumber: true })}
-                  type="number"
-                  placeholder="Width (cm)"
-                  value={toy?.width}
-                />
-                <label>cm</label>
-              </div>
-              <div className="flex items-center gap-3">
-                <label className="flex-1">Length</label>
-                <input
-                  className={`${inputStyle} flex-2`}
-                  {...register("length", { valueAsNumber: true })}
-                  type="number"
-                  placeholder="Length (cm)"
-                  value={toy?.length}
-                />
-                <label>cm</label>
-              </div>
+              <fieldset className={`${fieldStyle} ml-5`}>
+                <legend className="font-bold mb-2">Dimensions</legend>
+                <div className="flex items-center gap-3">
+                  <label className="flex-1">Width</label>
+                  <input
+                    className={`${inputStyle} flex-2`}
+                    {...register("width", { valueAsNumber: true })}
+                    type="number"
+                    placeholder="Width (cm)"
+                    value={toy?.width}
+                  />
+                  <label>cm</label>
+                </div>
+                <div className="flex items-center gap-3">
+                  <label className="flex-1">Length</label>
+                  <input
+                    className={`${inputStyle} flex-2`}
+                    {...register("length", { valueAsNumber: true })}
+                    type="number"
+                    placeholder="Length (cm)"
+                    value={toy?.length}
+                  />
+                  <label>cm</label>
+                </div>
 
-              <div className="flex items-center gap-3">
-                <label className="flex-1">Heigth</label>
-                <input
-                  className={`${inputStyle} flex-2`}
-                  {...register("height", { valueAsNumber: true })}
-                  type="number"
-                  placeholder="Height (cm)"
-                  value={toy?.height}
-                />
-                <label>cm</label>
-              </div>
-              <div className="flex items-center gap-3">
-                <label className="flex-1">Weigth</label>
-                <input
-                  className={`${inputStyle} flex-1`}
-                  {...register("weight", { valueAsNumber: true })}
-                  type="number"
-                  placeholder="Weight (g)"
-                  value={toy?.weight}
-                />
-                <label>g</label>
-              </div>
-            </fieldset>
+                <div className="flex items-center gap-3">
+                  <label className="flex-1">Heigth</label>
+                  <input
+                    className={`${inputStyle} flex-2`}
+                    {...register("height", { valueAsNumber: true })}
+                    type="number"
+                    placeholder="Height (cm)"
+                    value={toy?.height}
+                  />
+                  <label>cm</label>
+                </div>
+                <div className="flex items-center gap-3">
+                  <label className="flex-1">Weigth</label>
+                  <input
+                    className={`${inputStyle} flex-1`}
+                    {...register("weight", { valueAsNumber: true })}
+                    type="number"
+                    placeholder="Weight (g)"
+                    value={toy?.weight}
+                  />
+                  <label>g</label>
+                </div>
+              </fieldset>
 
-            <fieldset className={`${fieldStyle} absolute top-[17rem]`}>
-              <legend className="font-bold mb-2">Description</legend>
-              <textarea
-                className={`${inputStyle} w-full`}
-                {...register("description")}
-                placeholder="Description"
-                value={toy?.description}
-              />
-            </fieldset>
-          </div>
+              <fieldset className={`${fieldStyle} absolute top-[17rem]`}>
+                <legend className="font-bold mb-2">Description</legend>
+                <textarea
+                  className={`${inputStyle} w-full`}
+                  {...register("description")}
+                  placeholder="Description"
+                  value={toy?.description}
+                />
+              </fieldset>
+            </div>
+          )}
           <div className="flex flex-row justify-center items-center">
             <div className="mt-11 mr-10">
               <legend className="font-bold mb-2">Conditions</legend>
               <textarea
                 className={`${inputStyle} w-max`}
-                {...register("conditions")}
+                {...register("condition")}
                 placeholder="conditions"
               />
             </div>
@@ -248,7 +252,10 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
                 Submit
               </button>
 
-              <button onClick={() => handleDelete(toy!.id)} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+              <button
+                onClick={() => handleDelete(toy!.id)}
+                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+              >
                 Delete
               </button>
               <Link href={"/filteredfigures/uncheck"}>
