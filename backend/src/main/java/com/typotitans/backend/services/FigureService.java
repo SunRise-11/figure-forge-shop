@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -44,24 +43,21 @@ public class FigureService {
         return objectMapper.convertValue(figure, ResponseDto.class);
     }
 
-    public ResponseDto addFigure(String figureDetails,
-                                 MultipartFile[] pictures) throws JsonProcessingException {
-        var figure = figureRepository.save(objectMapper.readValue(figureDetails, Figure.class));
-        Arrays.stream(pictures).forEach(picture -> {
-            var savedPicture = pictureRepository.save(new Picture());
-            String blob = null;
-            try {
-                blob = blobService.uploadBlob(savedPicture.getId(), picture);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            savedPicture.setFileType(picture.getContentType());
-            savedPicture.setPictureUrl(blob);
-            savedPicture.setFigure(figure);
-            pictureRepository.save(savedPicture);
-        });
+    public ResponseDto addFigure(String request) throws JsonProcessingException {
+        Figure figure = objectMapper.readValue(request, Figure.class);
+        figure = figureRepository.save(figure);
 
-        return objectMapper.convertValue(figureRepository.save(figure), ResponseDto.class);
+        List<Picture> pictures = figure.getPictures();
+        if (pictures != null) {
+            for (Picture picture : pictures) {
+                Picture savedPicture = pictureRepository.findById(picture.getId())
+                        .orElseThrow(() -> new NoSuchElementException("Picture not found"));
+                savedPicture.setFigure(figure);
+                pictureRepository.save(savedPicture);
+            }
+        }
+
+        return objectMapper.convertValue(figure, ResponseDto.class);
     }
 
     public ResponseDto updateFigure(UpdateDto updateDto, String id) {
