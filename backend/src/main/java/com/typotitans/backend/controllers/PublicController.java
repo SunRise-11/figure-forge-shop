@@ -2,18 +2,19 @@ package com.typotitans.backend.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.typotitans.backend.dtos.ResponseDto;
+import com.typotitans.backend.models.Picture;
 import com.typotitans.backend.services.FigureService;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("public/figures")
+@RequestMapping("public")
 @CrossOrigin
 public class PublicController {
 
@@ -23,31 +24,27 @@ public class PublicController {
         this.figureService = figureService;
     }
 
-    @GetMapping
+    @GetMapping("figures")
     ResponseEntity<List<ResponseDto>> getAllFigures() {
         return ResponseEntity.ok().body(figureService.getAllFigures());
     }
 
-    @GetMapping("{id}")
+    @GetMapping("figures/{id}")
     ResponseEntity<ResponseDto> getSpecificFigure(@PathVariable String id) {
         return ResponseEntity.ok(figureService.getFigure(id));
     }
 
-    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping("figures")
     public ResponseEntity<ResponseDto> createFigure(
-            @RequestParam("pictures") MultipartFile[] pictures,
-            @RequestParam("figureDetails") String figureDetails,
+            @RequestBody String figureDetails,
             HttpServletRequest req) {
 
-        ResponseDto figure = null;
         try {
-            figure = figureService.addFigure(figureDetails, pictures);
+            var figure = figureService.addFigure(figureDetails);
+            URI location = URI.create(req.getRequestURI() + "/" + figure.id());
+            return ResponseEntity.created(location).body(figure);
         } catch (JsonProcessingException e) {
             return ResponseEntity.badRequest().build();
         }
-        URI location = URI.create(req.getRequestURI() + "/" + figure.id());
-
-        return ResponseEntity.created(location).body(figure);
     }
-
 }
