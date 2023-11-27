@@ -6,6 +6,7 @@ import com.typotitans.backend.repositories.FigureRepository;
 import com.typotitans.backend.repositories.PictureRepository;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Profile("dev")
 public class SeedingService implements ApplicationRunner {
 
     private final FigureRepository figureRepository;
