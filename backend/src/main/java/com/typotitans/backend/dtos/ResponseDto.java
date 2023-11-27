@@ -17,6 +17,7 @@ public record ResponseDto(
         int length,
         int weight,
         int rating,
+        String status,
         List<Picture> pictures
 ) {
 }
