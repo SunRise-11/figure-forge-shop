@@ -10,24 +10,19 @@ type Props = {
 };
 
 const DetailPage = ({ params }: Props) => {
-  const [data, setData] = useState<Toy>();
+  const [data, setData] = useState<Toy | undefined>(undefined);
   const { toys } = useContext(FiguresContext);
-  console.log(toys);
-  const fetchbackend = async () => {
-    console.log(toys);
-    let selectedFigure: Toy[] = [];
-    if (toys.length > 0) {
-     // selectedFigure = 
-    } else {
-      selectedFigure = toys.filter((toy) => toy.id == params.id);
-    }
-    setData(selectedFigure[0]);
-  };
-
+ 
   useEffect(() => {
-    console.log(toys);
-    fetchbackend();
-  }, []);
+    const fetchBackend = async () => {
+      const toy = toys.find((toy) => toy.id === params.id);
+      if (toy) {
+        setData(toy);
+      }
+    };
+
+    fetchBackend();
+  }, [params.id, toys]);
   if (data) {
     return (
       <>
@@ -169,13 +164,13 @@ const DetailPage = ({ params }: Props) => {
               <legend className="text-lg text-text font-semibold">
                 Description
               </legend>
-              <div
-                className="appearance-none block w-full bg-gray-200 text-background border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-auto"
+              <textarea
+                className="appearance-none block w-full bg-gray-200 text-background border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-description"
                 placeholder="description"
-              >
-                {data.description}
-              </div>
+                readOnly
+                value={data.description}
+              />
             </div>
           </div>
         </div>
@@ -185,13 +180,13 @@ const DetailPage = ({ params }: Props) => {
               <legend className="text-lg text-text font-semibold">
                 Conditions
               </legend>
-              <div
-                className="appearance-none block w-full bg-gray-200 text-background border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-auto"
-                id="grid-conditions"
-                placeholder="conditions"
-              >
-                {data.conditions}
-              </div>
+              <textarea
+                className="appearance-none block w-full bg-gray-200 text-background border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="grid-condition"
+                placeholder="..."
+                readOnly
+                value={data.conditions}
+              />
             </div>
           </div>
         </div>
