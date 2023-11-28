@@ -95,8 +95,7 @@ public class FigureService {
     }
 
     public void deleteFigure(String id) {
-        var figure = figureRepository.findById(id).orElseThrow(
-                () -> new NoSuchElementException("Figure not found"));
-        figureRepository.delete(figure);
+        var figure = figureRepository.findById(id);
+        figure.ifPresent(figureRepository::delete);
     }
 }
