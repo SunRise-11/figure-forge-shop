@@ -12,7 +12,7 @@ type Props = {
 const DetailPage = ({ params }: Props) => {
   const [data, setData] = useState<Toy | undefined>(undefined);
   const { toys } = useContext(FiguresContext);
- 
+
   useEffect(() => {
     const fetchBackend = async () => {
       const toy = toys.find((toy) => toy.id === params.id);
@@ -23,7 +23,7 @@ const DetailPage = ({ params }: Props) => {
 
     fetchBackend();
   }, [params.id, toys]);
-  
+
   if (data) {
     return (
       <>
@@ -46,7 +46,7 @@ const DetailPage = ({ params }: Props) => {
                 </div>
                 <div className="md:w-2/3">
                   <input
-                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-background leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded  w-screen sm:w-full py-2 px-4 text-background leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                     id="inline-origin"
                     type="text"
                     value={data.origin}
@@ -65,7 +65,7 @@ const DetailPage = ({ params }: Props) => {
                 </div>
                 <div className="md:w-2/3">
                   <input
-                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-background leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-screen sm:w-full py-2 px-4 text-background leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                     id="inline-brand"
                     type="text"
                     value={data.brand}
@@ -84,7 +84,7 @@ const DetailPage = ({ params }: Props) => {
                 </div>
                 <div className="md:w-2/3">
                   <input
-                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-background leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-screen sm:w-full py-2 px-4 text-background leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                     id="inline-price"
                     type="text"
                     value={data.price}
@@ -110,7 +110,7 @@ const DetailPage = ({ params }: Props) => {
                 </div>
                 <div className="md:w-2/3">
                   <input
-                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-background leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-screen sm:w-full py-2 px-4 text-background leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                     id="inline-width"
                     type="text"
                     value={data.width}
@@ -129,7 +129,7 @@ const DetailPage = ({ params }: Props) => {
                 </div>
                 <div className="md:w-2/3">
                   <input
-                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-background leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-screen sm:w-full py-2 px-4 text-background leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                     id="inline-height"
                     type="text"
                     value={data.height}
@@ -148,7 +148,7 @@ const DetailPage = ({ params }: Props) => {
                 </div>
                 <div className="md:w-2/3">
                   <input
-                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-background leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-screen sm:w-full py-2 px-4 text-background leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                     id="inline-diameter"
                     type="text"
                     readOnly
@@ -165,13 +165,13 @@ const DetailPage = ({ params }: Props) => {
               <legend className="text-lg text-text font-semibold">
                 Description
               </legend>
-              <textarea
-                className="appearance-none block w-full bg-gray-200 text-background border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              <div
+                className="appearance-none block w-screen sm:w-full bg-gray-200 text-background border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-description"
                 placeholder="description"
-                readOnly
-                value={data.description}
-              />
+              >
+                {data.description}
+              </div>
             </div>
           </div>
         </div>
@@ -181,13 +181,13 @@ const DetailPage = ({ params }: Props) => {
               <legend className="text-lg text-text font-semibold">
                 Conditions
               </legend>
-              <textarea
-                className="appearance-none block w-full bg-gray-200 text-background border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="grid-condition"
-                placeholder="..."
-                readOnly
-                value={data.conditions}
-              />
+              <div
+                className="appearance-none block w-screen sm:w-full bg-gray-200 text-background border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 min-h-full"
+                id="grid-description"
+                placeholder="description"
+              >
+                {data.conditions}
+              </div>
             </div>
           </div>
         </div>
