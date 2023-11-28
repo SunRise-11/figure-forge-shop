@@ -35,7 +35,7 @@ const Footer = () => {
             <ul className="text-gray-500 dark:text-gray-400 font-medium">
               <li className="mb-4">
                 <a
-                  href="https://github.com/kevingida"
+                  href="https://github.com/TypoTitans"
                   className="hover:underline hover:text-text "
                 >
                   Github
@@ -43,7 +43,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="https://discord.gg"
+                  href="https://discord.gg/u3Rs5xQV"
                   className="hover:underline hover:text-text"
                 >
                   Discord
@@ -80,7 +80,7 @@ const Footer = () => {
           . All Rights Reserved.
         </span>
         <div className="flex space-x-5 sm:justify-center sm:mt-0 ">
-          <a href="#" className="text-gray-500 hover:text-text">
+          <a href="https://discord.gg/evRCAexs" className="text-gray-500 hover:text-text">
             <svg
               className="w-4 h-4 hover:fill-purple"
               aria-hidden="true"
@@ -93,7 +93,7 @@ const Footer = () => {
             <span className="sr-only">Discord community</span>
           </a>
           <a
-            href="https://github.com/kevingida"
+            href="https://github.com/TypoTitans"
             className="text-gray-500 hover:text-text"
           >
             <svg

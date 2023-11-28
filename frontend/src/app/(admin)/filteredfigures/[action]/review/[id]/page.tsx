@@ -27,7 +27,8 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
     const formData = {status:"posted",
       ...data,
     };
-
+console.log("Data");
+console.log(data);
     httpPutFigure(formData, toy!.id)
       .then((response) => {
         if (response.ok) {

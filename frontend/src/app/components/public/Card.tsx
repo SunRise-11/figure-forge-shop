@@ -27,13 +27,24 @@ const Card = ({ toy }: Props) => {
         className="w-[300px] h-[380px] bg-purple border-4 border-white flex flex-col justify-between rounded-lg sm:my-10 text-text"
       >
         <div className="w-full h-[300px] border-white flex item-center justify-center overflow-hidden rounded-t-lg">
-          <Image
+          {
+            toy.pictures.length > 0 ?
+            <Image
             className="h-full"
             src={toy.pictures[0].pictureUrl}
             alt="some Pic"
             width={300}
             height={500}
+          /> :
+          <Image
+            className="h-full"
+            src=""
+            alt="some Pic"
+            width={300}
+            height={500}
           />
+          }
+          
         </div>
         <div className="px-4 py-2 my-0">
           <h3 className="  truncate w-4/6 ">{toy.name}</h3>

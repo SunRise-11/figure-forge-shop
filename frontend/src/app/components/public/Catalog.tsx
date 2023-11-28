@@ -6,7 +6,7 @@ import { FiguresContext } from "@/app/contexts/figures.context";
 import { Toy } from "@/app/types/types";
 
 const Catalog = () => {
-  const { toys } = useContext(FiguresContext);
+  let { toys } = useContext(FiguresContext);
   const [searchFigure, setSearchFigure] = useState("");
   const [filteredResults, setFilteredResult] = useState<Toy[]>([]);
   const [sortBy, setSortBy] = useState<string>("rating");
@@ -22,7 +22,7 @@ const Catalog = () => {
     const filterSortAndPaginate = () => {
       const startIndex = (currentPage - 1) * elementsPerPage;
       const endIndex = startIndex + elementsPerPage;
-
+      toys = toys.filter((toy) => toy.status.toLowerCase() == "posted");
       //Filtering
       const filteredToys = toys.filter(
         (item) =>
@@ -39,7 +39,7 @@ const Catalog = () => {
         } else if (sortBy === "price") {
           return sortOrder === "asc" ? a.price - b.price : b.price - a.price;
         }
-        return 0; // Default case, no sorting
+        return 0;
       });
 
       // Pagination
@@ -67,7 +67,7 @@ const Catalog = () => {
   return (
     <>
       <div className="relative mt-5">
-        <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+        <div className="absolute inset-y-0 start-0 pb-12 flex items-center ps-3 pointer-events-none">
           <svg
             className="w-4 h-4 text-gray-500 dark:text-gray-400"
             aria-hidden="true"
@@ -87,23 +87,36 @@ const Catalog = () => {
         <input
           type="search"
           onChange={handleFilterChange}
-          className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="block w-full p-4 mb-5 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Search Figures ..."
           required
         />
 
-        <label htmlFor="sort">Sort By:</label>
-        <select id="sort" onChange={handleSortChange} value={sortBy}>
+        <label
+          htmlFor="sort"
+          className="mr-2 text-sm text-white dark:text-white"
+        >
+          Sort By:
+        </label>
+        <select
+          id="sort"
+          className="p-2 mr-4 text-sm border border-gray-300 rounded dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+          onChange={handleSortChange}
+          value={sortBy}
+        >
           <option value="rating">Rating</option>
           <option value="price">Price</option>
         </select>
 
-        <label htmlFor="order">Sort Order:</label>
-        <select id="order" onChange={handleOrderChange} value={sortOrder}>
+        <select
+          id="order"
+          className="p-2  text-sm border border-gray-300 rounded dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+          onChange={handleOrderChange}
+          value={sortOrder}
+        >
           <option value="asc">Ascending</option>
           <option value="desc">Descending</option>
         </select>
-        
       </div>
       <div className="flex flex-wrap w-full">
         {filteredResults.length > 0 &&

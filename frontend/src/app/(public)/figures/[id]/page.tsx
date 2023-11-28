@@ -12,12 +12,20 @@ type Props = {
 const DetailPage = ({ params }: Props) => {
   const [data, setData] = useState<Toy>();
   const { toys } = useContext(FiguresContext);
+  console.log(toys);
   const fetchbackend = async () => {
-    const toy = toys.filter((toy) => toy.id == params.id);
-    setData(toy[0]);
+    console.log(toys);
+    let selectedFigure: Toy[] = [];
+    if (toys.length > 0) {
+     // selectedFigure = 
+    } else {
+      selectedFigure = toys.filter((toy) => toy.id == params.id);
+    }
+    setData(selectedFigure[0]);
   };
 
   useEffect(() => {
+    console.log(toys);
     fetchbackend();
   }, []);
   if (data) {
