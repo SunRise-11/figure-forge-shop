@@ -21,6 +21,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
   const router = useRouter();
 
   const rating = watch("rating");
+  const status = watch("status");
 
   const toy = toys.find((toy) => toy.id === params.id);
 
@@ -103,12 +104,12 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
       });
   };
 
-  const handleStatuChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    setSortBy(event.target.value);
+  const handleStatusChange = (nextValue: number) => {
+    setValue("rating", nextValue);
   };
 
   const handleRatingChange = (nextValue: number) => {
-    setValue("rating", nextValue);
+    setValue("status", nextValue);
   };
 
   return (
