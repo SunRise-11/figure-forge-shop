@@ -2,9 +2,8 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Toy } from "@/app/types/types";
-import { button } from "@material-tailwind/react";
 import { useShoppingCart } from "@/app/contexts/cartContext";
-import { ShoppingCartIcon } from "@heroicons/react/24/outline";
+import { ShoppingCartIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 type Props = {
   toy: Toy;
@@ -53,7 +52,7 @@ const Card = ({ toy }: Props) => {
             className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text bg-red-600 font-bold text-center items-center justify-center transition ease-in-out delay-350 hover:text-accent hover:transition-all"
             onClick={() => removeFromCart(toy.id)}
           >
-            Remove
+            <XMarkIcon className="h-6 text-text" />
           </button>
         )}
       </div>
