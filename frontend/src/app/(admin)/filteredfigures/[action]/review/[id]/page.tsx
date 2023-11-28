@@ -106,7 +106,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
 
   const handleStatusChange = (event: ChangeEvent<HTMLSelectElement>) => {  
     setStatus(event.target.value);
-    console.log("Status",status);
+    console.log("Status changed",status);
   };
 
   const handleRatingChange = (nextValue: number) => {
