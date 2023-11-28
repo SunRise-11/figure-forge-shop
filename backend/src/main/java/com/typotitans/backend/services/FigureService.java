@@ -95,7 +95,15 @@ public class FigureService {
     }
 
     public void deleteFigure(String id) {
-        var figure = figureRepository.findById(id);
-        figure.ifPresent(figureRepository::delete);
+        var optionalFigure= figureRepository.findById(id);
+
+        if(optionalFigure.isPresent()){
+            var figure = optionalFigure.get();
+            figure.getPictures().forEach(picture -> {
+                blobService.deleteBlob(picture.getId());
+                pictureRepository.delete(picture);
+            });
+            figureRepository.delete(figure);
+        }
     }
 }
