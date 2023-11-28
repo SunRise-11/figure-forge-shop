@@ -6,7 +6,7 @@ import { FiguresContext } from "@/app/contexts/figures.context";
 import { Figure } from "@/app/types/types";
 import { Card } from "@material-tailwind/react";
 import Link from "next/link";
-import { useContext, useState } from "react";
+import { ChangeEvent, useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 
@@ -17,17 +17,19 @@ const fieldStyle = "flex flex-col gap-5 h-max mb-4 sm:w-1/2";
 const ReviewPage = ({ params }: { params: { id: string } }) => {
   const { register, handleSubmit, watch, setValue } = useForm();
   const { toys, deleteFigure, updateFigure } = useContext(FiguresContext);
-  const [figure, setFigure] = useState<Figure>(); 
+ 
+
   const router = useRouter();
 
   const rating = watch("rating");
-  const status = watch("status");
+ 
 
   const toy = toys.find((toy) => toy.id === params.id);
+  const [status, setStatus] = useState<string>();
 
   const onSubmit = (data: any) => {
-    const formData = { status: "posted", ...data };
-
+    const formData = { status: status, ...data };
+    
     httpPutFigure(formData, toy!.id)
       .then((response) => {
         if (response.ok) {
@@ -38,16 +40,15 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
         }
       })
       .then((data) => {
-        updateFigure(data);
-        setFigure(data);
-        if (toy?.status.toLocaleLowerCase() == "posted") {
+        updateFigure(data);  
+        if (status == "posted") {
           sendToDiscord();
         }
       });
   };
 
   const handleDelete = async (id: string) => {
-    if (id !== undefined) { 
+    if (id !== undefined) {
       const serverResponse = await httpDeleteFigure(id);
       console.log("Server Response", serverResponse);
 
@@ -61,8 +62,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
     }
   };
 
-  const sendToDiscord = async () => {
-    console.log("figure id is : " + params.id);
+  const sendToDiscord = async () => { 
     const discordUrl =
       "https://discord.com/api/webhooks/1178368931262631946/LQmN55RY6c6cGiXolEGkhh4lmBtUBEEuPJ19eXQxpNYZN_mGEzywFUZPfJf1fwJK_JBm";
 
@@ -74,16 +74,16 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
           title: "New product available",
           description:
             "Name: " +
-            figure?.name +
+            toy?.name +
             "\n " +
             "Description : " +
-            figure?.description +
+            toy?.description +
             "\n " +
             "Price : " +
-            figure?.price +
+            toy?.price +
             "\n " +
             "Url: https://figure-forge-shop.vercel.app/figures/" +
-            params.id +
+            toy?.id +
             "\n ",
         },
       ],
@@ -104,12 +104,13 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
       });
   };
 
-  const handleStatusChange = (nextValue: number) => {
-    setValue("rating", nextValue);
+  const handleStatusChange = (event: ChangeEvent<HTMLSelectElement>) => {  
+    setStatus(event.target.value);
+    console.log("Status",status);
   };
 
   const handleRatingChange = (nextValue: number) => {
-    setValue("status", nextValue);
+    setValue("rating", nextValue);
   };
 
   return (
@@ -144,12 +145,12 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
                   <select
                     id="ddl_status"
                     className="p-2 mr-4  text-sm border border-gray-300 rounded dark:border-gray-600 dark:bg-gray-700 dark:text-white"
-                    onChange={()=>{}} 
-                    defaultValue={toy?.status}
+                    onChange={handleStatusChange}  
+                     
                   >
-                    <option value="price">Unckeck</option>
-                    <option value="rating">Post</option>
-                    <option value="price">sold</option>
+                    <option value="unckeck">Unckeck</option>
+                    <option value="posted">Posted</option>
+                    <option value="sold">sold</option>
                   </select>
                   <label className="text-transparent"> sm</label>
                 </div>
@@ -268,7 +269,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
             <div className="flex flex-col gap-5 md:flex-row md:items-start md:mt-5">
               <fieldset className="mt-6">
                 <legend className="font-bold mb-2">Rating</legend>
-                <RatingAdmin onRatingChange={handleRatingChange} />
+                <RatingAdmin rate={toy.rating} onRatingChange={handleRatingChange} />
               </fieldset>
             </div>
             <div className="flex flex-col gap-5 md:flex-row md:items-start md:mt-5">

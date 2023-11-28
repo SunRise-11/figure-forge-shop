@@ -3,10 +3,11 @@ import ReactStars from "react-rating-star-with-type";
 
 type RatingAdminProps = {
   onRatingChange: (value: number) => void;
+  rate:number;
 }
 
-const RatingAdmin: React.FC<RatingAdminProps> = ({onRatingChange}) => {
-  const [star, setStar] = useState(1);
+const RatingAdmin: React.FC<RatingAdminProps> = ({onRatingChange,rate}) => {
+  const [star, setStar] = useState(rate);
 
   const onChange = (nextValue: number) => {
     setStar(nextValue);
