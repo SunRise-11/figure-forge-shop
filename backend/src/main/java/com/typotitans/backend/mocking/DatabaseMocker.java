@@ -32,10 +32,14 @@ public class DatabaseMocker implements ApplicationRunner {
         this.blobService = blobService;
     }
 
-
     public void run(ApplicationArguments args) {
+//        resetBlobContainer();
         SeedFromCsv();
+    }
 
+    private void resetBlobContainer() {
+        var blobs = blobService.listBlobs();
+        blobs.forEach(blobService::deleteBlob);
     }
 
     private List<Picture> seedPictures(int index, Figure figure) {
