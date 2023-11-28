@@ -24,11 +24,9 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
   const toy = toys.find((toy) => toy.id === params.id);
 
   const onSubmit = (data: any) => {
-    const formData = {status:"posted",
-      ...data,
-    };
+    const formData = { status: "posted", ...data };
 
-    console.log(formData)
+    console.log(formData);
 
     httpPutFigure(formData, toy!.id)
       .then((response) => {
@@ -41,7 +39,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
       })
       .then((data) => {
         console.log("Data checked.");
-        console.log("Figure from backend" , data);
+        console.log("Figure from backend", data);
         updateFigure(data);
         setFigure(data);
         sendToDiscord();
@@ -50,10 +48,6 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
 
   const handleDelete = async (id: string) => {
     if (id !== undefined) {
-      // const newId = "90239b90-129f-4f59-a050-a473cf586f71";
-      // return await httpDeleteFigure(newId);
-      // console.log("server response status:", serverResponse.status);
-      // console.log("server response status text:", serverResponse.statusText);
       const serverResponse = await httpDeleteFigure(id);
       console.log("Server Response", serverResponse);
 
