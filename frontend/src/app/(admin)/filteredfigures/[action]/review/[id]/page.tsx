@@ -28,6 +28,8 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
       ...data,
     };
 
+    console.log(formData)
+
     httpPutFigure(formData, toy!.id)
       .then((response) => {
         if (response.ok) {
@@ -39,6 +41,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
       })
       .then((data) => {
         console.log("Data checked.");
+        console.log("Figure from backend" , data);
         updateFigure(data);
         setFigure(data);
         sendToDiscord();
@@ -132,7 +135,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
                     className={`${inputStyle} flex-2`}
                     {...register("name")}
                     placeholder="Name"
-                    value={toy?.name}
+                    defaultValue={toy?.name}
                   />
                 </div>
 
@@ -143,7 +146,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
                     className={`${inputStyle} flex-2`}
                     {...register("origin")}
                     placeholder="Origin"
-                    value={toy?.origin}
+                    defaultValue={toy?.origin}
                   />
                 </div>
 
@@ -154,7 +157,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
                     className={`${inputStyle} flex-2`}
                     {...register("brand")}
                     placeholder="Brand"
-                    value={toy?.brand}
+                    defaultValue={toy?.brand}
                   />
                 </div>
 
@@ -167,7 +170,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
                     type="number"
                     step="0.01"
                     placeholder="Price (EUR)"
-                    value={toy?.price}
+                    defaultValue={toy?.price}
                   />
                 </div>
               </fieldset>
@@ -181,7 +184,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
                     {...register("width", { valueAsNumber: true })}
                     type="number"
                     placeholder="Width (cm)"
-                    value={toy?.width}
+                    defaultValue={toy?.width}
                   />
                   <label>cm</label>
                 </div>
@@ -192,7 +195,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
                     {...register("length", { valueAsNumber: true })}
                     type="number"
                     placeholder="Length (cm)"
-                    value={toy?.length}
+                    defaultValue={toy?.length}
                   />
                   <label>cm</label>
                 </div>
@@ -204,7 +207,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
                     {...register("height", { valueAsNumber: true })}
                     type="number"
                     placeholder="Height (cm)"
-                    value={toy?.height}
+                    defaultValue={toy?.height}
                   />
                   <label>cm</label>
                 </div>
@@ -215,7 +218,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
                     {...register("weight", { valueAsNumber: true })}
                     type="number"
                     placeholder="Weight (g)"
-                    value={toy?.weight}
+                    defaultValue={toy?.weight}
                   />
                   <label>g</label>
                 </div>
@@ -227,7 +230,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
                   className={`${inputStyle} w-full`}
                   {...register("description")}
                   placeholder="Description"
-                  value={toy?.description}
+                  defaultValue={toy?.description}
                 />
               </fieldset>
             </div>
