@@ -13,6 +13,7 @@ import org.springframework.util.ResourceUtils;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -88,7 +89,11 @@ public class SeedingService implements ApplicationRunner {
                 figure.setLength(Integer.parseInt(data[6]));
                 figure.setHeight(Integer.parseInt(data[7]));
                 figure.setWeight(Integer.parseInt(data[8]));
-                figure.setDescription(data[9]);
+
+                String description = String.join(" ",Arrays.copyOfRange(data, 9, data.length));
+                description = description.replace("\"","");
+
+                figure.setDescription(description);
                 figureRepository.save(figure);
                 figure.setPictures(seedPictures(index,figure));
 
