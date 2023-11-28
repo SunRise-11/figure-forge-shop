@@ -24,31 +24,32 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
   const toy = toys.find((toy) => toy.id === params.id);
 
   const onSubmit = (data: any) => {
- 
     const formData = { status: "posted", ...data };
 
-    console.log(formData);
- 
     httpPutFigure(formData, toy!.id)
       .then((response) => {
         if (response.ok) {
           console.log("responde ok.");
           return response.json();
         } else {
-          throw new Error(`Failed to add report. Status: ${response.status}`);
+          throw new Error(`Failed to updtae data. Status: ${response.status}`);
         }
       })
       .then((data) => {
-        console.log("Data checked.");
-        console.log("Figure from backend", data);
         updateFigure(data);
         setFigure(data);
-        sendToDiscord();
+        if (toy?.status.toLocaleLowerCase() == "posted") {
+          sendToDiscord();
+        }
       });
   };
 
   const handleDelete = async (id: string) => {
     if (id !== undefined) {
+      // const newId = "90239b90-129f-4f59-a050-a473cf586f71";
+      // return await httpDeleteFigure(newId);
+      // console.log("server response status:", serverResponse.status);
+      // console.log("server response status text:", serverResponse.statusText);
       const serverResponse = await httpDeleteFigure(id);
       console.log("Server Response", serverResponse);
 
@@ -111,15 +112,15 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
   return (
     <Card className="absolute right-0 w-full max-w-[calc(100vw-19rem)] top-20 max-h-[calc(100vh-5rem)] p-4 shadow-xl shadow-blue-gray-900/5 border-solid border-2 ">
       {toy && (
-        <div className="overflow-y-auto">
-          <div className=" h-96 w-96">
+        <div className="overflow-y-auto flex flex-col md:flex-row md:gap-5">
+          <div className="h-96 w-full md:w-1/2">
             <CarouselDetail pictures={toy!.pictures} />
           </div>
           <form
-            className="flex gap-5 h-max w-max mb-4 py-10 justify-between relative"
+            className="flex flex-col gap-5 w-full mb-4 py-10 "
             onSubmit={handleSubmit(onSubmit)}
           >
-            <div className="flex flex-row gap-14 absolute left-[25rem] -top-96 ">
+            <div className="flex flex-col md:flex gap-14 ">
               <fieldset className={`${fieldStyle} `}>
                 <legend className="font-bold mb-2">Details</legend>
 
@@ -132,8 +133,23 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
                     placeholder="Name"
                     defaultValue={toy?.name}
                   />
+                  <label className="text-transparent"> sm</label>
                 </div>
-
+                <div className="flex items-center gap-3 w-full">
+                  <label className="flex-1">Status</label>
+                  <br />
+                  <select
+                    id="ddl_status"
+                    className="p-2 mr-4  text-sm border border-gray-300 rounded dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                    onChange={()=>{}} 
+                    defaultValue={toy?.status}
+                  >
+                    <option value="price">Unckeck</option>
+                    <option value="rating">Post</option>
+                    <option value="price">sold</option>
+                  </select>
+                  <label className="text-transparent"> sm</label>
+                </div>
                 <div className="flex items-center gap-3 w-full">
                   <label className="flex-1">Origin</label>
                   <br />
@@ -143,6 +159,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
                     placeholder="Origin"
                     defaultValue={toy?.origin}
                   />
+                  <label className="text-transparent"> sm</label>
                 </div>
 
                 <div className="flex items-center gap-3 w-full">
@@ -154,6 +171,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
                     placeholder="Brand"
                     defaultValue={toy?.brand}
                   />
+                  <label className="text-transparent"> sm</label>
                 </div>
 
                 <div className="flex items-center gap-3 w-full">
@@ -167,12 +185,13 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
                     placeholder="Price (EUR)"
                     defaultValue={toy?.price}
                   />
+                  <label className="text-transparent"> sm</label>
                 </div>
               </fieldset>
 
-              <fieldset className={`${fieldStyle} ml-5`}>
+              <fieldset className={`${fieldStyle} `}>
                 <legend className="font-bold mb-2">Dimensions</legend>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 w-full">
                   <label className="flex-1">Width</label>
                   <input
                     className={`${inputStyle} flex-2`}
@@ -183,7 +202,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
                   />
                   <label>cm</label>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 w-full">
                   <label className="flex-1">Length</label>
                   <input
                     className={`${inputStyle} flex-2`}
@@ -195,7 +214,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
                   <label>cm</label>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 w-full">
                   <label className="flex-1">Heigth</label>
                   <input
                     className={`${inputStyle} flex-2`}
@@ -206,7 +225,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
                   />
                   <label>cm</label>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 w-full">
                   <label className="flex-1">Weigth</label>
                   <input
                     className={`${inputStyle} flex-1`}
@@ -215,11 +234,13 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
                     placeholder="Weight (g)"
                     defaultValue={toy?.weight}
                   />
-                  <label>g</label>
+                  <label>gm</label>
                 </div>
               </fieldset>
+            </div>
 
-              <fieldset className={`${fieldStyle} absolute top-[17rem]`}>
+            <div className="flex flex-col gap-5 md:flex-row md:items-start md:mt-5">
+              <div className="flex-grow">
                 <legend className="font-bold mb-2">Description</legend>
                 <textarea
                   className={`${inputStyle} w-full`}
@@ -227,46 +248,49 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
                   placeholder="Description"
                   defaultValue={toy?.description}
                 />
-              </fieldset>
+              </div>
             </div>
 
-            <div className="flex flex-row justify-center items-center">
-              <div className="mt-11 mr-10">
+            <div className="flex flex-col gap-5 md:flex-row md:items-start md:mt-5">
+              <div className="flex-grow">
                 <legend className="font-bold mb-2">Conditions</legend>
                 <textarea
-                  className={`${inputStyle} w-max`}
+                  className={`${inputStyle} w-full`}
                   {...register("condition")}
                   placeholder="conditions"
+                  defaultValue={toy?.conditions}
                 />
               </div>
+            </div>
+            <div className="flex flex-col gap-5 md:flex-row md:items-start md:mt-5">
               <fieldset className="mt-6">
                 <legend className="font-bold mb-2">Rating</legend>
                 <RatingAdmin onRatingChange={handleRatingChange} />
               </fieldset>
-              <div className="flex justify-around space-x-4 mt-10 ml-10">
-                <button
-                  type="submit"
-                  className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-                >
-                  Submit
-                </button>
+            </div>
+            <div className="flex flex-col gap-5 md:flex-row md:items-start md:mt-5">
+              <button
+                type="submit"
+                className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+              >
+                Submit
+              </button>
 
+              <button
+                type="button"
+                onClick={() => handleDelete(toy!.id)}
+                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+              >
+                Delete
+              </button>
+              <Link href={"/filteredfigures/unchecked"}>
                 <button
                   type="button"
-                  onClick={() => handleDelete(toy!.id)}
-                  className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                 >
-                  Delete
+                  Cancel
                 </button>
-                <Link href={"/filteredfigures/unchecked"}>
-                  <button
-                    type="button"
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                  >
-                    Cancel
-                  </button>
-                </Link>
-              </div>
+              </Link>
             </div>
           </form>
         </div>

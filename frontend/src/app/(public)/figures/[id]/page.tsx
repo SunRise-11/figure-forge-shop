@@ -23,6 +23,7 @@ const DetailPage = ({ params }: Props) => {
 
     fetchBackend();
   }, [params.id, toys]);
+  
   if (data) {
     return (
       <>
