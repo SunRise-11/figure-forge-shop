@@ -11,7 +11,8 @@ public record UpdateDto(
         int height,
         int length,
         int weight,
-        int rating
+        int rating,
+        String status
 ) {
 
 }

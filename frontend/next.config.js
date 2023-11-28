@@ -20,6 +20,10 @@ module.exports = {
         protocol: "https",
         hostname: "tsumeart-1d733.kxcdn.com",
       },
+      {
+        protocol: "https",
+        hostname: "https://www.sideshow.com/",
+      },
     ],
     domains: ["i.etsystatic.com", "onepiecetreasuregk.net"],
   },

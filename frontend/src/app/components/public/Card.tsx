@@ -29,11 +29,7 @@ const Card = ({ toy }: Props) => {
         <div className="w-full h-[300px] border-white flex item-center justify-center overflow-hidden rounded-t-lg">
           <Image
             className="h-full"
-            src={
-              toy.pictures.length == 0 
-                ? ""
-                : toy.pictures[0].pictureUrl
-            } 
+            src={toy.pictures[0].pictureUrl}
             alt="some Pic"
             width={300}
             height={500}

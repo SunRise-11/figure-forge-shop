@@ -89,6 +89,7 @@ public class FigureService {
         figure.setPrice(updateDto.price());
         figure.setRating(updateDto.rating());
         figure.setCondition(updateDto.condition());
+        figure.setStatus(updateDto.status());
 
         return objectMapper.convertValue(figureRepository.save(figure), ResponseDto.class);
     }
