@@ -8,6 +8,7 @@ import { Card } from "@material-tailwind/react";
 import Link from "next/link";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 
 const inputStyle =
   "bg-grey appearance-none border-2 border-secondary rounded  py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:border-primary";
@@ -17,7 +18,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
   const { register, handleSubmit, watch, setValue } = useForm();
   const { toys, deleteFigure, updateFigure } = useContext(FiguresContext);
   const [figure, setFigure] = useState<Figure>();
-  console.log(toys);
+  const router = useRouter();
 
   const rating = watch("rating");
 
@@ -45,16 +46,13 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
   };
 
   const handleDelete = async (id: string) => {
-    if (id !== undefined) {
-      // const newId = "90239b90-129f-4f59-a050-a473cf586f71";
-      // return await httpDeleteFigure(newId);
-      // console.log("server response status:", serverResponse.status);
-      // console.log("server response status text:", serverResponse.statusText);
+    if (id !== undefined) { 
       const serverResponse = await httpDeleteFigure(id);
       console.log("Server Response", serverResponse);
 
       if (serverResponse.status === 204) {
         deleteFigure(id);
+        router.push("/dashboard");
       } else {
         const responseText = await serverResponse.text();
         throw new Error(`Server response: ${responseText}`);
