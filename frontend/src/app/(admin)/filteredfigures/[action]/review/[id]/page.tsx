@@ -17,15 +17,10 @@ const fieldStyle = "flex flex-col gap-5 h-max mb-4 sm:w-1/2";
 const ReviewPage = ({ params }: { params: { id: string } }) => {
   const { register, handleSubmit, watch, setValue } = useForm();
   const { toys, deleteFigure, updateFigure } = useContext(FiguresContext);
- 
-
   const router = useRouter();
-
   const rating = watch("rating");
- 
-
   const toy = toys.find((toy) => toy.id === params.id);
-  const [status, setStatus] = useState<string>();
+  const [status, setStatus] = useState<string>(toy ? toy.status : 'posted');
 
   const onSubmit = (data: any) => {
     const formData = { status: status, ...data };
@@ -146,7 +141,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
                     id="ddl_status"
                     className="p-2 mr-4  text-sm border border-gray-300 rounded dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                     onChange={handleStatusChange}  
-                     
+                     value={toy?.status}
                   >
                     <option value="unckeck">Unckeck</option>
                     <option value="posted">Posted</option>
