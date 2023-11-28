@@ -169,13 +169,13 @@ const DetailPage = ({ params }: Props) => {
               <legend className="text-lg text-text font-semibold">
                 Description
               </legend>
-              <textarea
-                className="appearance-none block w-full bg-gray-200 text-background border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              <div
+                className="appearance-none block w-full bg-gray-200 text-background border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-auto"
                 id="grid-description"
                 placeholder="description"
-                readOnly
-                value={data.description}
-              />
+              >
+                {data.description}
+              </div>
             </div>
           </div>
         </div>
@@ -185,13 +185,13 @@ const DetailPage = ({ params }: Props) => {
               <legend className="text-lg text-text font-semibold">
                 Conditions
               </legend>
-              <textarea
-                className="appearance-none block w-full bg-gray-200 text-background border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="grid-condition"
-                placeholder="..."
-                readOnly
-                value={data.conditions}
-              />
+              <div
+                className="appearance-none block w-full bg-gray-200 text-background border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-auto"
+                id="grid-conditions"
+                placeholder="conditions"
+              >
+                {data.conditions}
+              </div>
             </div>
           </div>
         </div>

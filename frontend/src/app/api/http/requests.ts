@@ -2,8 +2,6 @@ import { AdminPutDTO, Figure, FigureDto, Picture } from "@/app/types/types";
 
 const PUBLIC_URI = "https://figureforgeapp.azurewebsites.net/public";
 const ADMIN_URI = "https://figureforgeapp.azurewebsites.net/admin";
-// const PUBLIC_URI = 'http://localhost:8080/public';
-// const ADMIN_URI = 'http://localhost:8080/admin';
 
 export const httpGetAllFigures = async () => {
   const response = await fetch(PUBLIC_URI + "/figures");
@@ -33,7 +31,7 @@ export const httpPostFigure = async (figure: FigureDto) => {
   });
 };
 
-export const httpPutFigure = async (figure: AdminPutDTO,id: string) => {
+export const httpPutFigure = async (figure: AdminPutDTO, id: string) => {
   return await fetch(`${ADMIN_URI}/figures/${id}`, {
     method: "PUT",
     headers: {

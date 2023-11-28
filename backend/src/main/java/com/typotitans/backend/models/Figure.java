@@ -18,7 +18,7 @@ public class Figure {
     private int length;
     private int height;
     private int weight;
-    @Column(length = 500)
+    @Column(length = 1000)
     private String description;
     private double price;
     private int rating = 0;
@@ -28,7 +28,6 @@ public class Figure {
 
     @OneToMany(
             mappedBy = "figure")
-//            cascade = CascadeType.ALL)
     private List<Picture> pictures;
 
     public Figure() {

@@ -95,8 +95,15 @@ public class FigureService {
     }
 
     public void deleteFigure(String id) {
-        var figure = figureRepository.findById(id).orElseThrow(
-                () -> new NoSuchElementException("Figure not found"));
-        figureRepository.delete(figure);
+        var optionalFigure= figureRepository.findById(id);
+
+        if(optionalFigure.isPresent()){
+            var figure = optionalFigure.get();
+            figure.getPictures().forEach(picture -> {
+                blobService.deleteBlob(picture.getId());
+                pictureRepository.delete(picture);
+            });
+            figureRepository.delete(figure);
+        }
     }
 }

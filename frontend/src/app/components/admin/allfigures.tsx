@@ -1,7 +1,8 @@
 "use client";
 import React, { useContext, useState } from "react";
-import { Card, Typography } from "@material-tailwind/react";
+import { Card, Rating, Typography } from "@material-tailwind/react";
 import { FiguresContext } from "@/app/contexts/figures.context";
+import Link from "next/link";
 
 const AllFiguresComponent = () => {
   const { toys } = useContext(FiguresContext);
@@ -24,13 +25,13 @@ const AllFiguresComponent = () => {
               <th scope="col" className="border px-6 py-3">
                 Name
               </th>
-              <th scope="col" className="border px-6 py-3">
+              <th scope="col" className="border px-6 py-3 text-center">
                 Status
               </th>
-              <th scope="col" className="border px-6 py-3">
+              <th scope="col" className="border px-6 py-3 text-center">
                 Rating
               </th>
-              <th scope="col" className="border px-6 py-3">
+              <th scope="col" className="border px-6 py-3 text-center">
                 Price
               </th>
             </tr>
@@ -40,10 +41,20 @@ const AllFiguresComponent = () => {
                   key={toy.id.toString()}
                   className="even:bg-white odd:bg-gray-100"
                 >
-                  <td className="border px-6 py-4">{toy.name}</td>
-                  <td className="border px-6 py-4">{toy.status}</td>
-                  <td className="border px-6 py-4">{toy.rating}</td>
                   <td className="border px-6 py-4">
+                    {" "}
+                    <Link
+                      href={`/filteredfigures/${toy.status}/review/${toy.id}`}
+                      className=" underline hover:text-primary"
+                    >
+                      {toy.name}
+                    </Link>
+                  </td>
+                  <td className="border px-6 py-4 text-center">{toy.status}</td>
+                  <td className="border px-6 py-4 text-center">
+                    <Rating value={toy.rating} readonly />
+                  </td>
+                  <td className="border px-6 py-4 text-center">
                     {formatter.format(toy.price)}
                   </td>
                 </tr>

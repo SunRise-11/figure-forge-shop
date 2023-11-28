@@ -24,11 +24,11 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
   const toy = toys.find((toy) => toy.id === params.id);
 
   const onSubmit = (data: any) => {
-    const formData = {status:"posted",
-      ...data,
-    };
-console.log("Data");
-console.log(data);
+ 
+    const formData = { status: "posted", ...data };
+
+    console.log(formData);
+ 
     httpPutFigure(formData, toy!.id)
       .then((response) => {
         if (response.ok) {
@@ -40,6 +40,7 @@ console.log(data);
       })
       .then((data) => {
         console.log("Data checked.");
+        console.log("Figure from backend", data);
         updateFigure(data);
         setFigure(data);
         sendToDiscord();
@@ -48,10 +49,6 @@ console.log(data);
 
   const handleDelete = async (id: string) => {
     if (id !== undefined) {
-      // const newId = "90239b90-129f-4f59-a050-a473cf586f71";
-      // return await httpDeleteFigure(newId);
-      // console.log("server response status:", serverResponse.status);
-      // console.log("server response status text:", serverResponse.statusText);
       const serverResponse = await httpDeleteFigure(id);
       console.log("Server Response", serverResponse);
 
@@ -133,7 +130,7 @@ console.log(data);
                     className={`${inputStyle} flex-2`}
                     {...register("name")}
                     placeholder="Name"
-                    value={toy?.name}
+                    defaultValue={toy?.name}
                   />
                 </div>
 
@@ -144,7 +141,7 @@ console.log(data);
                     className={`${inputStyle} flex-2`}
                     {...register("origin")}
                     placeholder="Origin"
-                    value={toy?.origin}
+                    defaultValue={toy?.origin}
                   />
                 </div>
 
@@ -155,7 +152,7 @@ console.log(data);
                     className={`${inputStyle} flex-2`}
                     {...register("brand")}
                     placeholder="Brand"
-                    value={toy?.brand}
+                    defaultValue={toy?.brand}
                   />
                 </div>
 
@@ -168,7 +165,7 @@ console.log(data);
                     type="number"
                     step="0.01"
                     placeholder="Price (EUR)"
-                    value={toy?.price}
+                    defaultValue={toy?.price}
                   />
                 </div>
               </fieldset>
@@ -182,7 +179,7 @@ console.log(data);
                     {...register("width", { valueAsNumber: true })}
                     type="number"
                     placeholder="Width (cm)"
-                    value={toy?.width}
+                    defaultValue={toy?.width}
                   />
                   <label>cm</label>
                 </div>
@@ -193,7 +190,7 @@ console.log(data);
                     {...register("length", { valueAsNumber: true })}
                     type="number"
                     placeholder="Length (cm)"
-                    value={toy?.length}
+                    defaultValue={toy?.length}
                   />
                   <label>cm</label>
                 </div>
@@ -205,7 +202,7 @@ console.log(data);
                     {...register("height", { valueAsNumber: true })}
                     type="number"
                     placeholder="Height (cm)"
-                    value={toy?.height}
+                    defaultValue={toy?.height}
                   />
                   <label>cm</label>
                 </div>
@@ -216,7 +213,7 @@ console.log(data);
                     {...register("weight", { valueAsNumber: true })}
                     type="number"
                     placeholder="Weight (g)"
-                    value={toy?.weight}
+                    defaultValue={toy?.weight}
                   />
                   <label>g</label>
                 </div>
@@ -228,7 +225,7 @@ console.log(data);
                   className={`${inputStyle} w-full`}
                   {...register("description")}
                   placeholder="Description"
-                  value={toy?.description}
+                  defaultValue={toy?.description}
                 />
               </fieldset>
             </div>
