@@ -24,7 +24,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
   const toy = toys.find((toy) => toy.id === params.id);
 
   const onSubmit = (data: any) => {
-    const formData = {
+    const formData = {status:"posted",
       ...data,
     };
 
