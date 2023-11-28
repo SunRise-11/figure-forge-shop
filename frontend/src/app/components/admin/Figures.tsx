@@ -1,10 +1,19 @@
 "use client";
 import React, { useContext } from "react";
-import { Card, Rating, Typography } from "@material-tailwind/react";
 import Link from "next/link";
 import { Toy } from "@/app/types/types";
 import { httpDeleteFigure, httpPutFigure } from "@/app/api/http/requests";
 import { FiguresContext } from "@/app/contexts/figures.context";
+import {
+  Button,
+  Dialog,
+  DialogHeader,
+  DialogBody,
+  DialogFooter,
+  Card,
+  Rating,
+  Typography,
+} from "@material-tailwind/react";
 
 type Props = {
   action: String;
@@ -13,6 +22,9 @@ type Props = {
 
 const Figures = ({ action, data }: Props) => {
   const { toys, deleteFigure, updateFigure } = useContext(FiguresContext);
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => setOpen(!open);
 
   const formatter = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -63,7 +75,6 @@ const Figures = ({ action, data }: Props) => {
         console.log("Data checked.");
         console.log("Figure from backend", data);
         updateFigure(data);
-        // setFigure(data);
       });
   };
 
@@ -145,9 +156,32 @@ const Figures = ({ action, data }: Props) => {
                     ) : (
                       <button
                         className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                        onClick={() => handleDelete(toy!.id)}
+                        onClick={handleOpen}
                       >
                         {buttonAction}
+                        <Dialog open={open} handler={handleOpen}>
+                          <DialogHeader>Confirm delete</DialogHeader>
+                          <DialogBody>
+                            Are you Sure want to delete : {toy.name} ?
+                          </DialogBody>
+                          <DialogFooter>
+                            <Button
+                              variant="text"
+                              color="gray"
+                              onClick={handleOpen}
+                              className="mr-1"
+                            >
+                              <span>Cancel</span>
+                            </Button>
+                            <Button
+                              variant="gradient"
+                              color="red"
+                              onClick={() => handleDelete(toy!.id)}
+                            >
+                              <span>Delete</span>
+                            </Button>
+                          </DialogFooter>
+                        </Dialog>
                       </button>
                     )}
                   </td>
