@@ -76,4 +76,5 @@ export type AdminPutDTO = {
   length: number;
   weight: number;
   rating: number;
+  status: string;
 }
