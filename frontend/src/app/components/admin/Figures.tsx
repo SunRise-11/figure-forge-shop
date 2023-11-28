@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { Card, Rating, Typography } from "@material-tailwind/react";
 import Link from "next/link";
 import { Toy } from "@/app/types/types";
-import { httpDeleteFigure } from "@/app/api/http/requests";
+import { httpDeleteFigure, httpPutFigure } from "@/app/api/http/requests";
 import { FiguresContext } from "@/app/contexts/figures.context";
 
 type Props = {
@@ -32,6 +32,39 @@ const Figures = ({ action, data }: Props) => {
         throw new Error(`Server response: ${responseText}`);
       }
     }
+  };
+
+  const handleUpdate = (toy: Toy) => {
+    const formData = {
+      name: toy.name,
+      description: toy.description,
+      condition: toy.conditions,
+      brand: toy.brand,
+      price: toy.price,
+      origin: toy.origin,
+      width: toy.width,
+      height: toy.height,
+      length: toy.length,
+      weight: toy.weight,
+      rating: toy.rating,
+      status: "sold",
+    };
+
+    httpPutFigure(formData, toy!.id)
+      .then((response) => {
+        if (response.ok) {
+          console.log("responde ok.");
+          return response.json();
+        } else {
+          throw new Error(`Failed to add report. Status: ${response.status}`);
+        }
+      })
+      .then((data) => {
+        console.log("Data checked.");
+        console.log("Figure from backend", data);
+        updateFigure(data);
+        // setFigure(data);
+      });
   };
 
   let buttonAction = "";
@@ -103,11 +136,17 @@ const Figures = ({ action, data }: Props) => {
                         </button>
                       </Link>
                     ) : action == "posted" ? (
-                      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                      <button
+                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                        onClick={() => handleUpdate(toy)}
+                      >
                         {buttonAction}
                       </button>
                     ) : (
-                      <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                      <button
+                        className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                        onClick={() => handleDelete(toy!.id)}
+                      >
                         {buttonAction}
                       </button>
                     )}
