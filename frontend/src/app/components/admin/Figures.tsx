@@ -1,19 +1,18 @@
 "use client";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Link from "next/link";
 import { Toy } from "@/app/types/types";
 import { useRouter } from "next/navigation";
 import { httpDeleteFigure, httpPutFigure } from "@/app/api/http/requests";
 import { FiguresContext } from "@/app/contexts/figures.context";
 import {
+  Popover,
+  PopoverHandler,
+  PopoverContent,
   Button,
-  Dialog,
-  DialogHeader,
-  DialogBody,
-  DialogFooter,
   Card,
-  Rating,
   Typography,
+  Rating,
 } from "@material-tailwind/react";
 
 type Props = {
@@ -23,7 +22,7 @@ type Props = {
 
 const Figures = ({ action, data }: Props) => {
   const { toys, deleteFigure, updateFigure } = useContext(FiguresContext);
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const router = useRouter();
 
   const handleOpen = () => setOpen(!open);
@@ -157,37 +156,46 @@ const Figures = ({ action, data }: Props) => {
                         {buttonAction}
                       </button>
                     ) : (
-                      <button
-                        className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                        onClick={handleOpen}
+                      <Popover
+                        animate={{
+                          mount: { scale: 1, y: 0 },
+                          unmount: { scale: 0, y: 25 },
+                        }}
                       >
-                        {buttonAction}
-                      </button>
+                        <PopoverHandler>
+                          <Button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                            {buttonAction}
+                          </Button>
+                        </PopoverHandler>
+                        <PopoverContent>
+                          <div className="mb-4 flex items-center gap-4 border-b border-blue-gray-50 pb-4">
+                            <div>
+                              <Typography variant="h6" color="blue-gray">
+                                Confirm Delete
+                              </Typography>
+                            </div>
+                          </div>
+
+                          <Typography
+                            variant="small"
+                            color="blue-gray"
+                            className="mb-1 font-bold"
+                          >
+                            Are you sure want to delete : {toy.name} statue ?
+                          </Typography>
+                          <div className="mt-4 flex items-center justify-end gap-5">
+                            <Button
+                              variant="gradient"
+                              color="red"
+                              onClick={() => handleDelete(toy!.id)}
+                            >
+                              <span>Confirm</span>
+                            </Button>
+                          </div>
+                        </PopoverContent>
+                      </Popover>
                     )}
                   </td>
-                  <Dialog open={open} handler={handleOpen}>
-                    <DialogHeader>Confirm delete</DialogHeader>
-                    <DialogBody>
-                      Are you sure want to delete : {toy.name} statue ?
-                    </DialogBody>
-                    <DialogFooter>
-                      <Button
-                        variant="text"
-                        color="gray"
-                        onClick={handleOpen}
-                        className="mr-1"
-                      >
-                        <span>Cancel</span>
-                      </Button>
-                      <Button
-                        variant="gradient"
-                        color="red"
-                        onClick={() => handleDelete(toy!.id)}
-                      >
-                        <span>Delete</span>
-                      </Button>
-                    </DialogFooter>
-                  </Dialog>
                 </tr>
               );
             })}
