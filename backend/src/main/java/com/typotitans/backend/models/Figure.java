@@ -28,7 +28,6 @@ public class Figure {
 
     @OneToMany(
             mappedBy = "figure")
-//            cascade = CascadeType.ALL)
     private List<Picture> pictures;
 
     public Figure() {
