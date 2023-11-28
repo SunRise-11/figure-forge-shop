@@ -2,7 +2,6 @@
 import React, { useContext, useState } from "react";
 import Link from "next/link";
 import { Toy } from "@/app/types/types";
-import { useRouter } from "next/navigation";
 import { httpDeleteFigure, httpPutFigure } from "@/app/api/http/requests";
 import { FiguresContext } from "@/app/contexts/figures.context";
 import {
@@ -23,7 +22,6 @@ type Props = {
 const Figures = ({ action, data }: Props) => {
   const { toys, deleteFigure, updateFigure } = useContext(FiguresContext);
   const [open, setOpen] = useState(false);
-  const router = useRouter();
 
   const handleOpen = () => setOpen(!open);
 
@@ -40,7 +38,6 @@ const Figures = ({ action, data }: Props) => {
 
       if (serverResponse.status === 204) {
         deleteFigure(id);
-        // router.refresh();
       } else {
         const responseText = await serverResponse.text();
         throw new Error(`Server response: ${responseText}`);

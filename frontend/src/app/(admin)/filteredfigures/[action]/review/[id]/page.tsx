@@ -8,6 +8,7 @@ import { Card } from "@material-tailwind/react";
 import Link from "next/link";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 
 const inputStyle =
   "bg-grey appearance-none border-2 border-secondary rounded  py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:border-primary";
@@ -17,18 +18,17 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
   const { register, handleSubmit, watch, setValue } = useForm();
   const { toys, deleteFigure, updateFigure } = useContext(FiguresContext);
   const [figure, setFigure] = useState<Figure>();
-  console.log(toys);
+  const router = useRouter();
 
   const rating = watch("rating");
 
   const toy = toys.find((toy) => toy.id === params.id);
 
   const onSubmit = (data: any) => {
- 
     const formData = { status: "posted", ...data };
 
     console.log(formData);
- 
+
     httpPutFigure(formData, toy!.id)
       .then((response) => {
         if (response.ok) {
@@ -54,6 +54,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
 
       if (serverResponse.status === 204) {
         deleteFigure(id);
+        router.push("/dashboard");
       } else {
         const responseText = await serverResponse.text();
         throw new Error(`Server response: ${responseText}`);
