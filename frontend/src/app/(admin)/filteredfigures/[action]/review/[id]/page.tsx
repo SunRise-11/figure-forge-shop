@@ -17,7 +17,7 @@ const fieldStyle = "flex flex-col gap-5 h-max mb-4 sm:w-1/2";
 const ReviewPage = ({ params }: { params: { id: string } }) => {
   const { register, handleSubmit, watch, setValue } = useForm();
   const { toys, deleteFigure, updateFigure } = useContext(FiguresContext);
-  const [figure, setFigure] = useState<Figure>();
+  const [figure, setFigure] = useState<Figure>(); 
   const router = useRouter();
 
   const rating = watch("rating");
@@ -101,6 +101,10 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
       .catch((error) => {
         // Handle any errors that occur during the request
       });
+  };
+
+  const handleStatuChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    setSortBy(event.target.value);
   };
 
   const handleRatingChange = (nextValue: number) => {

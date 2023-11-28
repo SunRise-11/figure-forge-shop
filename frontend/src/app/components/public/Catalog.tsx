@@ -22,8 +22,9 @@ const Catalog = () => {
     const filterSortAndPaginate = () => {
       const startIndex = (currentPage - 1) * elementsPerPage;
       const endIndex = startIndex + elementsPerPage;
-      toys = toys.filter((toy) => toy.status.toLowerCase() == "posted");
-      //Filtering
+      if (toys.length > 0) {
+        toys = toys.filter((toy) => toy.status && toy.status.toLowerCase() == "posted");
+      } //Filtering
       const filteredToys = toys.filter(
         (item) =>
           item.name.toLowerCase().includes(searchFigure.toLowerCase()) ||
