@@ -131,7 +131,7 @@ const Catalog = () => {
           ))}
       </div>
       <Pagination
-        totalElements={filteredResults.length}
+        totalElements={searchFigure == "" ? toys.filter(toy => toy.status == 'posted').length : filteredResults.length}
         elementsPerPage={elementsPerPage}
         currentPage={currentPage}
         onPageChange={handlePageChange}
