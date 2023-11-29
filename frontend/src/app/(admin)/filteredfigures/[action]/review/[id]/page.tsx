@@ -3,7 +3,6 @@ import { httpPutFigure, httpDeleteFigure } from "@/app/api/http/requests";
 import RatingAdmin from "@/app/components/admin/RatingAdmin";
 import CarouselDetail from "@/app/components/public/CarouselDetail";
 import { FiguresContext } from "@/app/contexts/figures.context";
-import { Figure } from "@/app/types/types";
 import { Card } from "@material-tailwind/react";
 import Link from "next/link";
 import { ChangeEvent, useContext, useState } from "react";
