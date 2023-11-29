@@ -110,34 +110,6 @@ export const SellFigureForm = () => {
       className="flex flex-col items-center gap-5 h-max mb-4 py-10 pt-20"
       onSubmit={onFormSubmit}
     >
-      <legend className=" text-2xl font-semibold text-text">Pictures</legend>
-      <fieldset className={fieldStyle}>
-        {previewPictures && (
-          <fieldset className="flex flex-wrap -mx-4">
-            {previewPictures.map((picture, index) => {
-              return (
-                <Image
-                  className="w-1/5 px-4 mb-4"
-                  src={picture}
-                  alt="Uploaded picture preview"
-                  key={index}
-                />
-              );
-            })}
-          </fieldset>
-        )}
-        <input
-          className={errors.pictures ? inputError : inputStyle}
-          type="file"
-          {...register('pictures' ,{required: true})}
-          multiple
-        />
-        {errors.pictures && errors.pictures.type === 'required' && (
-          <span className={errorText} role="alert">
-          You must upload at least one picture
-          </span>
-        )}
-      </fieldset>
 
       <legend className=" text-2xl font-semibold text-text">Details</legend>
       <fieldset className={fieldStyle}>
@@ -218,6 +190,34 @@ export const SellFigureForm = () => {
         />
       </fieldset>
 
+      <legend className=" text-2xl font-semibold text-text">Pictures</legend>
+      <fieldset className={fieldStyle}>
+        {previewPictures && (
+          <fieldset className="flex flex-wrap -mx-4">
+            {previewPictures.map((picture, index) => {
+              return (
+                <Image
+                  className="w-1/5 px-4 mb-4"
+                  src={picture}
+                  alt="Uploaded picture preview"
+                  key={index}
+                />
+              );
+            })}
+          </fieldset>
+        )}
+        <input
+          className={errors.pictures ? inputError : inputStyle}
+          type="file"
+          {...register('pictures' ,{required: true})}
+          multiple
+        />
+        {errors.pictures && errors.pictures.type === 'required' && (
+          <span className={errorText} role="alert">
+          You must upload at least one picture
+          </span>
+        )}
+      </fieldset>
 
       <button
         type="submit"
