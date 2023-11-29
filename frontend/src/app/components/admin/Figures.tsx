@@ -93,10 +93,12 @@ const Figures = ({ action, data }: Props) => {
     }
   }
 
+  const title = action.charAt(0).toUpperCase() + action.slice(1) + " Figures"; 
+
   return (
     <Card className="absolute right-0 top-[6rem] w-full max-w-[calc(100vw-19rem)]  h-[calc(100vh-6rem)] p-4 shadow-xl shadow-blue-gray-900/5 border-solid border-2 ">
       <Typography variant="h5" color="blue-gray">
-        {action} Figures
+        {title} 
       </Typography>
       <div className="overflow-y-auto">
         <table className="w-full text-sm text-left text-black mt-10 ">
