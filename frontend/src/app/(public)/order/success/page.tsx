@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
 const page = () => {
   return (
-    <div className="bg-background h-[calc(100vh-16rem)] pt-32">
+    <div className="mx-auto flex flex-col justify-center items-center bg-background h-[calc(100vh-16rem)] pt-32">
       <div className=" p-4  md:mx-auto w-96 border-solid border-green-500 border-2 rounded-lg">
         <svg
           viewBox="0 0 24 24"
