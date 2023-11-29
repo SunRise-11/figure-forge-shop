@@ -9,7 +9,7 @@ export type Toy = {
   rating: number;
   status: string;
   description: string;
-  conditions: string;
+  condition: string;
   weight: number;
   length: number;
   pictures: Picture[];
