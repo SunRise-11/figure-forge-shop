@@ -9,7 +9,7 @@ type Props = {
 
 const CarouselDetail = ({ pictures }: Props) => {
   return (
-    <Carousel className="rounded-xl z-10 h-screen" autoplay>
+    <Carousel className="rounded-xl z-10 h-[calc(100vh-20rem)]" >
       {pictures?.map((picture, index) => {
         return (
           <Image
