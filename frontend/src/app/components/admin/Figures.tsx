@@ -49,7 +49,7 @@ const Figures = ({ action, data }: Props) => {
     const formData = {
       name: toy.name,
       description: toy.description,
-      condition: toy.conditions,
+      condition: toy.condition,
       brand: toy.brand,
       price: toy.price,
       origin: toy.origin,
