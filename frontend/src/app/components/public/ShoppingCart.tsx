@@ -1,9 +1,9 @@
-import { useShoppingCart } from "@/app/contexts/cartContext";
-import { Fragment, useContext } from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import CartItem from "./CartItem";
-import { FiguresContext } from "@/app/contexts/figures.context";
-import axios from "axios";
+import { useShoppingCart } from '@/app/contexts/cartContext';
+import { Fragment, useContext } from 'react';
+import { Dialog, Transition } from '@headlessui/react';
+import CartItem from './CartItem';
+import { FiguresContext } from '@/app/contexts/figures.context';
+import axios from 'axios';
 
 type ShoppingCartProps = {
   isOpen: boolean;
@@ -13,9 +13,9 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
   const { closeCart, cartItems } = useShoppingCart();
   const { toys } = useContext(FiguresContext);
 
-  const formatter = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "EUR",
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'EUR',
     minimumFractionDigits: 0,
   });
 
@@ -31,13 +31,13 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
       });
     }
     const { data } = await axios.post(
-      "/api/checkout",
+      '/api/checkout',
       {
         item: cartData,
       },
       {
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
       }
     );
@@ -75,7 +75,7 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
               <Dialog.Panel className="w-full min-h-[calc(100vh-4rem)] max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                 <Dialog.Title
                   as="h3"
-                  className="text-xl font-semibold leading-6 text-primary mb-4"
+                  className="text-xl font-semibold leading-6 text-background mb-4"
                 >
                   Cart
                 </Dialog.Title>
@@ -85,11 +85,11 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
                       <CartItem key={item.id} {...item} />
                     ))
                   ) : (
-                    <h2>cart is empty</h2>
+                    <h2>Cart is empty</h2>
                   )}
                 </div>
                 <div className=" font-bold text-xl w-full text-right mt-10">
-                  Total{" "}
+                  Total{' '}
                   {formatter.format(
                     cartItems.reduce((total, cartItem) => {
                       const item = toys.find((i) => i.id === cartItem.id);
@@ -100,7 +100,7 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
                 <div className=" mx-auto w-56 flex justify-center mt-10">
                   <button
                     type="button"
-                    className="  inline-flex justify-center rounded-md border border-transparent bg-primary text-text px-4 py-2 text-sm font-medium hover:text-secondary focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                    className=" inline-flex justify-center rounded-md border border-transparent bg-primary text-white px-4 py-2 text-sm font-medium hover:bg-secondary focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                     onClick={handlePayment}
                   >
                     Checkout
