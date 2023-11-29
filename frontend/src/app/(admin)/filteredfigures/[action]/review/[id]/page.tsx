@@ -140,7 +140,6 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
                     id="ddl_status"
                     className="p-2 mr-4  text-sm border border-gray-300 rounded dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                     onChange={handleStatusChange}  
-                    // value={toy?.status}
                   >
                     <option value="unckeck">Unckecked</option>
                     <option value="posted">Posted</option>
