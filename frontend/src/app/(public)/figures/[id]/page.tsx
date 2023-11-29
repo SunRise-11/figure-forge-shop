@@ -30,6 +30,11 @@ const DetailPage = ({ params }: Props) => {
 
     fetchBackend();
   }, [params.id, toys]);
+const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'EUR',
+    minimumFractionDigits: 0,
+  });
 
   if (data) {
     return (
@@ -58,16 +63,16 @@ const DetailPage = ({ params }: Props) => {
             </button>
           )}
         </div>
-        <div className="flex flex-col sm:flex-row h-max mb-4 py-10">
-          <div className="flex flex-col items-start md:items-center sm:justify-center py-4 gap-10 w-1/2">
-            <legend className="text-lg text-text font-semibold flex justify-start md:justify-center w-full">
-              Details
+        <div className="md:px-40 flex flex-col items-start sm:flex-row h-max mb-4 py-10">
+          <div className="flex flex-col mx-auto items-start md:items-center sm:justify-center py-4 gap-10 ">
+            <legend className="text-2xl text-text font-semibold text-center w-full">
+            Details
             </legend>
-            <div className="w-full max-w-sm">
-              <div className="md:flex md:items-center mb-6">
-                <div className="md:w-1/3">
+            <div className="w-screen max-w-sm">
+              <div className="mb-6 flex flex-col items-center">
+                <div className="md:w-2/3">
                   <label
-                    className="block  text-text font-bold md:text-right mb-1 md:mb-0 pr-4"
+                    className="block text-text font-bold mb-1 pr-4"
                     htmlFor="inline-origin"
                   >
                     Origin
@@ -83,11 +88,12 @@ const DetailPage = ({ params }: Props) => {
                   />
                 </div>
               </div>
-              <div className="md:flex md:items-center mb-6">
-                <div className="md:w-1/3">
+
+              <div className="mb-6 flex flex-col items-center">
+                <div className="md:w-2/3">
                   <label
-                    className="block  text-text font-bold md:text-right mb-1 md:mb-0 pr-4"
-                    htmlFor="inline-brand"
+                    className="block text-text font-bold mb-1 pr-4"
+                    htmlFor="inline-origin"
                   >
                     Brand
                   </label>
@@ -102,11 +108,12 @@ const DetailPage = ({ params }: Props) => {
                   />
                 </div>
               </div>
-              <div className="md:flex md:items-center mb-6">
-                <div className="md:w-1/3">
+
+              <div className="mb-6 flex flex-col items-center">
+                <div className="md:w-2/3">
                   <label
-                    className="block  text-text font-bold md:text-right mb-1 md:mb-0 pr-4"
-                    htmlFor="inline-price"
+                    className="block text-text font-bold mb-1 pr-4"
+                    htmlFor="inline-origin"
                   >
                     Price
                   </label>
@@ -116,22 +123,24 @@ const DetailPage = ({ params }: Props) => {
                     className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-screen sm:w-full py-2 px-4 text-background leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                     id="inline-price"
                     type="text"
-                    value={data.price}
+                    value={formatter.format(data.price)}
                     readOnly
                   />
                 </div>
               </div>
             </div>
           </div>
-          <div className="flex flex-col items-start md:items-center sm:justify-center py-4 gap-10 w-1/2">
-            <legend className="text-lg text-text font-semibold flex justify-start md:justify-center w-full">
+          <div className="flex flex-col mx-auto items-start md:items-center sm:justify-center py-4 gap-10 ">
+            <legend className="text-2xl text-text font-semibold text-center w-full">
               Dimension
             </legend>
             <div className="w-full max-w-sm">
-              <div className="md:flex md:items-center mb-6">
-                <div className="md:w-1/3">
+
+              <div className="mb-6 flex flex-col items-center">
+                <div className="md:w-2/3">
+
                   <label
-                    className="block  text-text font-bold md:text-right mb-1 md:mb-0 pr-4"
+                    className="block  text-text font-bold md:text-left mb-1 md:mb-0 pr-4"
                     htmlFor="inline-width"
                   >
                     Width
@@ -142,15 +151,16 @@ const DetailPage = ({ params }: Props) => {
                     className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-screen sm:w-full py-2 px-4 text-background leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                     id="inline-width"
                     type="text"
-                    value={data.width}
+                    value={data.width + ' cm'}
                     readOnly
                   />
                 </div>
               </div>
-              <div className="md:flex md:items-center mb-6">
-                <div className="md:w-1/3">
+
+              <div className="mb-6 flex flex-col items-center">
+                <div className="md:w-2/3">
                   <label
-                    className="block  text-text font-bold md:text-right mb-1 md:mb-0 pr-4"
+                    className="block  text-text font-bold md:text-left mb-1 md:mb-0 pr-4"
                     htmlFor="inline-height"
                   >
                     Height
@@ -161,16 +171,36 @@ const DetailPage = ({ params }: Props) => {
                     className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-screen sm:w-full py-2 px-4 text-background leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                     id="inline-height"
                     type="text"
-                    value={data.height}
+                    value={data.height + ' cm'}
                     readOnly
                   />
                 </div>
               </div>
-              <div className="md:flex md:items-center mb-6">
-                <div className="md:w-1/3">
+
+              <div className="mb-6 flex flex-col items-center">
+                <div className="md:w-2/3">
                   <label
-                    className="block  text-text font-bold md:text-right mb-1 md:mb-0 pr-4"
-                    htmlFor="inline-diameter"
+                    className="block  text-text font-bold md:text-left mb-1 md:mb-0 pr-4"
+                    htmlFor="inline-height"
+                  >
+                    Length
+                  </label>
+                </div>
+                <div className="md:w-2/3">
+                  <input
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-screen sm:w-full py-2 px-4 text-background leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                    id="inline-height"
+                    type="text"
+                    value={data.length + ' cm'}
+                    readOnly
+                  />
+                </div>
+              </div>
+              <div className="mb-6 flex flex-col items-center">
+                <div className="md:w-2/3">
+                  <label
+                    className="block  text-text font-bold md:text-left mb-1 md:mb-0 pr-4"
+                    htmlFor="inline-height"
                   >
                     Weight
                   </label>
@@ -181,7 +211,7 @@ const DetailPage = ({ params }: Props) => {
                     id="inline-diameter"
                     type="text"
                     readOnly
-                    value={data.weight}
+                    value={data.weight + ' g'}
                   />
                 </div>
               </div>
@@ -201,7 +231,7 @@ const DetailPage = ({ params }: Props) => {
             Conditions
           </legend>
           <div className="appearance-none block w-screen sm:w-4/5 bg-gray-200 text-background border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
-            {data.conditions}
+            {data.condition}
           </div>
         </div>
 
