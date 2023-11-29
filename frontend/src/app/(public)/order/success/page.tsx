@@ -2,7 +2,7 @@ import React from "react";
 
 const page = () => {
   return (
-    <div className="bg-background h-[calc(100vh-24rem)] pt-32">
+    <div className="bg-background h-[calc(100vh-16rem)] pt-32">
       <div className=" p-4  md:mx-auto w-96 border-solid border-green-500 border-2 rounded-lg">
         <svg
           viewBox="0 0 24 24"
@@ -19,9 +19,6 @@ const page = () => {
           </h3>
           <p className="text-text my-2">
             Thank you! Your payment has been received.
-          </p>
-          <p className="text-text">
-            You will recieve a confirmation email shortly.
           </p>
           <div className="py-10 text-center">
             <a
