@@ -17,7 +17,12 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const SellFigureForm = () => {
-  const { register, handleSubmit, watch } = useForm<Figure>();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<Figure>();
   const { user } = useUser();
   const [open, setOpen] = React.useState(false);
   const [savedPictures, setSavedPictures] = useState<Picture[]>([]);
@@ -43,10 +48,20 @@ export const SellFigureForm = () => {
       } else {
         router.push('/figures?submitted=true');
       }
-    } catch (error){
-      toast.error('Error connecting to the server, please try again later')
+    } catch (error) {
+      toast.error('Error connecting to the server, please try again later');
     }
   });
+
+  // errors.name &&
+  //   errors.name.type === 'required' &&
+  //   toast.error('Name is required');
+
+  useEffect(() => {
+    if (Object.entries(errors).length > 0) {
+      toast.error('Not all fields were entered correctly');
+    }
+  }, [errors]);
 
   const pictures: File[] = watch('pictures');
 
@@ -80,7 +95,14 @@ export const SellFigureForm = () => {
 
   const inputStyle =
     'bg-secondary appearance-none border-2 border-secondary rounded w-full py-2 px-4 text-text leading-tight focus:outline-none focus:border-primary';
+
+  const inputError =
+    'bg-secondary appearance-none border-2 border-red-600 rounded w-full py-2 px-4 text-text leading-tight focus:outline-none';
+
+  const errorText = 'text-red-600';
+
   const fieldStyle = 'flex flex-col gap-5 h-max mb-4 w-full px-4 sm:w-1/2';
+
   return (
     <form
       className="flex flex-col items-center gap-5 h-max mb-4 py-10 pt-20"
@@ -102,10 +124,17 @@ export const SellFigureForm = () => {
       <fieldset className={fieldStyle}>
         <input className="hidden" {...register('seller')} value={email} />
         <input
-          className={inputStyle}
-          {...register('name')}
+          className={errors.name ? inputError : inputStyle}
+          {...register('name', {
+            required: true,
+          })}
           placeholder="Name"
         />
+        {errors.name && errors.name.type === 'required' && (
+          <span className={errorText} role="alert">
+            Name is required
+          </span>
+        )}
         <input
           className={inputStyle}
           {...register('origin')}
@@ -117,17 +146,29 @@ export const SellFigureForm = () => {
           placeholder="Brand"
         />
         <textarea
-          className={inputStyle}
-          {...register('description')}
+          className={errors.description ? inputError : inputStyle}
+          {...register('description', {
+            required: true,
+          })}
           placeholder="Description"
         />
+        {errors.description && errors.description.type === 'required' && (
+          <span className={errorText} role="alert">
+            Description is required
+          </span>
+        )}
         <input
-          className={inputStyle}
-          {...register('price', { valueAsNumber: true })}
+          className={errors.price ? inputError : inputStyle}
+          {...register('price', { required: true, valueAsNumber: true })}
           type="number"
           step="0.01"
           placeholder="Price (EUR)"
         />
+        {errors.price && errors.price.type === 'required' && (
+          <span className={errorText} role="alert">
+            Price is required
+          </span>
+        )}
       </fieldset>
 
       <legend className=" text-2xl font-semibold text-text">Dimensions</legend>
@@ -175,11 +216,16 @@ export const SellFigureForm = () => {
           </fieldset>
         )}
         <input
-          className={inputStyle}
+          className={errors.pictures ? inputError : inputStyle}
           type="file"
-          {...register('pictures')}
+          {...register('pictures' ,{required: true})}
           multiple
         />
+        {errors.pictures && errors.pictures.type === 'required' && (
+          <span className={errorText} role="alert">
+          You must upload at least one picture
+          </span>
+        )}
       </fieldset>
 
       <button
