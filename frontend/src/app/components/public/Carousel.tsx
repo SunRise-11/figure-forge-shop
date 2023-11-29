@@ -3,7 +3,7 @@ import { Carousel } from "@material-tailwind/react";
 import Image from "next/image";
 import HeroImage1 from "../../../../public/hero-image.jpg";
 import HeroImage2 from "../../../../public/Slide1.png"
-import HeroImage3 from "../../../../public/Slide2.png"
+import HeroImage3 from "../../../../public/slide2.png"
 
 const CarouselHomePage = () => {
   return (
