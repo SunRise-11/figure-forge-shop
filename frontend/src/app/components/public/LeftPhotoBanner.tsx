@@ -1,7 +1,7 @@
-import Link from "next/link";
-import Image from "next/image";
-import React from "react";
-import AboutImage from "../../../../public/hero-about-image.png";
+import Link from 'next/link';
+import Image from 'next/image';
+import React from 'react';
+import AboutImage from '../../../../public/hero-about-image.png';
 
 const LeftPhotoBanner = () => {
   return (
@@ -16,14 +16,16 @@ const LeftPhotoBanner = () => {
       <div className="flex flex-col sm:items-start sm:justify-center py-4 gap-10">
         <h1 className=" text-2xl font-bold text-background">ABOUT US</h1>
         <p className="text-background">
-          Welcome to Figure Forge, the ultimate destination for collectors and
-          aficionados passionate about action figures. Our store encapsulates
-          the spirit of preservation and celebration of iconic figures from
-          various universes. Within our vibrant displays lie treasures waiting
-          to be discovered. Our dedicated team understands the sentimental value
-          each figure holds. As a former collector myself, I experienced
-          firsthand the seamless process of parting ways with a cherished action
-          figure.
+          At Figure Forge, our story is a tapestry woven with threads of passion
+          for action figures and an unwavering commitment to the collector
+          community. Nestled in the heart of the city, our shop stands as a
+          haven for enthusiasts, both seasoned collectors and those just
+          starting their journey. It all began with a shared love for these
+          miniature heroes and characters, where the dream was to create a space
+          that mirrored the nostalgia and joy these figures bring. Founded by a
+          group of collectors, Figure Forge emerged from the desire to curate a
+          haven that understood the emotional connections we forge with our
+          action figures.
         </p>
         <Link href="/about">
           <p className=" text-primary underline">Read more</p>
