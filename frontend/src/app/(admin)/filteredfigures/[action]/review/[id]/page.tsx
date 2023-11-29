@@ -111,9 +111,6 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
     <Card className="absolute right-0 w-full max-w-[calc(100vw-19rem)] top-20 max-h-[calc(100vh-5rem)] p-4 shadow-xl shadow-blue-gray-900/5 border-solid border-2 ">
       {toy && (
         <div className="overflow-y-auto flex flex-col md:flex-row md:gap-5">
-          <div className="h-96 w-full md:w-1/2">
-            <CarouselDetail pictures={toy!.pictures} />
-          </div>
           <form
             className="flex flex-col gap-5 w-full mb-4 py-10 "
             onSubmit={handleSubmit(onSubmit)}
@@ -182,7 +179,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
                     placeholder="Price (EUR)"
                     defaultValue={toy?.price}
                   />
-                  <label className="text-transparent"> sm</label>
+                  <label>EUR</label>
                 </div>
               </fieldset>
 
@@ -211,27 +208,27 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
                   <label>cm</label>
                 </div>
 
-                <div className="flex items-center gap-3 w-full">
-                  <label className="flex-1">Heigth</label>
+                <div className="flex items-center gap-3 w-full ">
+                  <label className="flex-3">Heigth</label>
                   <input
-                    className={`${inputStyle} flex-2`}
+                    className={`${inputStyle} `}
                     {...register("height", { valueAsNumber: true })}
                     type="number"
                     placeholder="Height (cm)"
                     defaultValue={toy?.height}
                   />
-                  <label>cm</label>
+                  <label className="flex-1">cm</label>
                 </div>
-                <div className="flex items-center gap-3 w-full">
-                  <label className="flex-1">Weigth</label>
+                <div className="flex items-center gap-3 w-full ">
+                  <label className="flex-3">Weigth</label>
                   <input
-                    className={`${inputStyle} flex-1`}
+                    className={`${inputStyle}`}
                     {...register("weight", { valueAsNumber: true })}
                     type="number"
                     placeholder="Weight (g)"
                     defaultValue={toy?.weight}
                   />
-                  <label>gm</label>
+                  <label className="flex-1">g</label>
                 </div>
               </fieldset>
             </div>
@@ -293,6 +290,9 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
               </Link>
             </div>
           </form>
+          <div className="h-96 w-full mr-10">
+            <CarouselDetail pictures={toy!.pictures} />
+          </div>
         </div>
       )}
     </Card>
