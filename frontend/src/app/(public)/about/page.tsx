@@ -6,18 +6,34 @@ const AboutPage = () => {
   return (
     <div className="flex min-h-screen flex-col items-center justify-between ">
       <Banner name="ABOUT US" imageSource={AboutImage.src} />
-      <div className="my-10">
+      <div className="my-10 p-4">
         <p className="text-text">
-          At Figure Forge, our story is a tapestry woven with threads of passion
-          for action figures and an unwavering commitment to the collector
-          community. Nestled in the heart of the city, our shop stands as a
-          haven for enthusiasts, both seasoned collectors and those just
-          starting their journey. It all began with a shared love for these
-          miniature heroes and characters, where the dream was to create a space
-          that mirrored the nostalgia and joy these figures bring. Founded by a
-          group of collectors, Figure Forge emerged from the desire to curate a
-          haven that understood the emotional connections we forge with our
-          action figures.
+          Hey there, fellow collectors and enthusiasts! Welcome to Figure
+          Forge—the ultimate haven for action figure aficionados like us. At
+          Figure Forge, we're not just a store; we're a vibrant community where
+          passion for action figures thrives. Picture this: we host regular
+          events and workshops where we come together to trade, share stories,
+          and dive deep into our love for these iconic figures. But that's not
+          all! We've got artisans skilled in restoring worn-out figures to their
+          former glory. We understand the sentimental value behind each piece,
+          and our restoration services aim to breathe new life into your beloved
+          collectibles. What sets us apart? Our adoption program! If you've got
+          figures seeking new homes, we're here to help. Let's find them a place
+          where they'll be cherished just as much as they were with you. And
+          here's the best part: our digital platform connects collectors
+          globally. You can browse, buy, and trade figures from anywhere, making
+          our community a worldwide network of enthusiasts. Being a member with
+          us comes with perks—early access, exclusive discounts, and invites to
+          our VIP events. It's like joining an exclusive club dedicated to our
+          shared passion. But authenticity is our priority. We've got experts
+          who authenticate figures, ensuring that every purchase from us is the
+          real deal. And hey, don't miss out on our podcast! It's where we share
+          stories, insights, and the latest buzz in the action figure world.
+          It's like tuning in to a hangout spot designed just for us figure
+          fanatics. So, fellow collectors, join us at Figure Forge, where our
+          love for action figures unites us all!
+          
+          
         </p>
       </div>
       <div className="bg-background w-full h-100 flex flex-row justify-between my-10 text-text">
