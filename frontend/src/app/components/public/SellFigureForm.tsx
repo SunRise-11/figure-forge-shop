@@ -27,6 +27,7 @@ export const SellFigureForm = () => {
   const [open, setOpen] = React.useState(false);
   const [savedPictures, setSavedPictures] = useState<Picture[]>([]);
   const [previewPictures, setPreviewPictures] = useState<string[]>([]);
+  const [submitting, setSubmitting] = useState<boolean>(false);
   const router = useRouter();
 
   const handleOpen = () => setOpen(!open);
@@ -37,6 +38,7 @@ export const SellFigureForm = () => {
   }
 
   const onFormSubmit = handleSubmit(async (data) => {
+    setSubmitting(true);
     const { pictures, ...figureDetails } = data;
     const figure: FigureDto = { ...figureDetails, pictures: savedPictures };
     try {
@@ -50,6 +52,7 @@ export const SellFigureForm = () => {
       }
     } catch (error) {
       toast.error('Error connecting to the server, please try again later');
+    setSubmitting(false);
     }
   });
 
@@ -63,9 +66,11 @@ export const SellFigureForm = () => {
 
   const handlePictureChange = async (pictures: File[]) => {
     if (pictures != undefined && pictures.length > 0) {
-      const uploads = [...pictures].map(async (picture, index) => {
+    setSubmitting(true);
+      const uploads = [...pictures].map(async (picture) => {
         try {
           const savedPicture = await httpPostPicture(picture);
+
 
           return { savedPicture, url: URL.createObjectURL(picture) };
         } catch (error) {
@@ -82,6 +87,7 @@ export const SellFigureForm = () => {
           setPreviewPictures((prev) => [...prev, result.url]);
         }
       });
+    setSubmitting(false);
     }
   };
 
@@ -215,7 +221,8 @@ export const SellFigureForm = () => {
 
       <button
         type="submit"
-        className="lg:inline-flex lg:w-auto w-52 px-3 py-2 text-xl rounded text-text bg-primary font-bold items-center justify-center transition ease-in-out delay-350 hover:text-accent hover:transition-all"
+        disabled={submitting}
+        className="lg:inline-flex lg:w-auto w-52 px-3 py-2 text-xl rounded text-text bg-primary font-bold items-center justify-center transition ease-in-out delay-350 hover:text-accent hover:transition-all disabled: bg-grey-500"
       >
         Submit
       </button>
