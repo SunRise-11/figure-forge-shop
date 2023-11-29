@@ -31,7 +31,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
           console.log("responde ok.");
           return response.json();
         } else {
-          throw new Error(`Failed to updtae data. Status: ${response.status}`);
+          throw new Error(`Failed to update data. Status: ${response.status}`);
         }
       })
       .then((data) => {
@@ -45,7 +45,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
   const handleDelete = async (id: string) => {
     if (id !== undefined) {
       const serverResponse = await httpDeleteFigure(id);
-      console.log("Server Response", serverResponse);
+      console.log("Server response", serverResponse);
 
       if (serverResponse.status === 204) {
         deleteFigure(id);
@@ -143,7 +143,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
                     onChange={handleStatusChange}  
                      value={toy?.status}
                   >
-                    <option value="unckeck">Unckeck</option>
+                    <option value="unckeck">Unckecked</option>
                     <option value="posted">Posted</option>
                     <option value="sold">sold</option>
                   </select>
