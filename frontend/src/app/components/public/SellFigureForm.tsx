@@ -53,10 +53,6 @@ export const SellFigureForm = () => {
     }
   });
 
-  // errors.name &&
-  //   errors.name.type === 'required' &&
-  //   toast.error('Name is required');
-
   useEffect(() => {
     if (Object.entries(errors).length > 0) {
       toast.error('Not all fields were entered correctly');
@@ -108,18 +104,35 @@ export const SellFigureForm = () => {
       className="flex flex-col items-center gap-5 h-max mb-4 py-10 pt-20"
       onSubmit={onFormSubmit}
     >
-      <ToastContainer
-        position="top-center"
-        autoClose={3000}
-        hideProgressBar
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss={false}
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
+      <legend className=" text-2xl font-semibold text-text">Pictures</legend>
+      <fieldset className={fieldStyle}>
+        {previewPictures && (
+          <fieldset className="flex flex-wrap -mx-4">
+            {previewPictures.map((picture, index) => {
+              return (
+                <Image
+                  className="w-1/5 px-4 mb-4"
+                  src={picture}
+                  alt="Uploaded picture preview"
+                  key={index}
+                />
+              );
+            })}
+          </fieldset>
+        )}
+        <input
+          className={errors.pictures ? inputError : inputStyle}
+          type="file"
+          {...register('pictures' ,{required: true})}
+          multiple
+        />
+        {errors.pictures && errors.pictures.type === 'required' && (
+          <span className={errorText} role="alert">
+          You must upload at least one picture
+          </span>
+        )}
+      </fieldset>
+
       <legend className=" text-2xl font-semibold text-text">Details</legend>
       <fieldset className={fieldStyle}>
         <input className="hidden" {...register('seller')} value={email} />
@@ -199,34 +212,6 @@ export const SellFigureForm = () => {
         />
       </fieldset>
 
-      <legend className=" text-2xl font-semibold text-text">Pictures</legend>
-      <fieldset className={fieldStyle}>
-        {previewPictures && (
-          <fieldset className="flex flex-wrap -mx-4">
-            {previewPictures.map((picture, index) => {
-              return (
-                <Image
-                  className="w-1/5 px-4 mb-4"
-                  src={picture}
-                  alt="Uploaded picture preview"
-                  key={index}
-                />
-              );
-            })}
-          </fieldset>
-        )}
-        <input
-          className={errors.pictures ? inputError : inputStyle}
-          type="file"
-          {...register('pictures' ,{required: true})}
-          multiple
-        />
-        {errors.pictures && errors.pictures.type === 'required' && (
-          <span className={errorText} role="alert">
-          You must upload at least one picture
-          </span>
-        )}
-      </fieldset>
 
       <button
         type="submit"
@@ -234,6 +219,20 @@ export const SellFigureForm = () => {
       >
         Submit
       </button>
+
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
+
       <Dialog open={open} handler={handleOpen}>
         <DialogHeader>Its a simple dialog.</DialogHeader>
         <DialogBody>
