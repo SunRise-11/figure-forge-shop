@@ -53,14 +53,14 @@ const Card = ({ toy }: Props) => {
       <div className="absolute right-3 bottom-14">
         {quantity === 0 ? (
           <button
-            className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text bg-primary font-bold text-center items-center justify-center transition ease-in-out delay-350 hover:text-accent hover:transition-all"
+              className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text bg-primary font-medium text-center items-center justify-center transition ease-in-out delay-350 hover:bg-secondary hover:transition-all"
             onClick={() => increaseCartQuantity(toy.id)}
           >
             <ShoppingCartIcon className="h-6 text-text" />
           </button>
         ) : (
           <button
-            className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text bg-red-600 font-bold text-center items-center justify-center transition ease-in-out delay-350 hover:text-accent hover:transition-all"
+            className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text bg-red-600 font-bold text-center items-center justify-center transition ease-in-out delay-350 hover:bg-red-800 hover:transition-all"
             onClick={() => removeFromCart(toy.id)}
           >
             <XMarkIcon className="h-6 text-text" />
