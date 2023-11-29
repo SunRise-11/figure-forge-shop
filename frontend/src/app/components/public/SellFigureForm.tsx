@@ -1,21 +1,28 @@
-"use client";
-import { httpPostFigure, httpPostPicture } from "@/app/api/http/requests";
-import { Figure, FigureDto, Picture } from "@/app/types/types";
-import { useUser } from "@auth0/nextjs-auth0/client";
-import Image from "next/image";
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
+'use client';
+import { httpPostFigure, httpPostPicture } from '@/app/api/http/requests';
+import { Figure, FigureDto, Picture } from '@/app/types/types';
+import { useUser } from '@auth0/nextjs-auth0/client';
+import Image from 'next/image';
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
 import {
   Button,
   Dialog,
   DialogHeader,
   DialogBody,
   DialogFooter,
-} from "@material-tailwind/react";
+} from '@material-tailwind/react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const SellFigureForm = () => {
-  const { register, handleSubmit, watch } = useForm<Figure>();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<Figure>();
   const { user } = useUser();
   const [open, setOpen] = React.useState(false);
   const [savedPictures, setSavedPictures] = useState<Picture[]>([]);
@@ -26,17 +33,37 @@ export const SellFigureForm = () => {
 
   let email = user?.email;
   if (email == null) {
-    email = "unverified seller";
+    email = 'unverified seller';
   }
 
-  const onFormSubmit = handleSubmit((data) => {
+  const onFormSubmit = handleSubmit(async (data) => {
     const { pictures, ...figureDetails } = data;
     const figure: FigureDto = { ...figureDetails, pictures: savedPictures };
-    httpPostFigure(figure);
-    router.push("/figures");
+    try {
+      const response = await httpPostFigure(figure);
+      if (response.status != 201) {
+        toast.error(
+          `There was an error uploading the form: ${response.status}`
+        );
+      } else {
+        router.push('/figures?submitted=true');
+      }
+    } catch (error) {
+      toast.error('Error connecting to the server, please try again later');
+    }
   });
 
-  const pictures: File[] = watch("pictures");
+  // errors.name &&
+  //   errors.name.type === 'required' &&
+  //   toast.error('Name is required');
+
+  useEffect(() => {
+    if (Object.entries(errors).length > 0) {
+      toast.error('Not all fields were entered correctly');
+    }
+  }, [errors]);
+
+  const pictures: File[] = watch('pictures');
 
   const handlePictureChange = async (pictures: File[]) => {
     if (pictures != undefined && pictures.length > 0) {
@@ -46,8 +73,7 @@ export const SellFigureForm = () => {
 
           return { savedPicture, url: URL.createObjectURL(picture) };
         } catch (error) {
-          console.error(`Error uploading picture ${picture}:`, error);
-          // TODO: add toast message that file was not uploaded
+          toast.error(`Error uploading picture ${picture.name}: ${error}`);
           return { error, picture };
         }
       });
@@ -68,68 +94,106 @@ export const SellFigureForm = () => {
   }, [pictures]);
 
   const inputStyle =
-    "bg-secondary appearance-none border-2 border-secondary rounded w-full py-2 px-4 text-text leading-tight focus:outline-none focus:border-primary";
-  const fieldStyle = "flex flex-col gap-5 h-max mb-4 w-full px-4 sm:w-1/2";
+    'bg-secondary appearance-none border-2 border-secondary rounded w-full py-2 px-4 text-text leading-tight focus:outline-none focus:border-primary';
+
+  const inputError =
+    'bg-secondary appearance-none border-2 border-red-600 rounded w-full py-2 px-4 text-text leading-tight focus:outline-none';
+
+  const errorText = 'text-red-600';
+
+  const fieldStyle = 'flex flex-col gap-5 h-max mb-4 w-full px-4 sm:w-1/2';
+
   return (
     <form
       className="flex flex-col items-center gap-5 h-max mb-4 py-10 pt-20"
       onSubmit={onFormSubmit}
     >
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
       <legend className=" text-2xl font-semibold text-text">Details</legend>
       <fieldset className={fieldStyle}>
-        <input className="hidden" {...register("seller")} value={email} />
+        <input className="hidden" {...register('seller')} value={email} />
         <input
-          className={inputStyle}
-          {...register("name")}
+          className={errors.name ? inputError : inputStyle}
+          {...register('name', {
+            required: true,
+          })}
           placeholder="Name"
         />
+        {errors.name && errors.name.type === 'required' && (
+          <span className={errorText} role="alert">
+            Name is required
+          </span>
+        )}
         <input
           className={inputStyle}
-          {...register("origin")}
+          {...register('origin')}
           placeholder="Origin"
         />
         <input
           className={inputStyle}
-          {...register("brand")}
+          {...register('brand')}
           placeholder="Brand"
         />
         <textarea
-          className={inputStyle}
-          {...register("description")}
+          className={errors.description ? inputError : inputStyle}
+          {...register('description', {
+            required: true,
+          })}
           placeholder="Description"
         />
+        {errors.description && errors.description.type === 'required' && (
+          <span className={errorText} role="alert">
+            Description is required
+          </span>
+        )}
         <input
-          className={inputStyle}
-          {...register("price", { valueAsNumber: true })}
+          className={errors.price ? inputError : inputStyle}
+          {...register('price', { required: true, valueAsNumber: true })}
           type="number"
           step="0.01"
           placeholder="Price (EUR)"
         />
+        {errors.price && errors.price.type === 'required' && (
+          <span className={errorText} role="alert">
+            Price is required
+          </span>
+        )}
       </fieldset>
 
       <legend className=" text-2xl font-semibold text-text">Dimensions</legend>
       <fieldset className={fieldStyle}>
         <input
           className={inputStyle}
-          {...register("width", { valueAsNumber: true })}
+          {...register('width', { valueAsNumber: true })}
           type="number"
           placeholder="Width (cm)"
         />
         <input
           className={inputStyle}
-          {...register("length", { valueAsNumber: true })}
+          {...register('length', { valueAsNumber: true })}
           type="number"
           placeholder="Length (cm)"
         />
         <input
           className={inputStyle}
-          {...register("height", { valueAsNumber: true })}
+          {...register('height', { valueAsNumber: true })}
           type="number"
           placeholder="Height (cm)"
         />
         <input
           className={inputStyle}
-          {...register("weight", { valueAsNumber: true })}
+          {...register('weight', { valueAsNumber: true })}
           type="number"
           placeholder="Weight (g)"
         />
@@ -152,11 +216,16 @@ export const SellFigureForm = () => {
           </fieldset>
         )}
         <input
-          className={inputStyle}
+          className={errors.pictures ? inputError : inputStyle}
           type="file"
-          {...register("pictures")}
+          {...register('pictures' ,{required: true})}
           multiple
         />
+        {errors.pictures && errors.pictures.type === 'required' && (
+          <span className={errorText} role="alert">
+          You must upload at least one picture
+          </span>
+        )}
       </fieldset>
 
       <button
