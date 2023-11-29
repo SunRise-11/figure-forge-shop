@@ -1,6 +1,6 @@
-import type { Config } from "tailwindcss";
-const withMT = require("@material-tailwind/react/utils/withMT");
- 
+import type { Config } from 'tailwindcss';
+const withMT = require('@material-tailwind/react/utils/withMT');
+
 module.exports = withMT({
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -16,6 +16,9 @@ module.exports = withMT({
       accent: '#8C8D8B',
     },
     extend: {
+      screens: {
+        md: '940px',
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
@@ -25,5 +28,3 @@ module.exports = withMT({
   },
   plugins: [],
 });
- 
- 
