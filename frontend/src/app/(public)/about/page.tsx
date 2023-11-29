@@ -8,7 +8,7 @@ const AboutPage = () => {
       <Banner name="ABOUT US" imageSource={AboutImage.src} />
       <div className="my-10 p-4">
         <p className="text-text">
-          Hey there, fellow collectors and enthusiasts! Welcome to Figure
+         {`Hey there, fellow collectors and enthusiasts! Welcome to Figure
           Forge—the ultimate haven for action figure aficionados like us. At
           Figure Forge, we're not just a store; we're a vibrant community where
           passion for action figures thrives. Picture this: we host regular
@@ -31,9 +31,7 @@ const AboutPage = () => {
           stories, insights, and the latest buzz in the action figure world.
           It's like tuning in to a hangout spot designed just for us figure
           fanatics. So, fellow collectors, join us at Figure Forge, where our
-          love for action figures unites us all!
-          
-          
+          love for action figures unites us all!`}
         </p>
       </div>
       <div className="bg-background w-full h-100 flex flex-row justify-between my-10 text-text">
