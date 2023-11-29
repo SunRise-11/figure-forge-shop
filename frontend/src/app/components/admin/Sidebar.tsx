@@ -18,9 +18,11 @@ import {
 } from "@heroicons/react/24/solid";
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export function Sidebar() {
-  const [open, setOpen] = React.useState(0);
+  const [open, setOpen] = React.useState(1);
+  const pathname = usePathname();
 
   const handleOpen = (value: React.SetStateAction<number>) => {
     setOpen(open === value ? 0 : value);
@@ -43,7 +45,9 @@ export function Sidebar() {
           </ListItem>
         </a>
         <a href="/dashboard">
-          <ListItem>
+          <ListItem
+            className={`${pathname == '/dashboard' ? 'text-secondary' : ''}`}
+          >
             <ListItemPrefix>
               <PresentationChartBarIcon className="h-5 w-5" />
             </ListItemPrefix>
@@ -51,19 +55,19 @@ export function Sidebar() {
           </ListItem>
         </a>
         <Accordion
-          open={open === 2}
+          open={open === 1}
           icon={
             <ChevronDownIcon
               strokeWidth={2.5}
               className={`mx-auto h-4 w-4 transition-transform ${
-                open === 2 ? "rotate-180" : ""
+                open === 2 ? 'rotate-180' : ''
               }`}
             />
           }
         >
-          <ListItem className="p-0" selected={open === 2}>
+          <ListItem className="p-0" selected={open === 1}>
             <AccordionHeader
-              onClick={() => handleOpen(2)}
+              onClick={() => handleOpen(1)}
               className="border-b-0 p-3"
             >
               <ListItemPrefix>
@@ -76,30 +80,46 @@ export function Sidebar() {
           </ListItem>
           <AccordionBody className="py-1">
             <List className="p-0">
-              <a href="/filteredfigures/unchecked">
-                <ListItem>
+              <Link href="/filteredfigures/unchecked">
+                <ListItem
+                  className={`${
+                    pathname == '/filteredfigures/unchecked'
+                      ? 'text-secondary'
+                      : ''
+                  }`}
+                >
                   <ListItemPrefix>
                     <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
                   </ListItemPrefix>
                   Unchecked
                 </ListItem>
-              </a>
+              </Link>
               <Link href="/filteredfigures/posted">
-                <ListItem>
+                <ListItem
+                  className={`${
+                    pathname == '/filteredfigures/posted'
+                      ? 'text-secondary'
+                      : ''
+                  }`}>
                   <ListItemPrefix>
                     <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
                   </ListItemPrefix>
                   Posted
                 </ListItem>
               </Link>
-              <a href="/filteredfigures/sold">
-                <ListItem>
+              <Link href="/filteredfigures/sold">
+                <ListItem
+                  className={`${
+                    pathname == '/filteredfigures/sold'
+                      ? 'text-secondary'
+                      : ''
+                  }`}>
                   <ListItemPrefix>
                     <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
                   </ListItemPrefix>
                   Sold
                 </ListItem>
-              </a>
+              </Link>
             </List>
           </AccordionBody>
         </Accordion>
