@@ -19,11 +19,11 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
   const router = useRouter();
   const rating = watch("rating");
   const toy = toys.find((toy) => toy.id === params.id);
-  const [status, setStatus] = useState<string>(toy ? toy.status : 'posted');
+  const [status, setStatus] = useState<string>(toy ? toy.status : "posted");
 
   const onSubmit = (data: any) => {
     const formData = { status: status, ...data };
-    
+
     httpPutFigure(formData, toy!.id)
       .then((response) => {
         if (response.ok) {
@@ -34,7 +34,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
         }
       })
       .then((data) => {
-        updateFigure(data);  
+        updateFigure(data);
         if (status == "posted") {
           sendToDiscord();
         }
@@ -56,7 +56,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
     }
   };
 
-  const sendToDiscord = async () => { 
+  const sendToDiscord = async () => {
     const discordUrl =
       "https://discord.com/api/webhooks/1178368931262631946/LQmN55RY6c6cGiXolEGkhh4lmBtUBEEuPJ19eXQxpNYZN_mGEzywFUZPfJf1fwJK_JBm";
 
@@ -98,9 +98,9 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
       });
   };
 
-  const handleStatusChange = (event: ChangeEvent<HTMLSelectElement>) => {  
+  const handleStatusChange = (event: ChangeEvent<HTMLSelectElement>) => {
     setStatus(event.target.value);
-    console.log("Status changed",status);
+    console.log("Status changed", status);
   };
 
   const handleRatingChange = (nextValue: number) => {
@@ -139,7 +139,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
                   <select
                     id="ddl_status"
                     className="p-2 mr-4  text-sm border border-gray-300 rounded dark:border-gray-600 dark:bg-gray-700 dark:text-white"
-                    onChange={handleStatusChange}  
+                    onChange={handleStatusChange}
                   >
                     <option value="unckeck">Unckecked</option>
                     <option value="posted">Posted</option>
@@ -255,14 +255,17 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
                   className={`${inputStyle} w-full`}
                   {...register("condition")}
                   placeholder="conditions"
-                  defaultValue={toy?.conditions}
+                  defaultValue={toy?.condition}
                 />
               </div>
             </div>
             <div className="flex flex-col gap-5 md:flex-row md:items-start md:mt-5">
               <fieldset className="mt-6">
                 <legend className="font-bold mb-2">Rating</legend>
-                <RatingAdmin rate={toy.rating} onRatingChange={handleRatingChange} />
+                <RatingAdmin
+                  rate={toy.rating}
+                  onRatingChange={handleRatingChange}
+                />
               </fieldset>
             </div>
             <div className="flex flex-col gap-5 md:flex-row md:items-start md:mt-5">
