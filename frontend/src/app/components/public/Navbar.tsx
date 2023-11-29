@@ -17,7 +17,7 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="flex items-center justify-between bg-background lg:px-8 pt-2 z-50 fixed w-full max-w-screen-2xl mx-auto">
+    <nav className="flex items-center justify-between bg-background lg:px-8 py-2 z-50 fixed w-full max-w-screen-2xl mx-auto">
       <Link href="/">
         <p className="inline-flex items-center p-2 mr-4 ">
           <span className="text-xl text-text font-bold uppercase tracking-wide">
@@ -53,8 +53,8 @@ export const Navbar = () => {
           <Link href="/" onClick={handleClick}>
             <p
               className={`${
-                pathname === "/" ? "text-primary" : ""
-              } lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text font-bold items-center justify-center hover:text-primary`}
+                pathname === "/" ? "text-secondary" : ""
+              } lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text font-bold items-center justify-center hover:text-secondary`}
             >
               Home
             </p>
@@ -62,8 +62,8 @@ export const Navbar = () => {
           <Link href="/figures" onClick={handleClick}>
             <p
               className={`${
-                pathname === "/figures" ? "text-primary" : ""
-              } lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text font-bold items-center justify-center hover:text-primary`}
+                pathname === "/figures" ? "text-secondary" : ""
+              } lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text font-bold items-center justify-center hover:text-secondary`}
             >
               Shop
             </p>
@@ -71,8 +71,8 @@ export const Navbar = () => {
           <Link href="/about" onClick={handleClick}>
             <p
               className={`${
-                pathname === "/about" ? "text-primary" : ""
-              } lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text font-bold items-center justify-center hover:text-primary`}
+                pathname === "/about" ? "text-secondary" : ""
+              } lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text font-bold items-center justify-center hover:text-secondary`}
             >
               About us
             </p>
@@ -81,8 +81,8 @@ export const Navbar = () => {
             <Link href="/dashboard" onClick={handleClick}>
               <p
                 className={`${
-                  pathname == "/dashboard" ? "text-primary" : ""
-                } lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text font-bold items-center justify-center hover:text-primary`}
+                  pathname == "/dashboard" ? "text-secondary" : ""
+                } lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text font-bold items-center justify-center hover:text-secondary`}
               >
                 Dashboard
               </p>
@@ -91,8 +91,8 @@ export const Navbar = () => {
             <Link href="/sell-figure" onClick={handleClick}>
               <p
                 className={`${
-                  pathname == "/sell-figure" ? "text-primary" : ""
-                } lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text font-bold items-center justify-center hover:text-primary`}
+                  pathname == "/sell-figure" ? "text-secondary" : ""
+                } lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text font-bold items-center justify-center hover:text-secondary`}
               >
                 Sell Figure
               </p>
@@ -104,8 +104,8 @@ export const Navbar = () => {
             <Link href="/sell-figure" onClick={handleClick}>
               <p
                 className={`${
-                  pathname == "/sell-figure" ? "text-primary" : ""
-                } lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text font-bold items-center justify-center hover:text-primary`}
+                  pathname == "/sell-figure" ? "text-secondary" : ""
+                } lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text font-bold items-center justify-center hover:text-secondary`}
               >
                 Sell Figure
               </p>
@@ -114,7 +114,7 @@ export const Navbar = () => {
             <div className="hidden"></div>
           )}
           <button className="h-8 my-auto relative mr-4" onClick={openCart}>
-            <ShoppingBagIcon className="h-8 text-text" />
+            <ShoppingBagIcon className="h-8 text-text hover:text-secondary" />
             <div
               className="rounded-full bg-red-600 d-flex justify-content-center align-items-center"
               style={{
@@ -132,13 +132,13 @@ export const Navbar = () => {
           </button>
           {user ? (
             <Link href="/api/auth/logout" onClick={handleClick}>
-              <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text bg-primary font-bold text-center items-center justify-center transition ease-in-out delay-350 hover:text-accent hover:transition-all">
+              <p className="lg:inline-flex lg:w-auto w-full px-2 py-1 rounded text-text bg-primary font-bold text-center items-center justify-center transition ease-in-out delay-350 hover:text-text hover:bg-secondary hover:transition-all">
                 Logout
               </p>
             </Link>
           ) : (
             <Link href="/api/auth/login" onClick={handleClick}>
-              <p className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-text bg-primary font-bold text-center items-center justify-center transition ease-in-out delay-350 hover:text-accent hover:transition-all">
+              <p className="lg:inline-flex lg:w-auto w-full px-2 py-1 rounded text-text bg-primary font-bold text-center items-center justify-center transition ease-in-out delay-350 hover:text-text hover:bg-secondary hover:transition-all">
                 Login
               </p>
             </Link>
