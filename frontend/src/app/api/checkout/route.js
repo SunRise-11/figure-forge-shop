@@ -14,13 +14,13 @@ export async function POST(req) {
         currency: "eur",
         product_data: {
           name: items[i].name,
-          images: [items[i].image],
         },
         unit_amount: items[i].price + "00",
       },
       quantity: 1,
     });
   }
+  console.log(lineItem);
   const session = await stripe.checkout.sessions.create(
     {
       line_items: lineItem,

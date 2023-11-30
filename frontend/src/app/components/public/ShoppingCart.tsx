@@ -1,9 +1,9 @@
-import { useShoppingCart } from '@/app/contexts/cartContext';
-import { Fragment, useContext } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
-import CartItem from './CartItem';
-import { FiguresContext } from '@/app/contexts/figures.context';
-import axios from 'axios';
+import { useShoppingCart } from "@/app/contexts/cartContext";
+import { Fragment, useContext } from "react";
+import { Dialog, Transition } from "@headlessui/react";
+import CartItem from "./CartItem";
+import { FiguresContext } from "@/app/contexts/figures.context";
+import axios from "axios";
 
 type ShoppingCartProps = {
   isOpen: boolean;
@@ -13,9 +13,9 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
   const { closeCart, cartItems } = useShoppingCart();
   const { toys } = useContext(FiguresContext);
 
-  const formatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'EUR',
+  const formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "EUR",
     minimumFractionDigits: 0,
   });
 
@@ -26,18 +26,18 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
       cartData.push({
         name: toys.find((toy) => toy.id === cartItems[i].id)?.name,
         price: toys.find((toy) => toy.id === cartItems[i].id)?.price,
-        image: toys.find((toy) => toy.id === cartItems[i].id)?.pictures[0]
+        image: toys.find((toy) => toy.id === cartItems[i].id)?.pictures[1]
           .pictureUrl,
       });
     }
     const { data } = await axios.post(
-      '/api/checkout',
+      "/api/checkout",
       {
         item: cartData,
       },
       {
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
       }
     );
@@ -89,7 +89,7 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
                   )}
                 </div>
                 <div className=" font-bold text-xl w-full text-right mt-10">
-                  Total{' '}
+                  Total{" "}
                   {formatter.format(
                     cartItems.reduce((total, cartItem) => {
                       const item = toys.find((i) => i.id === cartItem.id);
