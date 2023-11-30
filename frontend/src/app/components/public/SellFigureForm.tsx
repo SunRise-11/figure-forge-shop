@@ -1,20 +1,20 @@
-'use client';
-import { httpPostFigure, httpPostPicture } from '@/app/api/http/requests';
-import { Figure, FigureDto, Picture } from '@/app/types/types';
-import { useUser } from '@auth0/nextjs-auth0/client';
-import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useRouter } from 'next/navigation';
+"use client";
+import { httpPostFigure, httpPostPicture } from "@/app/api/http/requests";
+import { Figure, FigureDto, Picture } from "@/app/types/types";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 import {
   Button,
   Dialog,
   DialogHeader,
   DialogBody,
   DialogFooter,
-} from '@material-tailwind/react';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+} from "@material-tailwind/react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const SellFigureForm = () => {
   const {
@@ -34,7 +34,7 @@ export const SellFigureForm = () => {
 
   let email = user?.email;
   if (email == null) {
-    email = 'unverified seller';
+    email = "unverified seller";
   }
 
   const onFormSubmit = handleSubmit(async (data) => {
@@ -48,29 +48,28 @@ export const SellFigureForm = () => {
           `There was an error uploading the form: ${response.status}`
         );
       } else {
-        router.push('/figures?submitted=true');
+        router.push("/figures?submitted=true");
       }
     } catch (error) {
-      toast.error('Error connecting to the server, please try again later');
-    setSubmitting(false);
+      toast.error("Error connecting to the server, please try again later");
+      setSubmitting(false);
     }
   });
 
   useEffect(() => {
     if (Object.entries(errors).length > 0) {
-      toast.error('Not all fields were entered correctly');
+      toast.error("Not all fields were entered correctly");
     }
   }, [errors]);
 
-  const pictures: File[] = watch('pictures');
+  const pictures: File[] = watch("pictures");
 
   const handlePictureChange = async (pictures: File[]) => {
     if (pictures != undefined && pictures.length > 0) {
-    setSubmitting(true);
+      setSubmitting(true);
       const uploads = [...pictures].map(async (picture) => {
         try {
           const savedPicture = await httpPostPicture(picture);
-
 
           return { savedPicture, url: URL.createObjectURL(picture) };
         } catch (error) {
@@ -87,7 +86,7 @@ export const SellFigureForm = () => {
           setPreviewPictures((prev) => [...prev, result.url]);
         }
       });
-    setSubmitting(false);
+      setSubmitting(false);
     }
   };
 
@@ -96,66 +95,65 @@ export const SellFigureForm = () => {
   }, [pictures]);
 
   const inputStyle =
-    'bg-secondary appearance-none border-2 border-secondary rounded w-full py-2 px-4 text-text leading-tight focus:outline-none focus:border-primary';
+    "bg-secondary appearance-none border-2 border-secondary rounded w-full py-2 px-4 text-text leading-tight focus:outline-none focus:border-primary";
 
   const inputError =
-    'bg-secondary appearance-none border-2 border-red-600 rounded w-full py-2 px-4 text-text leading-tight focus:outline-none';
+    "bg-secondary appearance-none border-2 border-red-600 rounded w-full py-2 px-4 text-text leading-tight focus:outline-none";
 
-  const errorText = 'text-red-600';
+  const errorText = "text-red-600";
 
-  const fieldStyle = 'flex flex-col gap-5 h-max mb-4 w-full px-4 sm:w-1/2';
+  const fieldStyle = "flex flex-col gap-5 h-max mb-4 w-full px-4 sm:w-1/2";
 
   return (
     <form
       className="flex flex-col items-center gap-5 h-max mb-4 py-10 pt-20"
       onSubmit={onFormSubmit}
     >
-
       <legend className=" text-2xl font-semibold text-text">Details</legend>
       <fieldset className={fieldStyle}>
-        <input className="hidden" {...register('seller')} value={email} />
+        <input className="hidden" {...register("seller")} value={email} />
         <input
           className={errors.name ? inputError : inputStyle}
-          {...register('name', {
+          {...register("name", {
             required: true,
           })}
           placeholder="Name"
         />
-        {errors.name && errors.name.type === 'required' && (
+        {errors.name && errors.name.type === "required" && (
           <span className={errorText} role="alert">
             Name is required
           </span>
         )}
         <input
           className={inputStyle}
-          {...register('origin')}
+          {...register("origin")}
           placeholder="Origin"
         />
         <input
           className={inputStyle}
-          {...register('brand')}
+          {...register("brand")}
           placeholder="Brand"
         />
         <textarea
           className={errors.description ? inputError : inputStyle}
-          {...register('description', {
+          {...register("description", {
             required: true,
           })}
           placeholder="Description"
         />
-        {errors.description && errors.description.type === 'required' && (
+        {errors.description && errors.description.type === "required" && (
           <span className={errorText} role="alert">
             Description is required
           </span>
         )}
         <input
           className={errors.price ? inputError : inputStyle}
-          {...register('price', { required: true, valueAsNumber: true })}
+          {...register("price", { required: true, valueAsNumber: true })}
           type="number"
           step="0.01"
           placeholder="Price (EUR)"
         />
-        {errors.price && errors.price.type === 'required' && (
+        {errors.price && errors.price.type === "required" && (
           <span className={errorText} role="alert">
             Price is required
           </span>
@@ -166,25 +164,25 @@ export const SellFigureForm = () => {
       <fieldset className={fieldStyle}>
         <input
           className={inputStyle}
-          {...register('width', { valueAsNumber: true })}
+          {...register("width", { valueAsNumber: true })}
           type="number"
           placeholder="Width (cm)"
         />
         <input
           className={inputStyle}
-          {...register('length', { valueAsNumber: true })}
+          {...register("length", { valueAsNumber: true })}
           type="number"
           placeholder="Length (cm)"
         />
         <input
           className={inputStyle}
-          {...register('height', { valueAsNumber: true })}
+          {...register("height", { valueAsNumber: true })}
           type="number"
           placeholder="Height (cm)"
         />
         <input
           className={inputStyle}
-          {...register('weight', { valueAsNumber: true })}
+          {...register("weight", { valueAsNumber: true })}
           type="number"
           placeholder="Weight (g)"
         />
@@ -209,12 +207,12 @@ export const SellFigureForm = () => {
         <input
           className={errors.pictures ? inputError : inputStyle}
           type="file"
-          {...register('pictures' ,{required: true})}
+          {...register("pictures", { required: true })}
           multiple
         />
-        {errors.pictures && errors.pictures.type === 'required' && (
+        {errors.pictures && errors.pictures.type === "required" && (
           <span className={errorText} role="alert">
-          You must upload at least one picture
+            You must upload at least one picture
           </span>
         )}
       </fieldset>
@@ -222,7 +220,7 @@ export const SellFigureForm = () => {
       <button
         type="submit"
         disabled={submitting}
-        className="lg:inline-flex lg:w-auto w-52 px-3 py-2 text-xl rounded text-text bg-primary font-bold items-center justify-center transition ease-in-out delay-350 hover:text-accent hover:transition-all disabled: bg-grey-500"
+        className="md:inline-flex md:w-auto w-full px-2 py-1 rounded text-text bg-primary font-bold text-center items-center justify-center transition ease-in-out delay-350 hover:text-text hover:bg-secondary hover:transition-all"
       >
         Submit
       </button>

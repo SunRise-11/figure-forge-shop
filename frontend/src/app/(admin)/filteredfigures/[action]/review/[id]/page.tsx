@@ -38,6 +38,7 @@ const ReviewPage = ({ params }: { params: { id: string } }) => {
         if (status == "posted") {
           sendToDiscord();
         }
+        router.push("/dashboard");
       });
   };
 
